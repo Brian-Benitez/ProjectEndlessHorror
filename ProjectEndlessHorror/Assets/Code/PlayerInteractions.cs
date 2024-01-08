@@ -5,10 +5,13 @@ using UnityEngine;
 public class PlayerInteractions : MonoBehaviour
 {
     public LoopingRoomMechanic LRM;
+
+    //dont need this but will use it below
+    public GameObject Door;
    //How this works,
    //The player shoots a raycast on the door.
    //Then in looping room mechanic, it will check to see if everything is done in the room.
-   //If it is, teleport the player back to spawn, if not do nothing.
+   //If it is, spawn new room, then player goes through.
     void Update()
     {
         //player input
@@ -21,7 +24,9 @@ public class PlayerInteractions : MonoBehaviour
                 if(hit.transform.name == "Door")
                 {
                     Debug.Log("gecho ass outta here");
-                    LRM.SpawnBackToStart();
+                    //LRM.SpawnBackToStart();
+                    Door.transform.position = new Vector3(0, 90, 0);
+                    LRM.SpawnNewChunk();
                 }
 
             }
