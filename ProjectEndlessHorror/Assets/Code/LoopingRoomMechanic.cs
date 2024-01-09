@@ -9,6 +9,7 @@ public class LoopingRoomMechanic : MonoBehaviour
     public Transform RoomSpawnPos;
     public Transform Player;
 
+    [Header("Level counter")]
     public int CurrentLevel = 0;
 
     [Header("Player inventory")]
@@ -16,6 +17,16 @@ public class LoopingRoomMechanic : MonoBehaviour
 
     [Header("Scripts")]
     public PlayerInteractions PI;
+
+    [Header("Level two objects")]
+    [SerializeField]
+    private bool ClickedOnPhoneOne = false;
+    [SerializeField]
+    private bool ClickedOnPhoneTwo = false;
+    [SerializeField]
+    private bool ClickedOnPhoneThree = false;
+    [SerializeField]
+    private bool ClickedOnPhoneFour = false;
 
     /// <summary>
     /// This functions gives posistion on where the chunk should spawn in.
@@ -74,10 +85,36 @@ public class LoopingRoomMechanic : MonoBehaviour
         }
     }
     /// <summary>
-    /// Second puzzle requires tha player to do something idk
+    /// Second puzzle requires tha player to click on 4 phones in the room to move forward.
     /// </summary>
     public void SecondPuzzle()
     {
+        if(ClickedOnPhoneOne && ClickedOnPhoneTwo && ClickedOnPhoneThree && ClickedOnPhoneFour == true)
+        {
+            PI.CanOpenDoor = true;
+        }
+        else
+        {
+            PI.CanOpenDoor = false;
+            Debug.Log("all phones have not been clicked.");
+        }
+    }
 
+    public void TurnPhoneTrue()
+    {
+        ClickedOnPhoneOne = true;
+    }
+    public void TurnPhoneTwoTrue()
+    {
+        ClickedOnPhoneTwo = true;
+    }
+    public void TurnPhoneThreeTrue()
+    {
+        ClickedOnPhoneThree = true;
+    }
+
+    public void TurnPhoneFourTrue()
+    {
+        ClickedOnPhoneFour = true;
     }
 }

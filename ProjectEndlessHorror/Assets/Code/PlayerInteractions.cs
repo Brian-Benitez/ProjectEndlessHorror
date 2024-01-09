@@ -23,17 +23,37 @@ public class PlayerInteractions : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 Debug.Log(hit.transform.name);
-                if(hit.transform.name == "Door")
-                {
-                    LRM.LevelChecker();
-                }
-                else if(hit.transform.name == "Key")
-                {
-                    LRM.PlayerInventory.Add(hit.transform.gameObject);
-                    hit.transform.gameObject.SetActive(false);
-                    Debug.Log("added key to inventory");
-                }
 
+                switch (hit.transform.name)
+                {
+                    case "Door":
+                        LRM.LevelChecker();
+                        break;
+                    case "Key":
+                        LRM.PlayerInventory.Add(hit.transform.gameObject);
+                        hit.transform.gameObject.SetActive(false);
+                        Debug.Log("added key to inventory");
+                        break;
+                    case "Phone":
+                        LRM.TurnPhoneTrue();
+                        Debug.Log("phone is clicked");
+                        break;
+                    case "Phone 2":
+                        LRM.TurnPhoneTwoTrue();
+                        Debug.Log("phone 2 is clicked");
+                        break;
+                    case "Phone 3":
+                        LRM.TurnPhoneThreeTrue();
+                        Debug.Log("phone 3 is clicked");
+                        break;
+                    case "Phone 4":
+                        LRM.TurnPhoneFourTrue();
+                        Debug.Log("phone 4 is clicked");
+                        break;
+
+                    default:
+                        break;
+                }
             }
         }
     }
