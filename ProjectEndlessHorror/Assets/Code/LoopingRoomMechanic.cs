@@ -1,5 +1,7 @@
+using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class LoopingRoomMechanic : MonoBehaviour
@@ -28,6 +30,12 @@ public class LoopingRoomMechanic : MonoBehaviour
     [SerializeField]
     private bool ClickedOnPhoneFour = false;
 
+    [Header("Level Three Objects")]
+    [SerializeField]
+    private bool ClickedPicFrameOne = false;
+    [SerializeField]
+    private bool ClickedPicFrameTwo = false;
+
     /// <summary>
     /// This functions gives posistion on where the chunk should spawn in.
     /// Note:You will have to find a good pos for the room spawn pos to be in to be aline with other rooms
@@ -53,6 +61,11 @@ public class LoopingRoomMechanic : MonoBehaviour
                 break;
             case 1:
                 Debug.Log("level two check");
+                SecondPuzzle();
+                break;
+            case 2:
+                Debug.Log("level three check");
+                ThirdPuzzle();
                 break;
 
             default:
@@ -60,7 +73,7 @@ public class LoopingRoomMechanic : MonoBehaviour
                 break;
         }
 
-        PI.AddNewChunk();
+        PI.CheckRoomRequirements();
     }
 
 
@@ -99,7 +112,22 @@ public class LoopingRoomMechanic : MonoBehaviour
             Debug.Log("all phones have not been clicked.");
         }
     }
-
+    /// <summary>
+    /// Third puzzle is like the second one, click on 2 things to move forward.
+    /// </summary>
+    public void ThirdPuzzle()
+    {
+        if(ClickedPicFrameOne && ClickedPicFrameTwo == true)
+        {
+            PI.CanOpenDoor = true;
+        }
+        else
+        {
+            PI.CanOpenDoor = false;
+            Debug.Log("all picture frames have not been clicked");
+        }
+    }
+    //Trying to pratice good code practice but idk if this is good?:(
     public void TurnPhoneTrue()
     {
         ClickedOnPhoneOne = true;
@@ -112,9 +140,18 @@ public class LoopingRoomMechanic : MonoBehaviour
     {
         ClickedOnPhoneThree = true;
     }
-
     public void TurnPhoneFourTrue()
     {
         ClickedOnPhoneFour = true;
     }
+  
+    public void TurnPicOneFrameTrue()
+    {
+        ClickedPicFrameOne = true;
+    }
+    public void TurnPicTwoFrameTrue()
+    {
+        ClickedPicFrameTwo = true;
+    }
+    //Same thing here :( ^
 }

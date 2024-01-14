@@ -23,7 +23,7 @@ public class PlayerInteractions : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 Debug.Log(hit.transform.name);
-
+                //WHOEVER IS LOOKING BELOW LOOK, I KNOW. BUT IT WORKS OK?
                 switch (hit.transform.name)
                 {
                     case "Door":
@@ -50,6 +50,14 @@ public class PlayerInteractions : MonoBehaviour
                         LRM.TurnPhoneFourTrue();
                         Debug.Log("phone 4 is clicked");
                         break;
+                    case "PictureOne":
+                        LRM.TurnPicOneFrameTrue();
+                        Debug.Log("pic one is clicked");
+                        break;
+                    case "PictureTwo":
+                        LRM.TurnPicTwoFrameTrue();
+                        Debug.Log("pic two is clicked");
+                        break;
 
                     default:
                         break;
@@ -61,7 +69,7 @@ public class PlayerInteractions : MonoBehaviour
     /// Checks if the bool is true, if it is, spawn new chunk into map.
     /// NOTE: need to put can open door to false somewhere else.
     /// </summary>
-    public void AddNewChunk()
+    public void CheckRoomRequirements()
     {
         if (CanOpenDoor == true)
         {
