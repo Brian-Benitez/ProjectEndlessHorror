@@ -7,9 +7,13 @@ public class PlayerInteractions : MonoBehaviour
     public LoopingRoomMechanic LRM;
 
     //dont need this but will use it below
+    [Header("GameObjects")]
     public GameObject Door;
+    public GameObject SecondDoor;
 
+    [Header("Booleans")]
     public bool CanOpenDoor = false;
+    public bool CanOpenSecondDoor = false;
    //How this works,
    //The player shoots a raycast on the door.
    //Then in looping room mechanic, it will check to see if everything is done in the room.
@@ -23,7 +27,6 @@ public class PlayerInteractions : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 Debug.Log(hit.transform.name);
-                //WHOEVER IS LOOKING BELOW LOOK, I KNOW. BUT IT WORKS OK?
                 switch (hit.transform.name)
                 {
                     case "Door":
@@ -58,6 +61,21 @@ public class PlayerInteractions : MonoBehaviour
                         LRM.TurnPicTwoFrameTrue();
                         Debug.Log("pic two is clicked");
                         break;
+                    case "Key Two":
+                        LRM.PlayerInventory.Add(hit.transform.gameObject);
+                        hit.transform.gameObject.SetActive(false);
+                        Debug.Log("add " + hit.transform.name + " to inventory.");
+                        break;
+                    case "SideDoor":
+                        LRM.FourthPuzzlePtTwo();
+                        CheckSecondDoorRequirements();
+                        Debug.Log("seeing if all requirements are met.");
+                        break;
+                    case "KeyObject":
+                        LRM.PlayerInventory.Add(hit.transform.gameObject);
+                        hit.transform.gameObject.SetActive(false);
+                        Debug.Log(hit.transform.name + " was added to inventory");
+                        break;
 
                     default:
                         break;
@@ -82,5 +100,16 @@ public class PlayerInteractions : MonoBehaviour
         {
             Debug.Log("Does not have everything to move forward");
         }
+    }
+
+    public void CheckSecondDoorRequirements()
+    {
+        if (CanOpenSecondDoor == true)
+        {
+            SecondDoor.transform.position = new Vector3(0, 90, 0);
+            //add new transform to door here.
+        }
+        else
+            Debug.Log("Door needs key");
     }
 }

@@ -51,6 +51,7 @@ public class LoopingRoomMechanic : MonoBehaviour
     /// <summary>
     /// This function will check if the player has done everything they needed to do within the level, if they did they can move forward.
     /// </summary>
+    /// NEED TO MOVE THIS FUNCTION TO PLAYERINTERACTIONS
     public void LevelChecker()
     {
         switch (CurrentLevel)
@@ -66,6 +67,10 @@ public class LoopingRoomMechanic : MonoBehaviour
             case 2:
                 Debug.Log("level three check");
                 ThirdPuzzle();
+                break;
+            case 3:
+                Debug.Log("level four check");
+                FourthPuzzle();
                 break;
 
             default:
@@ -125,6 +130,39 @@ public class LoopingRoomMechanic : MonoBehaviour
         {
             PI.CanOpenDoor = false;
             Debug.Log("all picture frames have not been clicked");
+        }
+    }
+    /// <summary>
+    /// Player finds key to then open a door in the office to then pick up a item to open the door to another room.
+    /// </summary>
+    public void FourthPuzzle()
+    {
+        foreach (GameObject item in PlayerInventory)
+        {
+            Debug.Log(item.gameObject.name);
+            if(item.gameObject.name == "KeyObject")
+            {
+                PI.CanOpenDoor = true;
+            }
+            else
+            {
+                Debug.Log("keyobject was not found.");
+            }
+        }
+    }
+
+    public void FourthPuzzlePtTwo()
+    {
+        foreach(GameObject item in PlayerInventory)
+        {
+            if (item.gameObject.name == "Key Two")
+            {
+                PI.CanOpenSecondDoor = true;
+            }
+            else
+            {
+                Debug.Log("key 2 was not found in inventory");
+            }
         }
     }
     //Trying to pratice good code practice but idk if this is good?:(
