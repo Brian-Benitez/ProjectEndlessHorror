@@ -30,7 +30,7 @@ public class PlayerInteractions : MonoBehaviour
                 switch (hit.transform.name)
                 {
                     case "Door":
-                        LRM.LevelChecker();
+                        LevelChecker();
                         break;
                     case "Key":
                         LRM.PlayerInventory.Add(hit.transform.gameObject);
@@ -83,6 +83,39 @@ public class PlayerInteractions : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// This function will check if the player has done everything they needed to do within the level, if they did they can move forward.
+    /// </summary>
+    public void LevelChecker()
+    {
+        switch (LRM.CurrentLevel)
+        {
+            case 0:
+                Debug.Log("level check one");
+                LRM.FirstPuzzle();
+                break;
+            case 1:
+                Debug.Log("level two check");
+                LRM.SecondPuzzle();
+                break;
+            case 2:
+                Debug.Log("level three check");
+                LRM.ThirdPuzzle();
+                break;
+            case 3:
+                Debug.Log("level four check");
+                LRM.FourthPuzzle();
+                break;
+
+            default:
+                Debug.Log("default");
+                break;
+        }
+
+        CheckRoomRequirements();
+    }
+
     /// <summary>
     /// Checks if the bool is true, if it is, spawn new chunk into map.
     /// NOTE: need to put can open door to false somewhere else.

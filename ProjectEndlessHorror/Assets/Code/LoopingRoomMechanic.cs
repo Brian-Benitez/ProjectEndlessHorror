@@ -46,42 +46,6 @@ public class LoopingRoomMechanic : MonoBehaviour
         Instantiate(RoomPrefab, pos, Quaternion.identity); 
     }
 
-    //NOTE: here ill add all the puzzle checks. if pass, tell playerinteraction controller to let the player go to the next room
-
-    /// <summary>
-    /// This function will check if the player has done everything they needed to do within the level, if they did they can move forward.
-    /// </summary>
-    /// NEED TO MOVE THIS FUNCTION TO PLAYERINTERACTIONS
-    public void LevelChecker()
-    {
-        switch (CurrentLevel)
-        {
-            case 0:
-                Debug.Log("level check one");
-                FirstPuzzle();
-                break;
-            case 1:
-                Debug.Log("level two check");
-                SecondPuzzle();
-                break;
-            case 2:
-                Debug.Log("level three check");
-                ThirdPuzzle();
-                break;
-            case 3:
-                Debug.Log("level four check");
-                FourthPuzzle();
-                break;
-
-            default:
-                Debug.Log("default");
-                break;
-        }
-
-        PI.CheckRoomRequirements();
-    }
-
-
     /// <summary>
     /// This puzzle requires you have a key to leave the room. When clicking on the door, it will check if you have a key in your inventory. If not, it wont open.
     /// </summary>
