@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerInteractions : MonoBehaviour
 {
+    [Header("Scripts")]
     public LoopingRoomMechanic LRM;
 
     //dont need this but will use it below
@@ -12,7 +13,9 @@ public class PlayerInteractions : MonoBehaviour
     public GameObject SecondDoor;
 
     [Header("Booleans")]
+    [SerializeField]
     public bool CanOpenDoor = false;
+    [SerializeField]
     public bool CanOpenSecondDoor = false;
    //How this works,
    //The player shoots a raycast on the door.
@@ -75,6 +78,11 @@ public class PlayerInteractions : MonoBehaviour
                         LRM.PlayerInventory.Add(hit.transform.gameObject);
                         hit.transform.gameObject.SetActive(false);
                         Debug.Log(hit.transform.name + " was added to inventory");
+                        break;
+                    case "VO Phone":
+                        Debug.Log("Phone has been activated");
+                        LRM.ActivatedVOPhone();
+                        LRM.FifthPuzzle();
                         break;
 
                     default:

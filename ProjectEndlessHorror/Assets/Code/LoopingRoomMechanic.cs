@@ -10,6 +10,8 @@ public class LoopingRoomMechanic : MonoBehaviour
     public GameObject RoomPrefab;
     public Transform RoomSpawnPos;
     public Transform Player;
+    public GameObject MonsterPrefab;
+    public Transform MonsterSpawnIn;
 
     [Header("Level counter")]
     public int CurrentLevel = 0;
@@ -35,6 +37,14 @@ public class LoopingRoomMechanic : MonoBehaviour
     private bool ClickedPicFrameOne = false;
     [SerializeField]
     private bool ClickedPicFrameTwo = false;
+
+    [Header("Level five Object")]
+    private bool ClickedOnVOPhone = false;
+
+    private void Start()
+    {
+        MonsterPrefab.SetActive(false);
+    }
 
     /// <summary>
     /// This functions gives posistion on where the chunk should spawn in.
@@ -129,6 +139,21 @@ public class LoopingRoomMechanic : MonoBehaviour
             }
         }
     }
+    //This puzzle is solved if you did or did not listen to the VA
+    //Need more stuff though
+
+    public void FifthPuzzle()
+    {
+        if(ClickedOnVOPhone)
+        {
+            Debug.Log("Play VO now");
+            MonsterPrefab.transform.position = MonsterSpawnIn.transform.position;
+
+            MonsterPrefab.SetActive(true);
+
+            PI.CanOpenDoor = true;
+        }
+    }
     //Trying to pratice good code practice but idk if this is good?:(
     public void TurnPhoneTrue()
     {
@@ -146,7 +171,6 @@ public class LoopingRoomMechanic : MonoBehaviour
     {
         ClickedOnPhoneFour = true;
     }
-  
     public void TurnPicOneFrameTrue()
     {
         ClickedPicFrameOne = true;
@@ -154,6 +178,11 @@ public class LoopingRoomMechanic : MonoBehaviour
     public void TurnPicTwoFrameTrue()
     {
         ClickedPicFrameTwo = true;
+    }
+
+    public void ActivatedVOPhone()
+    {
+        ClickedOnVOPhone = true;
     }
     //Same thing here :( ^
 }
