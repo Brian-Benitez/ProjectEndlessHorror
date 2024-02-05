@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static InteractableObject;
 
 public class PlayerInteractions : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class PlayerInteractions : MonoBehaviour
    //The player shoots a raycast on the door.
    //Then in looping room mechanic, it will check to see if everything is done in the room.
    //If it is, spawn new room, then player goes through.
+
+    //do polymofism for below
+    //Then check if it has interact
     void Update()
     {
         //player input
@@ -29,16 +33,17 @@ public class PlayerInteractions : MonoBehaviour
         {
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
+                if(hit.transform.TryGetComponent<IInteractable>(out IInteractable interactable))
+                {
+                    interactable.Interact();
+                }
+                #region old code
+                /*
                 Debug.Log(hit.transform.name);
                 switch (hit.transform.name)
                 {
                     case "Door":
                         LevelChecker();
-                        break;
-                    case "Key":
-                        LRM.PlayerInventory.Add(hit.transform.gameObject);
-                        hit.transform.gameObject.SetActive(false);
-                        Debug.Log("added key to inventory");
                         break;
                     case "Phone":
                         LRM.TurnPhoneTrue();
@@ -88,6 +93,8 @@ public class PlayerInteractions : MonoBehaviour
                     default:
                         break;
                 }
+                */
+                #endregion old code
             }
         }
     }
@@ -95,6 +102,7 @@ public class PlayerInteractions : MonoBehaviour
     /// <summary>
     /// This function will check if the player has done everything they needed to do within the level, if they did they can move forward.
     /// </summary>
+    /// //BE IN OWN SCRPIT
     public void LevelChecker()
     {
         switch (LRM.CurrentLevel)
@@ -128,6 +136,7 @@ public class PlayerInteractions : MonoBehaviour
     /// Checks if the bool is true, if it is, spawn new chunk into map.
     /// NOTE: need to put can open door to false somewhere else.
     /// </summary>
+    /// BE IN OWN SCRPIT
     public void CheckRoomRequirements()
     {
         if (CanOpenDoor == true)
@@ -142,7 +151,7 @@ public class PlayerInteractions : MonoBehaviour
             Debug.Log("Does not have everything to move forward");
         }
     }
-
+    //BE IN OWN SCPRIPT
     public void CheckSecondDoorRequirements()
     {
         if (CanOpenSecondDoor == true)
