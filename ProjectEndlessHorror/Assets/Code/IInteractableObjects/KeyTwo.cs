@@ -7,8 +7,8 @@ public class KeyTwo : MonoBehaviour, IInteractable
 {
     public void Interact()
     {
-        LoopingRoomMechanic loopingRoomMechanic = FindObjectOfType<LoopingRoomMechanic>();
-        loopingRoomMechanic.PlayerInventory.Add(transform.gameObject);
+        PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
+        inventory.PlayersInventory.Add(transform.gameObject);
         Debug.Log("added key 2 to inventory");
         transform.gameObject.SetActive(false);
     }

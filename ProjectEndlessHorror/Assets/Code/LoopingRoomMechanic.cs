@@ -6,21 +6,11 @@ using UnityEngine;
 
 public class LoopingRoomMechanic : MonoBehaviour
 {
-    public Transform StartSpawn;
-    public GameObject RoomPrefab;
-    public Transform RoomSpawnPos;
-    public Transform Player;
-    public GameObject MonsterPrefab;
-    public Transform MonsterSpawnIn;
-
-    [Header("Level counter")]
-    public int CurrentLevel = 0;
-
-    [Header("Player inventory")]
-    public List<GameObject> PlayerInventory;
-
     [Header("Scripts")]
     public PlayerInteractions PI;
+    public RoomRequirements RoomRequirements;
+    public MonsterBehavior MonsterBehavior;
+    public PlayerInventory PlayerInventory;
 
     [Header("Level two objects")]
     [SerializeField]
@@ -41,37 +31,22 @@ public class LoopingRoomMechanic : MonoBehaviour
     [Header("Level five Object")]
     private bool ClickedOnVOPhone = false;
 
-    private void Start()
-    {
-        MonsterPrefab.SetActive(false);
-    }
-
-    /// <summary>
-    /// This functions gives posistion on where the chunk should spawn in.
-    /// Note:You will have to find a good pos for the room spawn pos to be in to be aline with other rooms
-    /// </summary>
-    public void SpawnNewChunk()
-    {
-        Vector3 pos = RoomSpawnPos.transform.position;    
-        Instantiate(RoomPrefab, pos, Quaternion.identity); 
-    }
-
     /// <summary>
     /// This puzzle requires you have a key to leave the room. When clicking on the door, it will check if you have a key in your inventory. If not, it wont open.
     /// </summary>
     public void FirstPuzzle()
     {
-        foreach (GameObject item in PlayerInventory)
+        foreach (GameObject item in PlayerInventory.PlayersInventory)
         {
             Debug.Log(item.gameObject.name);
             if(item.gameObject.name == "Key")
             {
-                PI.CanOpenDoor = true;
+                RoomRequirements.CanOpenDoor = true;
                 Debug.Log("door is open");
             }
             else
             {
-                PI.CanOpenDoor = false;
+                RoomRequirements.CanOpenDoor = false;
                 Debug.Log("player has not done everything in room");
             }
         }
@@ -83,11 +58,11 @@ public class LoopingRoomMechanic : MonoBehaviour
     {
         if(ClickedOnPhoneOne && ClickedOnPhoneTwo && ClickedOnPhoneThree && ClickedOnPhoneFour == true)
         {
-            PI.CanOpenDoor = true;
+            RoomRequirements.CanOpenDoor = true;
         }
         else
         {
-            PI.CanOpenDoor = false;
+            RoomRequirements.CanOpenDoor = false;
             Debug.Log("all phones have not been clicked.");
         }
     }
@@ -98,11 +73,11 @@ public class LoopingRoomMechanic : MonoBehaviour
     {
         if(ClickedPicFrameOne && ClickedPicFrameTwo == true)
         {
-            PI.CanOpenDoor = true;
+            RoomRequirements.CanOpenDoor = true;
         }
         else
         {
-            PI.CanOpenDoor = false;
+            RoomRequirements.CanOpenDoor = false;
             Debug.Log("all picture frames have not been clicked");
         }
     }
@@ -111,12 +86,12 @@ public class LoopingRoomMechanic : MonoBehaviour
     /// </summary>
     public void FourthPuzzle()
     {
-        foreach (GameObject item in PlayerInventory)
+        foreach (GameObject item in PlayerInventory.PlayersInventory)
         {
             Debug.Log(item.gameObject.name);
             if(item.gameObject.name == "KeyObject")
             {
-                PI.CanOpenDoor = true;
+                RoomRequirements.CanOpenDoor = true;
             }
             else
             {
@@ -127,11 +102,11 @@ public class LoopingRoomMechanic : MonoBehaviour
 
     public void FourthPuzzlePtTwo()
     {
-        foreach(GameObject item in PlayerInventory)
+        foreach(GameObject item in PlayerInventory.PlayersInventory)
         {
             if (item.gameObject.name == "Key Two")
             {
-                PI.CanOpenSecondDoor = true;
+                RoomRequirements.CanOpenSecondDoor = true;
             }
             else
             {
@@ -147,11 +122,11 @@ public class LoopingRoomMechanic : MonoBehaviour
         if(ClickedOnVOPhone)
         {
             Debug.Log("Play VO now");
-            MonsterPrefab.transform.position = MonsterSpawnIn.transform.position;
+           MonsterBehavior.MonsterPrefab.transform.position = MonsterBehavior.MonsterSpawnIn.transform.position;
 
-            MonsterPrefab.SetActive(true);
+           MonsterBehavior.MonsterPrefab.SetActive(true);
 
-            PI.CanOpenDoor = true;
+            RoomRequirements.CanOpenDoor = true;
         }
     }
     //Trying to pratice good code practice but idk if this is good?:(

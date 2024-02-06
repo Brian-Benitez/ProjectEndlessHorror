@@ -7,7 +7,7 @@ public class Door : MonoBehaviour, IInteractable
 {
    public void Interact()
     {
-        PlayerInteractions playerInteractions = FindObjectOfType<PlayerInteractions>();
-        playerInteractions.LevelChecker();
+        LevelCheck levelCheck = FindObjectOfType<LevelCheck>();
+        levelCheck.LevelChecker();
     }
 }

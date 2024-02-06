@@ -8,8 +8,8 @@ public class KeyObject : MonoBehaviour, IInteractable
 {
     public void Interact()
     {
-        LoopingRoomMechanic loopingRoom = FindObjectOfType<LoopingRoomMechanic>();
-        loopingRoom.PlayerInventory.Add(transform.gameObject);
+        PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
+        inventory.PlayersInventory.Add(transform.gameObject);
         transform.gameObject.SetActive(false);
         Debug.Log(transform.name + " was added to inventory");
     }
