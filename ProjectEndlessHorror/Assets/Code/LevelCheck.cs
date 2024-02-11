@@ -11,18 +11,17 @@ public class LevelCheck : MonoBehaviour
     [Header("Level counter")]
     public int CurrentLevel = 0;
 
-
+    ///THIS ALL NEEDS TO BE DELETED AND NOT USED ANYMORE. GONNA USE DELEGATES TO SORT THIS BETTER
     /// <summary>
     /// This function will check if the player has done everything they needed to do within the level, if they did they can move forward.
     /// </summary>
-    /// //BE IN OWN SCRPIT
     public void LevelChecker()
     {
         switch (CurrentLevel)
         {
             case 0:
-                Debug.Log("level check one");
-                LoopingRoomMechanic.FirstPuzzle();
+                //Debug.Log("level check one");
+                //LoopingRoomMechanic.FirstPuzzle();
                 break;
             case 1:
                 Debug.Log("level two check");

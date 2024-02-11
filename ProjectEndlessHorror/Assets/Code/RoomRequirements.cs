@@ -23,11 +23,11 @@ public class RoomRequirements : MonoBehaviour
     /// Checks if the bool is true, if it is, spawn new chunk into map.
     /// NOTE: need to put can open door to false somewhere else.
     /// </summary>
-    /// BE IN OWN SCRPIT
     public void CheckRoomRequirements()
     {
         if (CanOpenDoor == true)
         {
+            //check this below its not right nor is it in the right place.
             Door.transform.position = new Vector3(0, 90, 0);
             spawnLevelChunk.SpawnNewChunk();
             levelCheck.CurrentLevel++;
@@ -38,7 +38,7 @@ public class RoomRequirements : MonoBehaviour
             Debug.Log("Does not have everything to move forward");
         }
     }
-    //BE IN OWN SCPRIPT
+
     public void CheckSecondDoorRequirements()
     {
         if (CanOpenSecondDoor == true)
