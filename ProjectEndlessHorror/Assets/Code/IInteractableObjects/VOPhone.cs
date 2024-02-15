@@ -7,8 +7,7 @@ public class VOPhone : MonoBehaviour, IInteractable
 {
     public void Interact()
     {
-        LoopingRoomMechanic loopingRoom = FindObjectOfType<LoopingRoomMechanic>();
-        loopingRoom.ActivatedVOPhone();
-        loopingRoom.FifthPuzzle();
+        Puzzles puzzles = FindObjectOfType<Puzzles>();
+        puzzles.ClickedOnVOPhone = true;
     }
 }

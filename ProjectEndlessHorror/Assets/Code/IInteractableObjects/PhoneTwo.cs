@@ -7,8 +7,8 @@ public class PhoneTwo : MonoBehaviour, IInteractable
 {
     public void Interact()
     {
-        LoopingRoomMechanic loopingRoomMechanic = FindObjectOfType<LoopingRoomMechanic>();
-        loopingRoomMechanic.TurnPhoneTwoTrue();
+        Puzzles puzzles = FindObjectOfType<Puzzles>();
+        puzzles.ClickedOnPhoneTwo = true;
         Debug.Log("phone 2 is clicked");
     }
 }

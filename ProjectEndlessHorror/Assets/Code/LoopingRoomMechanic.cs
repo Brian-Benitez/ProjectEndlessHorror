@@ -11,25 +11,7 @@ public class LoopingRoomMechanic : MonoBehaviour
     public RoomRequirements RoomRequirements;
     public MonsterBehavior MonsterBehavior;
     public PlayerInventory PlayerInventory;
-
-    [Header("Level two objects")]
-    [SerializeField]
-    private bool ClickedOnPhoneOne = false;
-    [SerializeField]
-    private bool ClickedOnPhoneTwo = false;
-    [SerializeField]
-    private bool ClickedOnPhoneThree = false;
-    [SerializeField]
-    private bool ClickedOnPhoneFour = false;
-
-    [Header("Level Three Objects")]
-    [SerializeField]
-    private bool ClickedPicFrameOne = false;
-    [SerializeField]
-    private bool ClickedPicFrameTwo = false;
-
-    [Header("Level five Object")]
-    private bool ClickedOnVOPhone = false;
+    //need this above
 
     /// <summary>
     /// This puzzle requires you have a key to leave the room. When clicking on the door, it will check if you have a key in your inventory. If not, it wont open.
@@ -53,7 +35,9 @@ public class LoopingRoomMechanic : MonoBehaviour
     }
     /// <summary>
     /// Second puzzle requires tha player to click on 4 phones in the room to move forward.
-    /// </summary>
+    /// </summary>  
+    /// 
+    /*
     public void SecondPuzzle()
     {
         if(ClickedOnPhoneOne && ClickedOnPhoneTwo && ClickedOnPhoneThree && ClickedOnPhoneFour == true)
@@ -66,9 +50,12 @@ public class LoopingRoomMechanic : MonoBehaviour
             Debug.Log("all phones have not been clicked.");
         }
     }
+    */
     /// <summary>
     /// Third puzzle is like the second one, click on 2 things to move forward.
     /// </summary>
+    /// 
+    /*
     public void ThirdPuzzle()
     {
         if(ClickedPicFrameOne && ClickedPicFrameTwo == true)
@@ -81,6 +68,7 @@ public class LoopingRoomMechanic : MonoBehaviour
             Debug.Log("all picture frames have not been clicked");
         }
     }
+    */
     /// <summary>
     /// Player finds key to then open a door in the office to then pick up a item to open the door to another room.
     /// </summary>
@@ -117,19 +105,18 @@ public class LoopingRoomMechanic : MonoBehaviour
     //This puzzle is solved if you did or did not listen to the VA
     //Need more stuff though
 
+    /*
     public void FifthPuzzle()
     {
         if(ClickedOnVOPhone)
         {
-            Debug.Log("Play VO now");
-           MonsterBehavior.MonsterPrefab.transform.position = MonsterBehavior.MonsterSpawnIn.transform.position;
-
-           MonsterBehavior.MonsterPrefab.SetActive(true);
-
+           
             RoomRequirements.CanOpenDoor = true;
         }
     }
+    */
     //Trying to pratice good code practice but idk if this is good?:(
+    /*
     public void TurnPhoneTrue()
     {
         ClickedOnPhoneOne = true;
@@ -160,4 +147,5 @@ public class LoopingRoomMechanic : MonoBehaviour
         ClickedOnVOPhone = true;
     }
     //Same thing here :( ^
+    */
 }

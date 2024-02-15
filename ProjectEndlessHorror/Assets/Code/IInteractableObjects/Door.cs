@@ -9,7 +9,7 @@ public class Door : MonoBehaviour, IInteractable
     public RoomRequirements requirements;
     public delegate void TestDelegate();
 
-    public TestDelegate Test;   
+    public TestDelegate Test;
 
 
     //Next up: Need to add another function to puzzles for checking if player has clicked on every phone 
@@ -18,9 +18,9 @@ public class Door : MonoBehaviour, IInteractable
     //Maybe will add a interface to these puzzles to make it a bit diffrent every time but still be the same.
     private void Start()
     {
-        //throws execption below idk why but it dont crash???????
-
-        Test += Puzzle.KeyPuzzle;
+        //Remeber to add all the scripts to the door object or it will throw an execption:(
+        Test += Puzzle.KeyPuzzleCheck;
+        Test += Puzzle.ClickPuzzleCheck;
         Test += requirements.CheckRoomRequirements;
     }
 

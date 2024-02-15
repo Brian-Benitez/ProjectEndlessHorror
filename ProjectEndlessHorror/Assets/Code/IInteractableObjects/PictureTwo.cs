@@ -7,8 +7,8 @@ public class PictureTwo : MonoBehaviour, IInteractable
 {
     public void Interact()
     {
-        LoopingRoomMechanic loopingRoomMechanic = FindObjectOfType<LoopingRoomMechanic>();
-        loopingRoomMechanic.TurnPicTwoFrameTrue();
+        Puzzles puzzles = FindObjectOfType<Puzzles>();
+        puzzles.ClickedOnPhoneTwo = true;
         Debug.Log("pic two is clicked");
     }
 }

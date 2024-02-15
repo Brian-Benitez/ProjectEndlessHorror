@@ -24,12 +24,12 @@ public class LevelCheck : MonoBehaviour
                 //LoopingRoomMechanic.FirstPuzzle();
                 break;
             case 1:
-                Debug.Log("level two check");
-                LoopingRoomMechanic.SecondPuzzle();
+                //Debug.Log("level two check");
+                //LoopingRoomMechanic.SecondPuzzle();
                 break;
             case 2:
-                Debug.Log("level three check");
-                LoopingRoomMechanic.ThirdPuzzle();
+                //Debug.Log("level three check");
+                //LoopingRoomMechanic.ThirdPuzzle();
                 break;
             case 3:
                 Debug.Log("level four check");
