@@ -28,7 +28,7 @@ public class LoopingRoomMechanic : MonoBehaviour
             }
             else
             {
-                RoomRequirements.CanOpenDoor = false;
+                //RoomRequirements.CanOpenDoor = false;
                 Debug.Log("player has not done everything in room");
             }
         }

@@ -39,34 +39,34 @@ public class Puzzles : MonoBehaviour
         {
             Debug.Log(item.gameObject.name);
             //Level one check here
-            if (item.gameObject.name == "Key")
+            if (item.gameObject.name == "Key" || item.gameObject.name == "KeyObject" || item.gameObject.name == "Key Two")
             {
                 roomRequirements.CanOpenDoor = true;
                 Debug.Log("door can be open");
             }
             else
             {
-                roomRequirements.CanOpenDoor = false;
                 Debug.Log("player has not done have the key to leave the room");
             }
         }
-    }
-
-    public void ClickPuzzleCheck()
-    {
-        //level two and three check here
-        if(ClickedOnPhoneOne && ClickedOnPhoneTwo && ClickedOnPhoneThree && ClickedOnPhoneFour || ClickedPicFrameOne && ClickedPicFrameTwo)
+        //need to tell all these booleans to stfu
+        if (ClickedOnPhoneOne && ClickedOnPhoneTwo && ClickedOnPhoneThree && ClickedOnPhoneFour)
         {
-            if(ClickedOnVOPhone)
+            roomRequirements.CanOpenDoor = true;
+            if (ClickedOnVOPhone)
+                Debug.Log("fucckkck");
                 /*
             Debug.Log("Play VO now");
             MonsterBehavior.MonsterPrefab.transform.position = MonsterBehavior.MonsterSpawnIn.transform.position;
             MonsterBehavior.MonsterPrefab.SetActive(true);
                 */
-            roomRequirements.CanOpenDoor = true;
+               
         }
-        else
-            roomRequirements.CanOpenDoor = false;
-       
+        else if(ClickedPicFrameOne && ClickedPicFrameTwo)
+        {
+            roomRequirements.CanOpenDoor = true;
+            Debug.Log("hshsshshhshhs");
+        }
+            
     }
 }

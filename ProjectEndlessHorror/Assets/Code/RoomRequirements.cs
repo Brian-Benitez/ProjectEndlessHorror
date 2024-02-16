@@ -7,6 +7,8 @@ public class RoomRequirements : MonoBehaviour
     [Header("Scripts")]
     public SpawnLevelChunk spawnLevelChunk;
     public LevelCheck levelCheck;
+    public Puzzles puzzle;
+    public PlayerInventory playerInventory;
 
     [Header("Booleans")]
     [SerializeField]
@@ -30,8 +32,9 @@ public class RoomRequirements : MonoBehaviour
             //check this below its not right nor is it in the right place.
             Door.transform.position = new Vector3(0, 90, 0);
             spawnLevelChunk.SpawnNewChunk();
-            levelCheck.CurrentLevel++;
-            Debug.Log("new current level is " + levelCheck.CurrentLevel);
+            Debug.Log("door is open");
+            playerInventory.PlayersInventory.Clear();
+            RestartDoorRequirements();
         }
         else
         {
@@ -48,5 +51,17 @@ public class RoomRequirements : MonoBehaviour
         }
         else
             Debug.Log("Door needs key");
+    }
+
+    public void RestartDoorRequirements()
+    {
+        CanOpenDoor = false;
+        puzzle.ClickedOnPhoneOne = false;
+        puzzle.ClickedOnPhoneTwo = false;
+        puzzle.ClickedOnPhoneThree = false;
+        puzzle.ClickedOnPhoneFour = false;
+        Debug.Log("restart everything");
+        //maybe add more here
+
     }
 }
