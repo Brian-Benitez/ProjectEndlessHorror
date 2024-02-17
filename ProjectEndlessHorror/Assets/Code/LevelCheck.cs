@@ -32,8 +32,8 @@ public class LevelCheck : MonoBehaviour
                 //LoopingRoomMechanic.ThirdPuzzle();
                 break;
             case 3:
-                Debug.Log("level four check");
-                LoopingRoomMechanic.FourthPuzzle();
+               // Debug.Log("level four check");
+                //LoopingRoomMechanic.FourthPuzzle();
                 break;
 
             default:
@@ -41,6 +41,6 @@ public class LevelCheck : MonoBehaviour
                 break;
         }
 
-        RoomRequirements.CheckRoomRequirements();
+        //RoomRequirements.CheckRoomRequirements();
     }
 }

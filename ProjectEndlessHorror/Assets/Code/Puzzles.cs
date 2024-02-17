@@ -7,6 +7,7 @@ public class Puzzles : MonoBehaviour
     [Header("Scripts")]
     public PlayerInventory inventory;
     public RoomRequirements roomRequirements;
+    public MonsterBehavior monsterBehavior;
 
 
     [Header("Level two objects")]
@@ -31,42 +32,45 @@ public class Puzzles : MonoBehaviour
     public bool ClickedOnVOPhone = false;
 
 
-    //This checks for collecting things in a room
+    //This checks for collecting things and clicking on things in a room
     public void KeyPuzzleCheck()
     {
         Debug.Log("conditions check...");
         foreach (GameObject item in inventory.PlayersInventory)
         {
             Debug.Log(item.gameObject.name);
-            //Level one check here
-            if (item.gameObject.name == "Key" || item.gameObject.name == "KeyObject" || item.gameObject.name == "Key Two")
+            //Checks for key puzzles in the room
+            if (item.gameObject.name == "Key")
             {
+                //This checks if a key is picked up
                 roomRequirements.CanOpenDoor = true;
                 Debug.Log("door can be open");
+            }
+            else if (item.gameObject.name == "SideDoorKey")
+            {
+                //This check is for a second door to open later in a level
+                Debug.Log("second door can be open");
+                roomRequirements.CanOpenSecondDoor = true;
             }
             else
             {
                 Debug.Log("player has not done have the key to leave the room");
             }
         }
-        //need to tell all these booleans to stfu
         if (ClickedOnPhoneOne && ClickedOnPhoneTwo && ClickedOnPhoneThree && ClickedOnPhoneFour)
         {
-            roomRequirements.CanOpenDoor = true;
-            if (ClickedOnVOPhone)
-                Debug.Log("fucckkck");
-                /*
-            Debug.Log("Play VO now");
-            MonsterBehavior.MonsterPrefab.transform.position = MonsterBehavior.MonsterSpawnIn.transform.position;
-            MonsterBehavior.MonsterPrefab.SetActive(true);
-                */
-               
+            roomRequirements.CanOpenDoor = true;  
         }
         else if(ClickedPicFrameOne && ClickedPicFrameTwo)
         {
             roomRequirements.CanOpenDoor = true;
             Debug.Log("hshsshshhshhs");
         }
-            
+        else if (ClickedOnVOPhone)
+        {
+            roomRequirements.CanOpenDoor = true;
+        }
+
+
     }
 }

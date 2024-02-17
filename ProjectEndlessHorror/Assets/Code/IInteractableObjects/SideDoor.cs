@@ -7,9 +7,9 @@ public class SideDoor : MonoBehaviour, IInteractable
 {
     public void Interact()
     {
-        LoopingRoomMechanic loopingRoom = FindObjectOfType<LoopingRoomMechanic>();
-        loopingRoom.FourthPuzzlePtTwo();
         RoomRequirements roomRequirements = FindObjectOfType<RoomRequirements>();
+        Puzzles puzzles = FindObjectOfType<Puzzles>();
+        puzzles.KeyPuzzleCheck();
         roomRequirements.CheckSecondDoorRequirements();
     }
 }

@@ -20,7 +20,6 @@ public class Door : MonoBehaviour, IInteractable
     {
         //Remeber to add all the scripts to the door object or it will throw an execption:(
         Test += Puzzle.KeyPuzzleCheck;
-        //Test += Puzzle.ClickPuzzleCheck;
         Test += requirements.CheckRoomRequirements;
     }
 
