@@ -1,7 +1,7 @@
+using interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static InteractableObject;
 //Will rename this to PuzzleChecker or something
 public class Door : MonoBehaviour, IInteractable
 {
@@ -18,7 +18,6 @@ public class Door : MonoBehaviour, IInteractable
     //Maybe will add a interface to these puzzles to make it a bit diffrent every time but still be the same.
     private void Start()
     {
-        //Remeber to add all the scripts to the door object or it will throw an execption:(
         Test += Puzzle.KeyPuzzleCheck;
         Test += requirements.CheckRoomRequirements;
     }
