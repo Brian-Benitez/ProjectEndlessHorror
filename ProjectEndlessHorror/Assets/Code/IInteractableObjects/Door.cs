@@ -11,11 +11,6 @@ public class Door : MonoBehaviour, IInteractable
 
     public TestDelegate Test;
 
-
-    //Next up: Need to add another function to puzzles for checking if player has clicked on every phone 
-    //Then subscribe to test.
-    //(Im gonna change the names of the delegates but for now I wanna see if it works out in the end)
-    //Maybe will add a interface to these puzzles to make it a bit diffrent every time but still be the same.
     private void Start()
     {
         Test += Puzzle.KeyPuzzleCheck;

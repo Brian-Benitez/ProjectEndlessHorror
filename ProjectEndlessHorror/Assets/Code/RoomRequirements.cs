@@ -46,8 +46,8 @@ public class RoomRequirements : MonoBehaviour
     {
         if (CanOpenSecondDoor == true)
         {
+            //SecondDoor.transform.position = new Vector3(0, 90, 0);
             SecondDoor.SetActive(false);
-            SecondDoor.transform.position = new Vector3(0, 90, 0);
             //add new transform to door here.
         }
         else
