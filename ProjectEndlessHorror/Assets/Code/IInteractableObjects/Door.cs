@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //Will rename this to PuzzleChecker or something
-public class Door : MonoBehaviour, IInteractable
+public class DoorAsset : MonoBehaviour, IInteractable
 {
     public Puzzles Puzzle;
     public RoomRequirements requirements;
