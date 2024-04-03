@@ -6,7 +6,6 @@ public class RoomRequirements : MonoBehaviour
 {
     [Header("Scripts")]
     public SpawnLevelChunk spawnLevelChunk;
-    public LevelCheck levelCheck;
     public Puzzles puzzle;
     public PlayerInventory playerInventory;
 
