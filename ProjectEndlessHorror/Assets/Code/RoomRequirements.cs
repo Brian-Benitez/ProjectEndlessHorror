@@ -5,7 +5,6 @@ using UnityEngine;
 public class RoomRequirements : MonoBehaviour
 {
     [Header("Scripts")]
-    public SpawnLevelChunk spawnLevelChunk;
     public Puzzles puzzle;
     public PlayerInventory playerInventory;
 
@@ -30,7 +29,6 @@ public class RoomRequirements : MonoBehaviour
         {
             //check this below its not right nor is it in the right place.
             Door.transform.position = new Vector3(0, 90, 0);
-            spawnLevelChunk.SpawnNewChunk();
             Debug.Log("door is open");
             playerInventory.PlayersInventory.Clear();
             RestartDoorRequirements();
