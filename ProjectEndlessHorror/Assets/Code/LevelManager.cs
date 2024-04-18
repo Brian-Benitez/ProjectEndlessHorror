@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     public GameObject HallWay;
 
     [Header("Spawn Positions")]
-    public GameObject StairsSpawnPosition;
+    public Transform StairsSpawnPosition;
     public GameObject HallWaySpawnPostion;
 
     private void Update()
@@ -29,8 +29,10 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void SpawnNewChunk()
     {
-        MainStairs.gameObject.transform.position = StairsSpawnPosition.gameObject.transform.position;
-        HallWay.gameObject.transform.position = HallWaySpawnPostion.gameObject.transform.position;
+        GameObject clone = Instantiate(MainStairs, StairsSpawnPosition);
+        Debug.Log("ahahahha");
+        //MainStairs.gameObject.transform.position = StairsSpawnPosition.gameObject.transform.position;
+        //HallWay.gameObject.transform.position = HallWaySpawnPostion.gameObject.transform.position;
     }
 
     public void SpawnPuzzleChunks()
