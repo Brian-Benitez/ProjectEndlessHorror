@@ -33,42 +33,7 @@ public class LoopingRoomMechanic : MonoBehaviour
             }
         }
     }
-    /// <summary>
-    /// Second puzzle requires tha player to click on 4 phones in the room to move forward.
-    /// </summary>  
-    /// 
-    /*
-    public void SecondPuzzle()
-    {
-        if(ClickedOnPhoneOne && ClickedOnPhoneTwo && ClickedOnPhoneThree && ClickedOnPhoneFour == true)
-        {
-            RoomRequirements.CanOpenDoor = true;
-        }
-        else
-        {
-            RoomRequirements.CanOpenDoor = false;
-            Debug.Log("all phones have not been clicked.");
-        }
-    }
-    */
-    /// <summary>
-    /// Third puzzle is like the second one, click on 2 things to move forward.
-    /// </summary>
-    /// 
-    /*
-    public void ThirdPuzzle()
-    {
-        if(ClickedPicFrameOne && ClickedPicFrameTwo == true)
-        {
-            RoomRequirements.CanOpenDoor = true;
-        }
-        else
-        {
-            RoomRequirements.CanOpenDoor = false;
-            Debug.Log("all picture frames have not been clicked");
-        }
-    }
-    */
+   
     /// <summary>
     /// Player finds key to then open a door in the office to then pick up a item to open the door to another room.
     /// </summary>
@@ -102,50 +67,4 @@ public class LoopingRoomMechanic : MonoBehaviour
             }
         }
     }
-    //This puzzle is solved if you did or did not listen to the VA
-    //Need more stuff though
-
-    /*
-    public void FifthPuzzle()
-    {
-        if(ClickedOnVOPhone)
-        {
-           
-            RoomRequirements.CanOpenDoor = true;
-        }
-    }
-    */
-    //Trying to pratice good code practice but idk if this is good?:(
-    /*
-    public void TurnPhoneTrue()
-    {
-        ClickedOnPhoneOne = true;
-    }
-    public void TurnPhoneTwoTrue()
-    {
-        ClickedOnPhoneTwo = true;
-    }
-    public void TurnPhoneThreeTrue()
-    {
-        ClickedOnPhoneThree = true;
-    }
-    public void TurnPhoneFourTrue()
-    {
-        ClickedOnPhoneFour = true;
-    }
-    public void TurnPicOneFrameTrue()
-    {
-        ClickedPicFrameOne = true;
-    }
-    public void TurnPicTwoFrameTrue()
-    {
-        ClickedPicFrameTwo = true;
-    }
-
-    public void ActivatedVOPhone()
-    {
-        ClickedOnVOPhone = true;
-    }
-    //Same thing here :( ^
-    */
 }

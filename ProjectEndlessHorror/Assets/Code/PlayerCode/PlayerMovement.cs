@@ -5,19 +5,22 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Movement")]
+    //Need to make a new controller, this is ass.
+    [Header("Float")]
     public float moveSpeed;
-
-    [Header("Ground Check")]
-
     public float groundDrag;
     public float playerHeight;
-    public LayerMask GroundMask;
-    public float GroundDistance = 0.4f; 
-    bool Isgrounded;
-    public Transform GroundCheck;
+    public float GroundDistance = 0.4f;
 
-    public Transform orientation;
+    [Header("Layer Mask")]
+    public LayerMask GroundMask;
+
+    [Header("Bools")]
+    bool Isgrounded;
+
+    [Header("Transform")]
+    public Transform GroundCheck;
+    public Transform Orientation;
 
     float horizontalInput;
     float verticalInput;
@@ -58,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         // calculate movement direction
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection = Orientation.forward * verticalInput + Orientation.right * horizontalInput;
 
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
     }
