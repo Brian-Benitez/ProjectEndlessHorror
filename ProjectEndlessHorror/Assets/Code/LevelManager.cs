@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("Spawn Positions")]
     public Transform StairsSpawnPosition;
-    public GameObject HallWaySpawnPostion;
+    public Transform HallWaySpawnPostion;
 
     private void Update()
     {
@@ -30,13 +30,8 @@ public class LevelManager : MonoBehaviour
     public void SpawnNewChunk()
     {
         GameObject clone = Instantiate(MainStairs, StairsSpawnPosition);
+        GameObject hallWayClone = Instantiate(HallWay, HallWaySpawnPostion);
         Debug.Log("ahahahha");
-        //MainStairs.gameObject.transform.position = StairsSpawnPosition.gameObject.transform.position;
-        //HallWay.gameObject.transform.position = HallWaySpawnPostion.gameObject.transform.position;
-    }
-
-    public void SpawnPuzzleChunks()
-    {
-
+       //THIS IS ALL FUCKED, NEED TO WORK AND SEE WHY MY SPAWNS ARE SO FAR AWAY.
     }
 }
