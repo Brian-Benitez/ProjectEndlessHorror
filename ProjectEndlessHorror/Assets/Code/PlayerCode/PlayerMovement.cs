@@ -5,64 +5,56 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //Need to make a new controller, this is ass.
-    [Header("Float")]
-    public float moveSpeed;
-    public float groundDrag;
-    public float playerHeight;
-    public float GroundDistance = 0.4f;
+    public CharacterController controller;
 
-    [Header("Layer Mask")]
-    public LayerMask GroundMask;
+    public float speed = 12f;
+    public float gravity = -9.81f;
+    public float jumpHeight = 3f;
+    public float Runspeed = 16;
 
-    [Header("Bools")]
-    bool Isgrounded;
 
-    [Header("Transform")]
-    public Transform GroundCheck;
-    public Transform Orientation;
+    public Transform groundCheck;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
 
-    float horizontalInput;
-    float verticalInput;
 
-    Vector3 moveDirection;
+    Vector3 velocity;
+    bool isGrounded;
 
-    Rigidbody rb;
 
-    private void Start()
+    // Update is called once per frame
+    void Update()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
-    }
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-    private void Update()
-    {
-        Isgrounded = Physics.CheckSphere(GroundCheck.position, GroundDistance, GroundMask);
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
 
-        MyInput();
-        //handles drag 
-        if (Isgrounded)
-            rb.drag = groundDrag;
-        else
-            rb.drag = 0;
-    }
 
-    private void FixedUpdate()
-    {
-        MovePlayer();
-    }
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
 
-    private void MyInput()
-    {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-    }
+        Vector3 move = transform.right * x + transform.forward * z;
 
-    private void MovePlayer()
-    {
-        // calculate movement direction
-        moveDirection = Orientation.forward * verticalInput + Orientation.right * horizontalInput;
+        controller.Move(move * speed * Time.deltaTime);
 
-        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            controller.Move(move * Runspeed * Time.deltaTime);
+        }
+        /*
+        //jumping stuff below//probably do not need this now.
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+        */
+        velocity.y += gravity * Time.deltaTime;
+
+        controller.Move(velocity * Time.deltaTime);
+
     }
 }
