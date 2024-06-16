@@ -13,15 +13,15 @@ public class LevelManager : MonoBehaviour
     public GameObject HallWay;
 
     [Header("Spawn Positions")]
-    public Transform StairsSpawnPosition;
-    public Transform HallWaySpawnPostion;
-
+    public Transform ChunkSpawnPoint;
+    //NEW IDEA ALERT: Have it so it spawns the whole chunk and make prefabs.
+    //For transitions, fade to black then spawn to new area.
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
             SpawnNewChunk();
-            Debug.Log("i am clickjed");
+            Debug.Log("i am clicked");
         }
     }
     /// <summary>
@@ -29,9 +29,6 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void SpawnNewChunk()
     {
-        GameObject clone = Instantiate(MainStairs, StairsSpawnPosition);
-        GameObject hallWayClone = Instantiate(HallWay, HallWaySpawnPostion);
-        Debug.Log("ahahahha");
-       //THIS IS ALL FUCKED, NEED TO WORK AND SEE WHY MY SPAWNS ARE SO FAR AWAY.
+        
     }
 }
