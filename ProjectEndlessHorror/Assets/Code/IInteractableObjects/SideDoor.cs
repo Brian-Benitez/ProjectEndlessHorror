@@ -10,6 +10,6 @@ public class SideDoor : MonoBehaviour, IInteractable
         RoomRequirements roomRequirements = FindObjectOfType<RoomRequirements>();
         Puzzles puzzles = FindObjectOfType<Puzzles>();
         puzzles.KeyPuzzleCheck();
-        roomRequirements.CheckSecondDoorRequirements();
+        //roomRequirements.CheckSecondDoorRequirements();
     }
 }

@@ -43,7 +43,7 @@ public class Puzzles : MonoBehaviour
             if (item.gameObject.name == "Key")
             {
                 //This checks if a key is picked up
-                roomRequirements.CanOpenDoor = true;
+                roomRequirements.MoveToNewRoom = true;
                 Debug.Log("door can be open");
             }
             else if (item.gameObject.name == "SideDoorKey")
@@ -59,16 +59,16 @@ public class Puzzles : MonoBehaviour
         }
         if (ClickedOnPhoneOne && ClickedOnPhoneTwo && ClickedOnPhoneThree && ClickedOnPhoneFour)
         {
-            roomRequirements.CanOpenDoor = true;  
+            roomRequirements.MoveToNewRoom = true;  
         }
         else if(ClickedPicFrameOne && ClickedPicFrameTwo)
         {
-            roomRequirements.CanOpenDoor = true;
+            roomRequirements.MoveToNewRoom = true;
             Debug.Log("hshsshshhshhs");
         }
         else if (ClickedOnVOPhone)
         {
-            roomRequirements.CanOpenDoor = true;
+            roomRequirements.MoveToNewRoom = true;
         }
 
 
