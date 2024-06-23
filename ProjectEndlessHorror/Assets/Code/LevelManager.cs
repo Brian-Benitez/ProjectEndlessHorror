@@ -14,9 +14,6 @@ public class LevelManager : MonoBehaviour
     public GameObject ExitDoorObject;
     public List<GameObject> RoomChunks;
 
-    [Header("Spawn Positions")]
-    public Transform ChunkSpawnPoint;
-
     [Header("Ints")]
     public int RoomIndex;
     //NEW IDEA ALERT: Have it so it spawns the whole chunk and make prefabs.
@@ -27,18 +24,22 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void SpawnNewRoomChunk()
     {
+        RoomChunks[RoomIndex].SetActive(false);
+        RepositionPlayer();
         /*
         RoomIndex++;
         Instantiate(RoomChunks[RoomIndex], ChunkSpawnPoint);
         */
         //Commenting this out until I get here.//The plan is i put all the rooms in a list then just go up by one when calling this function.
+        //RoomChunks[RoomIndex].SetActive(true);
     }
     /// <summary>
     /// Spawns the player back into pos after finishing a level. TODO: Will need to add fade in and out.
     /// </summary>
-    public void PlayersSpawn()
+    public void RepositionPlayer()
     {
         Player.transform.position = PlayerSpawnPoint.transform.position;
+        Debug.Log("hhhh");
     }
 
     public void RestartLevelManager()

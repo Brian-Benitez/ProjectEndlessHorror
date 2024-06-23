@@ -18,7 +18,8 @@ public class RoomRequirements : MonoBehaviour
 
     [Header("Scripts")]
     public Puzzles Puzzle;
-    public PlayerInventory playerInventory;
+    public PlayerInventory PlayerInven;
+    public LevelManager LevelMana;   
 
 
     /// <summary>
@@ -27,6 +28,9 @@ public class RoomRequirements : MonoBehaviour
     /// </summary>
     public void CheckRoomRequirements()
     {
+        LevelMana.SpawnNewRoomChunk();
+        Debug.Log("spawn new chunk");
+        /*
         if (MoveToNewRoom == true)
         {
             //check this below its not right nor is it in the right place.
@@ -39,6 +43,7 @@ public class RoomRequirements : MonoBehaviour
         {
             Debug.Log("Does not have everything to move forward");
         }
+        */
     }
     /*
     public void CheckSecondDoorRequirements()

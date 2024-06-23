@@ -6,19 +6,10 @@ using UnityEngine;
 public class Door : MonoBehaviour, IInteractable
 {
     public Puzzles Puzzle;
-    public RoomRequirements requirements;
-    public delegate void TestDelegate();
-
-    public TestDelegate Test;
-
-    private void Start()
-    {
-        Test += Puzzle.KeyPuzzleCheck;
-        Test += requirements.CheckRoomRequirements;
-    }
+    public RoomRequirements Requirements;
 
     public void Interact()
     {
-        Test();
+        Requirements.CheckRoomRequirements();
     }
 }
