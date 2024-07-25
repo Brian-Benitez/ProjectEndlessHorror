@@ -5,9 +5,9 @@ using UnityEngine;
 public class Puzzles : MonoBehaviour
 {
     [Header("Scripts")]
-    public PlayerInventory inventory;
-    public RoomRequirements roomRequirements;
-    public MonsterBehavior monsterBehavior;
+    public PlayerInventory Inventory;
+    public RoomRequirements RoomRequirement;
+    public MonsterBehavior MonsterBehaviors;
 
 
     [Header("Level two objects")]
@@ -35,42 +35,6 @@ public class Puzzles : MonoBehaviour
     //This checks for collecting things and clicking on things in a room
     public void KeyPuzzleCheck()
     {
-        Debug.Log("conditions check...");
-        foreach (GameObject item in inventory.PlayersInventory)
-        {
-            Debug.Log(item.gameObject.name);
-            //Checks for key puzzles in the room
-            if (item.gameObject.name == "Key")
-            {
-                //This checks if a key is picked up
-                roomRequirements.MoveToNewRoom = true;
-                Debug.Log("door can be open");
-            }
-            else if (item.gameObject.name == "SideDoorKey")
-            {
-                //This check is for a second door to open later in a level
-                Debug.Log("second door can be open");
-                roomRequirements.CanOpenSecondDoor = true;
-            }
-            else
-            {
-                Debug.Log("player has not done have the key to leave the room");
-            }
-        }
-        if (ClickedOnPhoneOne && ClickedOnPhoneTwo && ClickedOnPhoneThree && ClickedOnPhoneFour)
-        {
-            roomRequirements.MoveToNewRoom = true;  
-        }
-        else if(ClickedPicFrameOne && ClickedPicFrameTwo)
-        {
-            roomRequirements.MoveToNewRoom = true;
-            Debug.Log("hshsshshhshhs");
-        }
-        else if (ClickedOnVOPhone)
-        {
-            roomRequirements.MoveToNewRoom = true;
-        }
-
-
+    
     }
 }

@@ -7,7 +7,7 @@ public class PhoneThree : MonoBehaviour, IInteractable
 {
     public void Interact()
     {
-        Puzzles puzzles = FindObjectOfType<Puzzles>();
+        Puzzles puzzles = GetComponent<Puzzles>();
         puzzles.ClickedOnPhoneThree = true;
         Debug.Log("phone 3 is clicked");
     }
