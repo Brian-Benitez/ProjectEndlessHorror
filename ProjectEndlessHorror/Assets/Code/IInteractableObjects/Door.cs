@@ -6,11 +6,12 @@ using UnityEngine;
 public class Door : MonoBehaviour, IInteractable
 {
     public PlayerInventory PlayerInventoryRef;
+    public GameMain GameMainRef;
 
     public void Interact()
     {
         if (PlayerInventoryRef.DoesPlayerHaveKey())
-            Debug.Log("Go to next level");
+            GameMainRef.AdvanceToNextLevel();
         else
             Debug.Log("does not have the key");
     }
