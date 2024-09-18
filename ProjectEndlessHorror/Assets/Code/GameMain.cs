@@ -2,19 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameMain : MonoBehaviour
+public class GameMain : MonoBehaviour//make this into a singlton?
 {
-    [Header("Scripts")]
-    public MonsterBehavior monster;
-    public MonsterAnimations monsterAnimations;
+    delegate void AdvanceToNewRoom();
+    AdvanceToNewRoom AdvanceToRoom;
+    //Add more events here....
 
+    [Header("Script")]
+    public LevelManager LevelManagerRef;
+    public PlayerInventory PlayerInventoryRef;
 
     private void Start()
     {
-        //Probably wanna set the ghost and player stuff on start.
+        //Add changing the level here first before doing whats below
+        AdvanceToRoom += LevelManagerRef.RepositionPlayer;
+        AdvanceToRoom += PlayerInventoryRef.ClearInventoryList;
     }
 
-    //Adding more code here so I can check on the level and what the player has done.
-    //Also just realized that I cant add the puzzle here...
-    //It would be doing too much.
+    public void AdvanceToNextLevel()
+    {
+        AdvanceToRoom?.Invoke();
+    }
+
 }

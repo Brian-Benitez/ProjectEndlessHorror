@@ -7,7 +7,7 @@ public class SideDoor : MonoBehaviour, IInteractable
 {
     public void Interact()
     {
-        Puzzles puzzles = FindObjectOfType<Puzzles>();
-        puzzles.KeyPuzzleCheck();
+        //Puzzles puzzles = FindObjectOfType<Puzzles>();
+        //puzzles.KeyPuzzleCheck();
     }
 }

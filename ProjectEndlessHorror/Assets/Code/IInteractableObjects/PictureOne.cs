@@ -8,7 +8,7 @@ public class PictureOne : MonoBehaviour, IInteractable
     public void Interact()
     {
         Puzzles puzzles = FindObjectOfType<Puzzles>();
-        puzzles.ClickedPicFrameOne = true;
-        Debug.Log("pic one is clicked and is " + puzzles.ClickedPicFrameOne);
+        //puzzles.ClickedPicFrameOne = true;
+        //Debug.Log("pic one is clicked and is " + puzzles.ClickedPicFrameOne);
     }
 }
