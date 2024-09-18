@@ -5,11 +5,13 @@ using UnityEngine;
 //Will rename this to PuzzleChecker or something
 public class Door : MonoBehaviour, IInteractable
 {
-    public Puzzles Puzzle;
-    public RoomRequirements Requirements;
+    public PlayerInventory PlayerInventoryRef;
 
     public void Interact()
     {
-        Requirements.CheckRoomRequirements();
+        if (PlayerInventoryRef.DoesPlayerHaveKey())
+            Debug.Log("Go to next level");
+        else
+            Debug.Log("does not have the key");
     }
 }

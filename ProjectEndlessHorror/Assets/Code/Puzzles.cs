@@ -6,7 +6,6 @@ public class Puzzles : MonoBehaviour
 {
     [Header("Scripts")]
     public PlayerInventory Inventory;
-    public RoomRequirements RoomRequirement;
     public MonsterBehavior MonsterBehaviors;
 
 

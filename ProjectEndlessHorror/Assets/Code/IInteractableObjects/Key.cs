@@ -8,7 +8,7 @@ public class Key : MonoBehaviour,IInteractable
    public void Interact()
     {
         PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
-        inventory.PlayersInventory.Add(transform.gameObject);
+        inventory.PlayersInventoryList.Add(transform.gameObject);
         Debug.Log("added key to inventory");
         transform.gameObject.SetActive(false);
     }
