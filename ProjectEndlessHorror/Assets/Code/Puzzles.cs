@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class Puzzles : MonoBehaviour
 {
-    public void KeyPuzzleCheck()
-    {
-    
-    }
+   
 }

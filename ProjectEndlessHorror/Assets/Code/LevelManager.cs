@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class LevelManager : MonoBehaviour
 {
@@ -8,24 +9,28 @@ public class LevelManager : MonoBehaviour
     public Transform Player;
     public Transform PlayerSpawnPoint;
 
-    [Header("Ints")]
-    public int RoomIndex;
-    //NEW IDEA ALERT: Have it so it spawns the whole chunk and make prefabs.
-    //For transitions, fade to black then spawn to new area.
+    [Header("LevelPrefabs")]
+    public List<GameObject> LevelPrefabs;
 
-    public GameMain GameMainRef;
+    private int _levelIndex = 0;
+    private int _levelCount = 4;
 
+    public void ChangeLevelPrefab()
+    {
+        if (_levelIndex == _levelCount)
+            return;
+        else
+        {
+            LevelPrefabs[_levelIndex].SetActive(false);
+            LevelPrefabs[_levelIndex++].SetActive(true);//Make sure this goes to the next level index
+        }
+    }
     /// <summary>
-    /// Spawns the player back into pos after finishing a level. TODO: Will need to add fade in and out.
+    /// Spawns the player back into pos after finishing a level.
     /// </summary>
     public void RepositionPlayer()
     {
         Player.transform.position = PlayerSpawnPoint.transform.position;
         Debug.Log("hhhh");
-    }
-
-    public void RestartLevelManager()
-    {
-        RoomIndex = 0;
     }
 }

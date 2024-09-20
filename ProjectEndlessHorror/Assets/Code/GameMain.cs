@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameMain : MonoBehaviour//make this into a singlton?
+public class GameMain : MonoBehaviour
 {
     public static GameMain instance;
 
@@ -21,7 +21,7 @@ public class GameMain : MonoBehaviour//make this into a singlton?
 
     private void Awake()
     {
-        if(instance != null && instance!= this)
+        if(instance != null && instance != this)
             Destroy(this);
         else
             instance = this;
@@ -30,6 +30,7 @@ public class GameMain : MonoBehaviour//make this into a singlton?
     private void Start()
     {
         //Add changing the level here first before doing whats below
+        AdvanceToRoomEvent += LevelManagerRef.ChangeLevelPrefab;
         AdvanceToRoomEvent += LevelManagerRef.RepositionPlayer;
         AdvanceToRoomEvent += PlayerInventoryRef.ClearInventoryList;
     }
