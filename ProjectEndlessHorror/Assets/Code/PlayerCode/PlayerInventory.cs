@@ -19,6 +19,16 @@ public class PlayerInventory : MonoBehaviour
         else return false;
     }
     /// <summary>
+    /// Checks to see if the player has another key to open a side door
+    /// </summary>
+    /// <returns></returns>
+    public bool DoesPlayerHaveSecondDoorKey()
+    {
+        if(PlayersInventoryList.Find(x => x.name.Contains("SecondDoorKey")))
+            return true;
+        else return false;
+    }
+    /// <summary>
     /// Deletes all gameobjects in the Players inventory list
     /// </summary>
     public void ClearInventoryList()

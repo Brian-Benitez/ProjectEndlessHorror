@@ -9,8 +9,9 @@ public class LevelManager : MonoBehaviour
     public Transform Player;
     public Transform PlayerSpawnPoint;
 
-    [Header("LevelPrefabs")]
+    [Header("Level Prefabs")]
     public List<GameObject> LevelPrefabs;
+    public GameObject SecondDoorPrefab;
 
     private int _levelIndex = 0;
     private int _levelCount = 4;
@@ -25,6 +26,10 @@ public class LevelManager : MonoBehaviour
             LevelPrefabs[_levelIndex++].SetActive(true);//Make sure this goes to the next level index
         }
     }
+    /// <summary>
+    /// Rotates the side door so the player can have access to the room.
+    /// </summary>
+    public void RotateSideDoor() => SecondDoorPrefab.transform.Rotate(new Vector3(0, 90, 0));
     /// <summary>
     /// Spawns the player back into pos after finishing a level.
     /// </summary>

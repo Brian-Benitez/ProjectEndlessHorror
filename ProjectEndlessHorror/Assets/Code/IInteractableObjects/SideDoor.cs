@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class SideDoor : MonoBehaviour, IInteractable
 {
+    public PlayerInventory PlayerInventoryRef;
+    public LevelManager LevelManagerRef;
     public void Interact()
     {
-        //Puzzles puzzles = FindObjectOfType<Puzzles>();
-        //puzzles.KeyPuzzleCheck();
+        if (PlayerInventoryRef.DoesPlayerHaveSecondDoorKey())
+            LevelManagerRef.RotateSideDoor();
+        else
+            Debug.Log("player does not have a second door key");
     }
 }
