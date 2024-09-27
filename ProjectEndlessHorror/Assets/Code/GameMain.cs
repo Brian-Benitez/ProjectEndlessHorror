@@ -7,13 +7,13 @@ public class GameMain : MonoBehaviour
     public static GameMain instance;
 
     delegate void AdvanceToNewRoom();
-    AdvanceToNewRoom AdvanceToRoomEvent;
+    AdvanceToNewRoom AdvanceToRoomDelegate;
 
     delegate void JumpScareDelegate();
-    JumpScareDelegate JumpScareEvent;
+    JumpScareDelegate PlayJumpScareDelegate;
 
     delegate void LosingEvent();
-    LosingEvent PlayerLoseEvent;
+    LosingEvent PlayerLoseDelegate;
 
     [Header("Script")]
     public LevelManager LevelManagerRef;
@@ -30,23 +30,25 @@ public class GameMain : MonoBehaviour
     private void Start()
     {
         //Add changing the level here first before doing whats below
-        AdvanceToRoomEvent += LevelManagerRef.ChangeLevelPrefab;
-        AdvanceToRoomEvent += LevelManagerRef.RepositionPlayer;
-        AdvanceToRoomEvent += PlayerInventoryRef.ClearInventoryList;
+        AdvanceToRoomDelegate += LevelManagerRef.ChangeLevelPrefab;
+        AdvanceToRoomDelegate += LevelManagerRef.RepositionPlayer;
+        AdvanceToRoomDelegate += PlayerInventoryRef.ClearInventoryList;
+
+        PlayerLoseDelegate += LevelManagerRef.RestartLevel;
     }
     /// <summary>
     /// Plays a delegate event to advance to the next room.
     /// </summary>
-    public void AdvanceToNextLevel() => AdvanceToRoomEvent?.Invoke();
+    public void AdvanceToNextLevel() => AdvanceToRoomDelegate?.Invoke();
 
     /// <summary>
     /// Plays the deleagte event to play the losing event.
     /// </summary>
-    public void PlayLosingDelegate() => PlayerLoseEvent?.Invoke();
+    public void PlayLosingDelegate() => PlayerLoseDelegate?.Invoke();
 
     /// <summary>
     /// Plays the delegate event to jump scare the player.
     /// </summary>
-    public void PlayJumpScareDelegate() => JumpScareEvent?.Invoke();
+    public void PlayingJumpScareDelegate() => PlayJumpScareDelegate?.Invoke();
 
 }

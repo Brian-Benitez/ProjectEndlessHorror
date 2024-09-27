@@ -38,4 +38,10 @@ public class LevelManager : MonoBehaviour
         Player.transform.position = PlayerSpawnPoint.transform.position;
         Debug.Log("hhhh");
     }
+
+    public void RestartLevel()
+    {
+        RepositionPlayer();
+        _levelIndex = 0;
+    }
 }
