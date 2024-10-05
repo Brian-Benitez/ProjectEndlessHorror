@@ -18,6 +18,7 @@ public class GameMain : MonoBehaviour
     [Header("Script")]
     public LevelManager LevelManagerRef;
     public PlayerInventory PlayerInventoryRef;
+    public MonsterBehavior MonsterBehaviorRef;  
 
     private void Awake()
     {
@@ -33,8 +34,10 @@ public class GameMain : MonoBehaviour
         AdvanceToRoomDelegate += LevelManagerRef.ChangeLevelPrefab;
         AdvanceToRoomDelegate += LevelManagerRef.RepositionPlayer;
         AdvanceToRoomDelegate += PlayerInventoryRef.ClearInventoryList;
-
+        //Losing game stuff
         PlayerLoseDelegate += LevelManagerRef.RestartLevel;
+        //Jumpscare stuff
+        //PlayJumpScareDelegate += MonsterBehaviorRef.MonstersJumpScarePosition;// i commente this out because im playing it imidenetyky
     }
     /// <summary>
     /// Plays a delegate event to advance to the next room.

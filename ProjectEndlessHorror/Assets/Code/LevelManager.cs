@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class LevelManager : MonoBehaviour
 {
@@ -13,17 +12,18 @@ public class LevelManager : MonoBehaviour
     public List<GameObject> LevelPrefabs;
     public GameObject SecondDoorPrefab;
 
-    private int _levelIndex = 0;
-    private int _levelCount = 4;
+    [Header("Indexs")]
+    public int LevelIndex = 0;
+    private int _levelCountMax = 4;
 
     public void ChangeLevelPrefab()
     {
-        if (_levelIndex == _levelCount)
+        if (LevelIndex == _levelCountMax)
             return;
         else
         {
-            LevelPrefabs[_levelIndex].SetActive(false);
-            LevelPrefabs[_levelIndex++].SetActive(true);//Make sure this goes to the next level index
+            LevelPrefabs[LevelIndex].SetActive(false);
+            LevelPrefabs[LevelIndex++].SetActive(true);//Make sure this goes to the next level index
         }
     }
     /// <summary>
@@ -42,6 +42,6 @@ public class LevelManager : MonoBehaviour
     public void RestartLevel()
     {
         RepositionPlayer();
-        _levelIndex = 0;
+        LevelIndex = 0;
     }
 }

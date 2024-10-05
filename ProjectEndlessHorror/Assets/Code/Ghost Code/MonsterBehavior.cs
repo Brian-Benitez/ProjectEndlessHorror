@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 
 public class MonsterBehavior : MonoBehaviour
@@ -11,12 +12,22 @@ public class MonsterBehavior : MonoBehaviour
     public Transform JumpScarePos;
     public GameObject EndPoint;
 
-    private void Update()
+    [Header("Spawn points")]
+    public List<GameObject> SpawnPointPerLevel;
+
+    [Header("Scripts")]
+    public LevelManager LevelManagerRef;
+    private void Start()
     {
-        MoveMonster();
+        SpawnPointPerLevel = new List<GameObject>();
     }
 
-    public void MoveMonster()
+    private void Update()
+    {
+        //MoveMonsterToPoint();
+    }
+
+    public void MoveMonsterToPoint()
     {
         if(this.transform.position == EndPoint.transform.position)
         {
@@ -25,6 +36,16 @@ public class MonsterBehavior : MonoBehaviour
         }
         else
             transform.position = Vector3.MoveTowards(transform.position, EndPoint.transform.position, _speed * Time.deltaTime);
+    }
+    /// <summary>
+    /// Total of 4 levels 3 out of the 4 levels the monster will spawn in.
+    /// </summary>
+    public void SpawnMonsterInArea()
+    {
+        if(LevelManagerRef.LevelIndex == 0)
+            return;
+        else
+            this.transform.position = SpawnPointPerLevel[LevelManagerRef.LevelIndex].transform.position;
     }
 
     public void MonstersJumpScarePosition()
