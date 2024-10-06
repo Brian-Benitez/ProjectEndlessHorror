@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour
     public Transform Player;
     public Transform PlayerSpawnPoint;
 
-    [Header("Level Prefabs")]
+    [Header("Levels")]
     public List<GameObject> LevelPrefabs;
     public GameObject SecondDoorPrefab;
 
