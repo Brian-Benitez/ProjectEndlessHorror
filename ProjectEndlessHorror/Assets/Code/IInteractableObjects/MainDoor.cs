@@ -9,10 +9,7 @@ public class MainDoor : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if(LevelManagerRef.LevelIndex == 0)
-            LevelManagerRef.RepositionPlayer();
-
-        if (PlayerInventoryRef.DoesPlayerHaveKey())
+        if (PlayerInventoryRef.DoesPlayerHaveKey() || LevelManagerRef.LevelIndex == 0)
             GameMain.instance.AdvanceToNextLevel();
         else
             Debug.Log("does not have the key");
