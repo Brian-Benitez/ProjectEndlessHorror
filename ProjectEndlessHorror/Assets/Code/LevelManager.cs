@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("Indexs")]
     public int LevelIndex = 0;
-    private int _levelCountMax = 4;
+    private int _levelCountMax = 5;
 
     public void ChangeLevelPrefab()
     {
@@ -24,6 +24,7 @@ public class LevelManager : MonoBehaviour
         {
             LevelPrefabs[LevelIndex].SetActive(false);
             LevelPrefabs[LevelIndex++].SetActive(true);//Make sure this goes to the next level index
+            Debug.Log("new level  + " + LevelIndex);
         }
     }
     /// <summary>
@@ -33,11 +34,7 @@ public class LevelManager : MonoBehaviour
     /// <summary>
     /// Spawns the player back into pos after finishing a level.
     /// </summary>
-    public void RepositionPlayer()
-    {
-        Player.transform.position = PlayerSpawnPoint.transform.position;
-        Debug.Log("hhhh");
-    }
+    public void RepositionPlayer() => Player.transform.position = PlayerSpawnPoint.transform.position;
 
     public void RestartLevel()
     {
