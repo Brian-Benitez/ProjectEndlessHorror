@@ -15,6 +15,9 @@ public class GameMain : MonoBehaviour
     delegate void LosingEvent();
     LosingEvent PlayerLoseDelegate;
 
+    delegate void ScaryEventDelegate();
+    ScaryEventDelegate PlayScaryEventDelegate;
+
     [Header("Script")]
     public LevelManager LevelManagerRef;
     public PlayerInventory PlayerInventoryRef;
@@ -34,10 +37,13 @@ public class GameMain : MonoBehaviour
         AdvanceToRoomDelegate += LevelManagerRef.ChangeLevelPrefab;
         AdvanceToRoomDelegate += LevelManagerRef.RepositionPlayer;
         AdvanceToRoomDelegate += PlayerInventoryRef.ClearInventoryList;
+        AdvanceToRoomDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
         //Losing game stuff
         PlayerLoseDelegate += LevelManagerRef.RestartLevel;
         //Jumpscare stuff
         //PlayJumpScareDelegate += MonsterBehaviorRef.MonstersJumpScarePosition;// i commente this out because im playing it imidenetyky
+
+        PlayScaryEventDelegate += MonsterBehaviorRef.MoveMonsterToPoint;
     }
     /// <summary>
     /// Plays a delegate event to advance to the next room.
@@ -53,5 +59,14 @@ public class GameMain : MonoBehaviour
     /// Plays the delegate event to jump scare the player.
     /// </summary>
     public void PlayingJumpScareDelegate() => PlayJumpScareDelegate?.Invoke();
-
+    /// <summary>
+    /// Play the scary encounter
+    /// </summary>
+    public void PlayingScaryEventDelegate()
+    {
+        if (LevelManagerRef.LevelIndex == 3)
+            PlayScaryEventDelegate?.Invoke();
+        else
+            Debug.Log("can't play scary event yet");
+    }
 }

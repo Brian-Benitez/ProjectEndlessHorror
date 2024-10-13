@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -29,13 +30,18 @@ public class MonsterBehavior : MonoBehaviour
 
     public void MoveMonsterToPoint()
     {
-        if(this.transform.position == EndPoint.transform.position)
+        if (this.transform.position == EndPoint.transform.position)
         {
             this.transform.gameObject.SetActive(false);
             return;
         }
         else
-            transform.position = Vector3.MoveTowards(transform.position, EndPoint.transform.position, _speed * Time.deltaTime);
+        {
+            Delay(3f, () =>
+            {
+                transform.position = Vector3.MoveTowards(transform.position, EndPoint.transform.position, _speed * Time.deltaTime);
+            });
+        }
     }
     /// <summary>
     /// Total of 4 levels 3 out of the 4 levels the monster will spawn in.
@@ -52,5 +58,12 @@ public class MonsterBehavior : MonoBehaviour
     {
         this.transform.position = JumpScarePos.transform.position;
         //Play jump scare animation here.
+    }
+
+    private static void Delay(float time, System.Action _callBack)
+    {
+        Sequence seq = DOTween.Sequence();
+
+        seq.AppendInterval(time).AppendCallback(() => _callBack());
     }
 }

@@ -10,6 +10,7 @@ public class Key : MonoBehaviour,IInteractable
     {
         PlayerInventoryRef.PlayersInventoryList.Add(transform.gameObject);
         Debug.Log("added key to inventory");
-        transform.gameObject.SetActive(false);
+        transform.gameObject.SetActive(false);//set back to true later
+        GameMain.instance.PlayingJumpScareDelegate();
     }
 }
