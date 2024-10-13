@@ -18,11 +18,6 @@ public class MonsterBehavior : MonoBehaviour
 
     [Header("Scripts")]
     public LevelManager LevelManagerRef;
-    private void Start()
-    {
-        SpawnPointPerLevel = new List<GameObject>();
-    }
-
     private void Update()
     {
         //MoveMonsterToPoint();
@@ -48,10 +43,16 @@ public class MonsterBehavior : MonoBehaviour
     /// </summary>
     public void SpawnMonsterInArea()
     {
+        Debug.Log("what is it  " + LevelManagerRef.LevelIndex);
+        
         if(LevelManagerRef.LevelIndex == 0)
             return;
         else
-            this.transform.position = SpawnPointPerLevel[LevelManagerRef.LevelIndex].transform.position;
+        {
+            this.transform.position = SpawnPointPerLevel[0].transform.position;
+            Debug.Log("what " + LevelManagerRef.LevelIndex);
+        }
+            
     }
 
     public void MonstersJumpScarePosition()
