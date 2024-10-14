@@ -43,7 +43,6 @@ public class GameMain : MonoBehaviour
         //Jumpscare stuff
         //PlayJumpScareDelegate += MonsterBehaviorRef.MonstersJumpScarePosition;// i commente this out because im playing it imidenetyky
 
-        PlayScaryEventDelegate += MonsterBehaviorRef.MoveMonsterToPoint;
     }
     /// <summary>
     /// Plays a delegate event to advance to the next room.

@@ -22,21 +22,18 @@ public class MonsterBehavior : MonoBehaviour
     {
         //MoveMonsterToPoint();
     }
-
-    public void MoveMonsterToPoint()
+    /// <summary>
+    /// Moves the monster to the point it needs to be.
+    /// </summary>
+    public IEnumerator MoveMonsterToPoint()
     {
-        if (this.transform.position == EndPoint.transform.position)
+        while(Vector3.Distance(transform.position, EndPoint.transform.position) < 0.05f)//start this and dont end until they are less than 0.05 meters away
         {
-            this.transform.gameObject.SetActive(false);
-            return;
+            transform.position = Vector3.MoveTowards(transform.position, EndPoint.transform.position, _speed * Time.deltaTime);
+            yield return null;
         }
-        else
-        {
-            Delay(3f, () =>
-            {
-                transform.position = Vector3.MoveTowards(transform.position, EndPoint.transform.position, _speed * Time.deltaTime);
-            });
-        }
+        Debug.Log("done");
+        this.transform.gameObject.SetActive(false);
     }
     /// <summary>
     /// Total of 4 levels 3 out of the 4 levels the monster will spawn in.
