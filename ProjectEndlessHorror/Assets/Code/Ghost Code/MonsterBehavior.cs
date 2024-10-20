@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class MonsterBehavior : MonoBehaviour
 {
@@ -18,23 +19,25 @@ public class MonsterBehavior : MonoBehaviour
 
     [Header("Scripts")]
     public LevelManager LevelManagerRef;
-    private void Update()
-    {
-        //MoveMonsterToPoint();
-    }
+
     /// <summary>
     /// Moves the monster to the point it needs to be.
     /// </summary>
-    public IEnumerator MoveMonsterToPoint()
+    IEnumerator MoveMonsterToPoint()
     {
-        while(Vector3.Distance(transform.position, EndPoint.transform.position) < 0.05f)//start this and dont end until they are less than 0.05 meters away
+        
+        while(Vector3.Distance(transform.position, EndPoint.transform.position) > 0.05f)//start this and dont end until they are less than 0.05 meters away
         {
             transform.position = Vector3.MoveTowards(transform.position, EndPoint.transform.position, _speed * Time.deltaTime);
+            Debug.Log(Vector3.Distance(transform.position, EndPoint.transform.position) + " this is the distance");
             yield return null;
         }
+        
         Debug.Log("done");
-        this.transform.gameObject.SetActive(false);
+        //this.transform.gameObject.SetActive(false);
     }
+
+    public void StartMonsterMovement () => StartCoroutine(MoveMonsterToPoint());
     /// <summary>
     /// Total of 4 levels 3 out of the 4 levels the monster will spawn in.
     /// </summary>
