@@ -6,6 +6,7 @@ using interfaces;
 public class SideDoorKey : MonoBehaviour, IInteractable
 {
     public PlayerInventory PlayerInventoryRef;
+
     public void Interact()
     {
         PlayerInventoryRef.PlayersInventoryList.Add(transform.gameObject);

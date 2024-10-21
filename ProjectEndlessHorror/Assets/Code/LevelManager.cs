@@ -37,7 +37,7 @@ public class LevelManager : MonoBehaviour
         if(LevelIndex == 2)
             SecuritySecondDoorPrefab.transform.Rotate(new Vector3(0, 90, 0));
         if (LevelIndex == 4)
-            GlassDoorSecondDoorPrefab.transform.Rotate(new Vector3(0, 90, 0));
+            GlassDoorSecondDoorPrefab.transform.Rotate(new Vector3(0, 90, 0));// need to open this door now lmao
 
         Debug.Log("open door");
     }
