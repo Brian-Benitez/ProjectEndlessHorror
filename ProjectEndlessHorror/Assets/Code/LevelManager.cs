@@ -34,9 +34,9 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void RotateSideDoor()
     {
-        if(LevelIndex == 3)
+        if(LevelIndex == 2)
             SecuritySecondDoorPrefab.transform.Rotate(new Vector3(0, 90, 0));
-        if (LevelIndex == 5)
+        if (LevelIndex == 4)
             GlassDoorSecondDoorPrefab.transform.Rotate(new Vector3(0, 90, 0));
 
         Debug.Log("open door");
