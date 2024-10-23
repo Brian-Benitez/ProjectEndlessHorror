@@ -53,15 +53,9 @@ public class MonsterBehavior : MonoBehaviour
     public void SpawnMonsterInArea()
     {
         transform.gameObject.SetActive(true);
-
-        if(LevelManagerRef.LevelIndex == 0)
-            return;
-        else
-        {
-            this.transform.position = SpawnPointPerLevel[0].transform.position;
-            Debug.Log("what " + LevelManagerRef.LevelIndex);
-        }
-            
+        Debug.Log("what the level index before " + LevelManagerRef.LevelIndex);
+        this.transform.position = SpawnPointPerLevel[LevelManagerRef.LevelIndex].transform.position;
+        Debug.Log("what the level index " + LevelManagerRef.LevelIndex);
     }
 
     public void MonstersJumpScarePosition()

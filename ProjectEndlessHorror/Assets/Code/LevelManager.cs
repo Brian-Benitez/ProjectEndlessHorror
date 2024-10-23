@@ -24,8 +24,8 @@ public class LevelManager : MonoBehaviour
         else
         {
             LevelPrefabs[LevelIndex].SetActive(false);
-            LevelIndex++;
-            LevelPrefabs[LevelIndex].SetActive(true);//Make sure this goes to the next level index
+            LevelIndex++;//this needs to be de
+            LevelPrefabs[LevelIndex].SetActive(true);
             Debug.Log("new level  + " + LevelIndex);
         }
     }
@@ -37,7 +37,7 @@ public class LevelManager : MonoBehaviour
         if(LevelIndex == 2)
             SecuritySecondDoorPrefab.transform.Rotate(new Vector3(0, 90, 0));
         if (LevelIndex == 4)
-            GlassDoorSecondDoorPrefab.transform.Rotate(new Vector3(0, 90, 0));// need to open this door now lmao
+            GlassDoorSecondDoorPrefab.transform.Rotate(new Vector3(0, 0, 0));// need to open this door now lmao
 
         Debug.Log("open door");
     }
