@@ -16,6 +16,7 @@ public class SideDoor : MonoBehaviour, IInteractable
             Debug.Log("player does not have a second door key");
 
         MonsterBehaviorRef.SpawnMonsterInArea();
+        MonsterBehaviorRef.EnableObject();
         MonsterBehaviorRef.StartMonsterMovement();
     }
 }

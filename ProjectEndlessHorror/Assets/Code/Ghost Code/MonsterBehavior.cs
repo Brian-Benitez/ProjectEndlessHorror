@@ -13,7 +13,6 @@ public class MonsterBehavior : MonoBehaviour
 
     [Header("Positions")]
     public Transform JumpScarePos;
-    public GameObject EndPoint;
 
     [Header("Lists of spawn points")]
     public List<GameObject> SpawnPointPerLevel;
@@ -32,27 +31,31 @@ public class MonsterBehavior : MonoBehaviour
         if (_spawnPointIndex == SpawnPointPerLevel.Count)
             yield break;
         else
-            while (Vector3.Distance(transform.position, EndPoint.transform.position) > 0.05f)//start this and dont end until they are less than 0.05 meters away
+            while (Vector3.Distance(transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position) > 0.05f)//start this and dont end until they are less than 0.05 meters away
             {
-                transform.position = Vector3.MoveTowards(transform.position, EndPoint.transform.position, _speed * Time.deltaTime);
-                Debug.Log(Vector3.Distance(transform.position, EndPoint.transform.position) + " this is the distance");
+                transform.position = Vector3.MoveTowards(transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position, _speed * Time.deltaTime);
+                Debug.Log(Vector3.Distance(transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position) + " this is the distance");
                 yield return null;
             }
 
-        if(Vector3.Distance(transform.position, EndPoint.transform.position) <= 0.05f)//if it gets to its point, turn off the monsters game object.
+        if(Vector3.Distance(transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position) <= 0.05f)//if it gets to its point, turn off the monsters game object.
         {
-            transform.gameObject.SetActive(false);
+            DisableObject();
             _spawnPointIndex++;
         }
     }
 
-    public void StartMonsterMovement () => StartCoroutine(MoveMonsterToPoint());
+    public void StartMonsterMovement () => StartCoroutine(MoveMonsterToPoint());// maybe add the delay here.
+
     /// <summary>
-    /// Total of 4 levels 3 out of the 4 levels the monster will spawn in.
+    /// Total of 5 levels, 4 out of the 5 levels the monster will spawn in.
     /// </summary>
     public void SpawnMonsterInArea()
     {
-        transform.gameObject.SetActive(true);
+        EnableObject();
+
+        if(LevelManagerRef.LevelIndex == 4)
+            DisableObject();
         Debug.Log("what the level index before " + LevelManagerRef.LevelIndex);
         this.transform.position = SpawnPointPerLevel[LevelManagerRef.LevelIndex].transform.position;
         Debug.Log("what the level index " + LevelManagerRef.LevelIndex);
@@ -63,18 +66,28 @@ public class MonsterBehavior : MonoBehaviour
         this.transform.position = JumpScarePos.transform.position;
         //Play jump scare animation here.
     }
-    /*
-    private static void Delay(float time, System.Action _callBack)
-    {
-        Sequence seq = DOTween.Sequence();
-
-        seq.AppendInterval(time).AppendCallback(() => _callBack());
-    }
-    */
 
     public void RestartMonstersBehavior()
     {
         _spawnPointIndex = 0;
-        transform.gameObject.SetActive(true);
+        EnableObject();
     }
+    //HELPER functions +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    /// <summary>
+    /// Enables this object.
+    /// </summary>
+    public void EnableObject() => transform.gameObject.SetActive(true);
+    /// <summary>
+    /// Disables this object.
+    /// </summary>
+    public void DisableObject() => transform.gameObject.SetActive(false);
+
+    /*
+   private static void Delay(float time, System.Action _callBack)
+   {
+       Sequence seq = DOTween.Sequence();
+
+       seq.AppendInterval(time).AppendCallback(() => _callBack());
+   }
+   */
 }
