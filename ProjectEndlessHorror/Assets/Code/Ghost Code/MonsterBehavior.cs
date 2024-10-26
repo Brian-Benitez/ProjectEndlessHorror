@@ -1,9 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.Common;
 using UnityEngine;
-using UnityEngine.ProBuilder.MeshOperations;
 
 public class MonsterBehavior : MonoBehaviour
 {
@@ -23,6 +21,14 @@ public class MonsterBehavior : MonoBehaviour
     [Header("Scripts")]
     public LevelManager LevelManagerRef;
 
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            MonstersJumpScarePosition();
+        }
+    }
     /// <summary>
     /// Moves the monster to the point it needs to be.
     /// </summary>
@@ -64,6 +70,7 @@ public class MonsterBehavior : MonoBehaviour
     public void MonstersJumpScarePosition()
     {
         this.transform.position = JumpScarePos.transform.position;
+        Debug.Log("jumpscare");
         //Play jump scare animation here.
     }
 

@@ -41,7 +41,7 @@ public class GameMain : MonoBehaviour
         //Losing game stuff
         PlayerLoseDelegate += LevelManagerRef.RestartLevel;
         //Jumpscare stuff
-        //PlayJumpScareDelegate += MonsterBehaviorRef.MonstersJumpScarePosition;// i commente this out because im playing it imidenetyky
+        PlayJumpScareDelegate += MonsterBehaviorRef.MonstersJumpScarePosition;// i commente this out because im playing it imidenetyky
 
     }
     /// <summary>
