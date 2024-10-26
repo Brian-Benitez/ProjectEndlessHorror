@@ -20,6 +20,7 @@ public class MonsterBehavior : MonoBehaviour
 
     [Header("Scripts")]
     public LevelManager LevelManagerRef;
+    public CameraController CameraControllerRef;
 
 
     private void Update()
@@ -70,6 +71,7 @@ public class MonsterBehavior : MonoBehaviour
     public void MonstersJumpScarePosition()
     {
         this.transform.position = JumpScarePos.transform.position;
+        CameraControllerRef.TurnOnJumpScareCam();
         Debug.Log("jumpscare");
         //Play jump scare animation here.
     }
