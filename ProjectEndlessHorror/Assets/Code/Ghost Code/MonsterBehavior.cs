@@ -8,6 +8,7 @@ public class MonsterBehavior : MonoBehaviour
     [Header("Monsters Info")]
     [SerializeField] private float _speed = 1.5f;//Monsters speed to points or to the player
     [SerializeField] private int _spawnPointIndex = 0;
+    [SerializeField] public float WaitSpeedForMonster = 1f;
 
     [Header("Positions")]
     public Transform JumpScarePos;
@@ -33,7 +34,7 @@ public class MonsterBehavior : MonoBehaviour
     /// <summary>
     /// Moves the monster to the point it needs to be.
     /// </summary>
-    IEnumerator MoveMonsterToPoint()
+    IEnumerator MoveMonsterToPoint()//NOTE, IF U DO THIS BEFORE THE COROTINE FINISHES THE LEVEL, IT WILL DO IT AGAIN.
     {
         if (_spawnPointIndex == SpawnPointPerLevel.Count)
             yield break;
@@ -49,10 +50,20 @@ public class MonsterBehavior : MonoBehaviour
         {
             DisableObject();
             _spawnPointIndex++;
+            if (LevelManagerRef.LevelIndex == 4)// not the greatest placement but it will work.
+                LevelManagerRef.ReopenSideDoor();
         }
     }
 
-    public void StartMonsterMovement () => StartCoroutine(MoveMonsterToPoint());// maybe add the delay here.
+    public void StartMonsterMovement()
+    {
+        Debug.Log("check");
+        Delay(WaitSpeedForMonster, () =>
+        {
+            StartCoroutine(MoveMonsterToPoint());
+            Debug.Log("delay call here");
+        });
+    } 
 
     /// <summary>
     /// Total of 5 levels, 4 out of the 5 levels the monster will spawn in.
@@ -91,12 +102,12 @@ public class MonsterBehavior : MonoBehaviour
     /// </summary>
     public void DisableObject() => transform.gameObject.SetActive(false);
 
-    /*
+    
    private static void Delay(float time, System.Action _callBack)
    {
        Sequence seq = DOTween.Sequence();
 
        seq.AppendInterval(time).AppendCallback(() => _callBack());
    }
-   */
+  
 }

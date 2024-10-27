@@ -1,6 +1,7 @@
 using interfaces;
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using UnityEngine;
 
 public class SideDoor : MonoBehaviour, IInteractable
@@ -10,13 +11,17 @@ public class SideDoor : MonoBehaviour, IInteractable
     public MonsterBehavior MonsterBehaviorRef;
     public void Interact()
     {
-        if (PlayerInventoryRef.DoesPlayerHaveSecondDoorKey())//wtf does this doo
+        if (PlayerInventoryRef.DoesPlayerHaveSecondDoorKey())
             LevelManagerRef.RotateSideDoor();
         else
             Debug.Log("player does not have a second door key");
 
-        MonsterBehaviorRef.SpawnMonsterInArea();
-        MonsterBehaviorRef.EnableObject();
-        MonsterBehaviorRef.StartMonsterMovement();
+        if(LevelManagerRef.LevelIndex == 4)///this is the key
+        {
+            MonsterBehaviorRef.SpawnMonsterInArea();
+            MonsterBehaviorRef.EnableObject();
+            MonsterBehaviorRef.StartMonsterMovement();
+            transform.gameObject.SetActive(false); 
+        }
     }
 }

@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
     [Header("Levels")]
     public List<GameObject> LevelPrefabs;
     public GameObject SecuritySecondDoorPrefab;
-    public GameObject GlassDoorSecondDoorPrefab;
+    public GameObject GlassDoorSecondDoorPrefabTwo;
 
     [Header("Indexs")]
     public int LevelIndex = 0;
@@ -37,9 +37,18 @@ public class LevelManager : MonoBehaviour
         if(LevelIndex == 2)
             SecuritySecondDoorPrefab.transform.Rotate(new Vector3(0, 90, 0));
         if (LevelIndex == 4)
-            GlassDoorSecondDoorPrefab.transform.Rotate(new Vector3(0, 0, 0));// need to open this door now lmao
-
+        {
+            GlassDoorSecondDoorPrefabTwo.transform.Rotate(new Vector3(0, 0, 0));
+        }
         Debug.Log("open door");
+    }
+    /// <summary>
+    /// reopening the side door for a dumb interaction with the monster.
+    /// </summary>
+    public void ReopenSideDoor()
+    {
+        GlassDoorSecondDoorPrefabTwo.transform.Rotate(new Vector3(0, 90, 0));
+        Debug.Log("reopen door");
     }
     /// <summary>
     /// Spawns the player back into pos after finishing a level.
