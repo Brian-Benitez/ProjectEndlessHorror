@@ -8,7 +8,7 @@ public class MonsterBehavior : MonoBehaviour
     [Header("Monsters Info")]
     [SerializeField] private float _speed = 1.5f;//Monsters speed to points or to the player
     [SerializeField] private int _spawnPointIndex = 0;
-    [SerializeField] public float WaitSpeedForMonster = 1f;
+    [SerializeField] public float WaitSpeedForMonster = 0.5f;
 
     [Header("Positions")]
     public Transform JumpScarePos;
@@ -50,14 +50,15 @@ public class MonsterBehavior : MonoBehaviour
         {
             DisableObject();
             _spawnPointIndex++;
-            if (LevelManagerRef.LevelIndex == 4)// not the greatest placement but it will work.
-                LevelManagerRef.ReopenSideDoor();
         }
     }
 
     public void StartMonsterMovement()
     {
         Debug.Log("check");
+        if(LevelManagerRef.LevelIndex == 4)
+            LevelManagerRef.ReopenSideDoor();
+
         Delay(WaitSpeedForMonster, () =>
         {
             StartCoroutine(MoveMonsterToPoint());
