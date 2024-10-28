@@ -24,14 +24,6 @@ public class MonsterBehavior : MonoBehaviour
     public CameraController CameraControllerRef;
 
 
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.R))
-        {
-            MonstersJumpScarePosition();
-        }
-    }
-
     /// <summary>
     /// Moves the monster to the point it needs to be.
     /// </summary>

@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class GameTimer : MonoBehaviour
 {
+    [Header("Game timer info")]
     public float TimeRemaining = 5;
     public bool TimerIsRunning = false;
+
+    [Header("Scripts")]
+    public MonsterBehavior MonsterBehaviorRef;
 
     private void Start()
     {
@@ -23,6 +27,7 @@ public class GameTimer : MonoBehaviour
                 Debug.Log("time is ran out.");
                 TimeRemaining = 0;
                 TimerIsRunning = false;
+                MonsterBehaviorRef.MonstersJumpScarePosition();
             }
         }
     }
