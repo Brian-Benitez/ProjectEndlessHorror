@@ -25,7 +25,10 @@ public class PlayerInventory : MonoBehaviour
     public bool DoesPlayerHaveSecondDoorKey()
     {
         if(PlayersInventoryList.Find(x => x.name.Contains("SecondDoorKey")))
+        {
+            Debug.Log("its fuckin true");
             return true;
+        }   
         else return false;
     }
     /// <summary>

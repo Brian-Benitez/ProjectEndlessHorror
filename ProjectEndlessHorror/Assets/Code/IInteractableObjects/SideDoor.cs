@@ -1,7 +1,6 @@
 using interfaces;
 using System.Collections;
 using System.Collections.Generic;
-using TreeEditor;
 using UnityEngine;
 
 public class SideDoor : MonoBehaviour, IInteractable
@@ -11,6 +10,8 @@ public class SideDoor : MonoBehaviour, IInteractable
     public MonsterBehavior MonsterBehaviorRef;
     public void Interact()
     {
+        PlayerInventoryRef.PlayersInventoryList.Add(transform.gameObject);
+
         if (PlayerInventoryRef.DoesPlayerHaveSecondDoorKey())
             LevelManagerRef.RotateSideDoor();
         else

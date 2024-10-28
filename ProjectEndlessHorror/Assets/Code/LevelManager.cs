@@ -35,19 +35,23 @@ public class LevelManager : MonoBehaviour
     public void RotateSideDoor()
     {
         if(LevelIndex == 2)
+        {
+            Debug.Log("open door");
             SecuritySecondDoorPrefab.transform.Rotate(new Vector3(0, 90, 0));
+        }
+            
         if (LevelIndex == 4)
         {
-            GlassDoorSecondDoorPrefabTwo.transform.Rotate(new Vector3(0, 0, 0));
+            GlassDoorSecondDoorPrefabTwo.transform.Rotate(new Vector3(0, 91, 0));
+            Debug.Log("close door");
         }
-        Debug.Log("open door");
     }
     /// <summary>
     /// reopening the side door for a dumb interaction with the monster.
     /// </summary>
     public void ReopenSideDoor()
     {
-        GlassDoorSecondDoorPrefabTwo.transform.Rotate(new Vector3(0, 90, 0));
+        GlassDoorSecondDoorPrefabTwo.transform.Rotate(new Vector3(0, -90, 0));
         Debug.Log("reopen door");
     }
     /// <summary>

@@ -31,6 +31,7 @@ public class MonsterBehavior : MonoBehaviour
             MonstersJumpScarePosition();
         }
     }
+
     /// <summary>
     /// Moves the monster to the point it needs to be.
     /// </summary>
@@ -42,12 +43,14 @@ public class MonsterBehavior : MonoBehaviour
             while (Vector3.Distance(transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position) > 0.05f)//start this and dont end until they are less than 0.05 meters away
             {
                 transform.position = Vector3.MoveTowards(transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position, _speed * Time.deltaTime);
-                Debug.Log(Vector3.Distance(transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position) + " this is the distance");
                 yield return null;
             }
 
-        if(Vector3.Distance(transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position) <= 0.05f)//if it gets to its point, turn off the monsters game object.
+        if(Vector3.Distance(transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position) <= 0.05f)//if it gets to its point, turn off monster.
         {
+            if(LevelManagerRef.LevelIndex == 4)
+                LevelManagerRef.ReopenSideDoor();
+
             DisableObject();
             _spawnPointIndex++;
         }
@@ -55,10 +58,6 @@ public class MonsterBehavior : MonoBehaviour
 
     public void StartMonsterMovement()
     {
-        Debug.Log("check");
-        if(LevelManagerRef.LevelIndex == 4)
-            LevelManagerRef.ReopenSideDoor();
-
         Delay(WaitSpeedForMonster, () =>
         {
             StartCoroutine(MoveMonsterToPoint());
