@@ -17,12 +17,9 @@ public class SideDoor : MonoBehaviour, IInteractable
         else
             Debug.Log("player does not have a second door key");
 
-        if(LevelManagerRef.LevelIndex == 4)///this is the key
-        {
-            MonsterBehaviorRef.SpawnMonsterInArea();
-            MonsterBehaviorRef.EnableObject();
-            MonsterBehaviorRef.StartMonsterMovement();
-            transform.gameObject.SetActive(false); 
-        }
+        GameMain.instance.PlayingScaryEventDelegate();//This is the event playing for when its level four and the scary event will play.
+
+        if(LevelManagerRef.LevelIndex == 4)//this is for the "deletion" of the key.
+            transform.gameObject.SetActive(false);
     }
 }

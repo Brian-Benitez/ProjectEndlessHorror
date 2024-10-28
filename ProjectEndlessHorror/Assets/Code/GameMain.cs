@@ -43,6 +43,10 @@ public class GameMain : MonoBehaviour
         //Jumpscare stuff
         PlayJumpScareDelegate += MonsterBehaviorRef.MonstersJumpScarePosition;// i commente this out because im playing it imidenetyky
 
+        //Jumpscare scary event
+        PlayScaryEventDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
+        PlayScaryEventDelegate += MonsterBehaviorRef.EnableObject;
+        PlayScaryEventDelegate += MonsterBehaviorRef.StartMonsterMovement;
     }
     /// <summary>
     /// Plays a delegate event to advance to the next room.
@@ -63,7 +67,7 @@ public class GameMain : MonoBehaviour
     /// </summary>
     public void PlayingScaryEventDelegate()
     {
-        if (LevelManagerRef.LevelIndex == 3)
+        if (LevelManagerRef.LevelIndex == 4)
             PlayScaryEventDelegate?.Invoke();
         else
             Debug.Log("can't play scary event yet");
