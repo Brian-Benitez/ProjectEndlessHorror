@@ -22,6 +22,7 @@ public class GameMain : MonoBehaviour
     public LevelManager LevelManagerRef;
     public PlayerInventory PlayerInventoryRef;
     public MonsterBehavior MonsterBehaviorRef;  
+    public GameTimer GameTimerRef;
 
     private void Awake()
     {
@@ -38,8 +39,10 @@ public class GameMain : MonoBehaviour
         AdvanceToRoomDelegate += LevelManagerRef.RepositionPlayer;
         AdvanceToRoomDelegate += PlayerInventoryRef.ClearInventoryList;
         AdvanceToRoomDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
+        AdvanceToRoomDelegate += GameTimerRef.StartTimerBoolean;
         //Losing game stuff
         PlayerLoseDelegate += LevelManagerRef.RestartLevel;
+        PlayerLoseDelegate += GameTimerRef.EndTimerBoolean;
         //Jumpscare stuff
         PlayJumpScareDelegate += MonsterBehaviorRef.MonstersJumpScarePosition;// i commente this out because im playing it imidenetyky
 
