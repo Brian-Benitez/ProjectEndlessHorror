@@ -12,10 +12,13 @@ public class LevelManager : MonoBehaviour
     public List<GameObject> LevelPrefabs;
     public GameObject SecuritySecondDoorPrefab;
     public GameObject GlassDoorSecondDoorPrefabTwo;
+    public GameObject FinalKey;
 
     [Header("Indexs")]
     public int LevelIndex = 0;
     private int _levelCountMax = 5;
+
+    private void Start() => FinalKey.gameObject.SetActive(false);
 
     public void ChangeLevelPrefab()
     {
@@ -24,9 +27,10 @@ public class LevelManager : MonoBehaviour
         else
         {
             LevelPrefabs[LevelIndex].SetActive(false);
-            LevelIndex++;//this needs to be de
+            LevelIndex++;
             LevelPrefabs[LevelIndex].SetActive(true);
             Debug.Log("new level  + " + LevelIndex);
+            EnableLastKey();
         }
     }
     /// <summary>
@@ -58,6 +62,11 @@ public class LevelManager : MonoBehaviour
     /// Spawns the player back into pos after finishing a level.
     /// </summary>
     public void RepositionPlayer() => Player.transform.position = PlayerSpawnPoint.transform.position;
+    public void EnableLastKey()
+    {
+        if(LevelIndex == 4)
+            FinalKey.gameObject.SetActive(true);
+    }
 
     public void RestartLevel()
     {

@@ -31,6 +31,14 @@ public class PlayerInventory : MonoBehaviour
         }   
         else return false;
     }
+
+    public bool DoesPlayerHaveADollar()
+    {
+        if (PlayersInventoryList.Find(x => x.name.Contains("Dollar")))
+            return true;
+        else
+            return false;
+    }
     /// <summary>
     /// Deletes all gameobjects in the Players inventory list
     /// </summary>
