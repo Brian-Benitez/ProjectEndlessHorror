@@ -1,0 +1,15 @@
+using interfaces;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Money : MonoBehaviour, IInteractable
+{
+    public PlayerInventory PlayerInventoryRef;
+    public void Interact()
+    {
+        PlayerInventoryRef.PlayersInventoryList.Add(transform.gameObject);
+        Debug.Log("added key to inventory");
+        transform.gameObject.SetActive(false);//set 
+    }
+}

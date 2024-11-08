@@ -12,13 +12,13 @@ public class LevelManager : MonoBehaviour
     public List<GameObject> LevelPrefabs;
     public GameObject SecuritySecondDoorPrefab;
     public GameObject GlassDoorSecondDoorPrefabTwo;
-    public GameObject FinalKey;
+    public GameObject KeyInVendingMachine;
 
     [Header("Indexs")]
     public int LevelIndex = 0;
     private int _levelCountMax = 5;
 
-    private void Start() => FinalKey.gameObject.SetActive(false);
+    private void Start() => KeyInVendingMachine.gameObject.SetActive(false);
 
     public void ChangeLevelPrefab()
     {
@@ -65,7 +65,7 @@ public class LevelManager : MonoBehaviour
     public void EnableLastKey()
     {
         if(LevelIndex == 4)
-            FinalKey.gameObject.SetActive(true);
+            KeyInVendingMachine.gameObject.SetActive(true);
     }
 
     public void RestartLevel()

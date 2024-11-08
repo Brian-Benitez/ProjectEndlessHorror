@@ -10,10 +10,11 @@ public class VendingMachine : MonoBehaviour, IInteractable
 
     [Header("Scripts")]
     public PlayerInventory PlayerInventoryRef;
+    public LevelManager LevelManagerRef;
 
     public void Interact()
     {
-        if(PlayerInventoryRef.DoesPlayerHaveADollar())
+        if (PlayerInventoryRef.DoesPlayerHaveADollar() && LevelManagerRef.LevelIndex == 4)
         {
             MainKey.gameObject.SetActive(true);
         }
