@@ -23,6 +23,7 @@ public class GameMain : MonoBehaviour
     public PlayerInventory PlayerInventoryRef;
     public MonsterBehavior MonsterBehaviorRef;  
     public GameTimer GameTimerRef;
+    public CameraFade CameraFadeRef;
 
     private void Awake()
     {
@@ -35,11 +36,13 @@ public class GameMain : MonoBehaviour
     private void Start()
     {
         //Add changing the level here first before doing whats below
+        AdvanceToRoomDelegate += CameraFadeRef.FadeToBlack;
         AdvanceToRoomDelegate += LevelManagerRef.ChangeLevelPrefab;
         AdvanceToRoomDelegate += LevelManagerRef.RepositionPlayer;
         AdvanceToRoomDelegate += PlayerInventoryRef.ClearInventoryList;
         AdvanceToRoomDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
         AdvanceToRoomDelegate += GameTimerRef.StartTimerBoolean;
+        AdvanceToRoomDelegate += CameraFadeRef.FadeOffOfBlack;
         //Losing game stuff
         PlayerLoseDelegate += LevelManagerRef.RestartLevel;
         PlayerLoseDelegate += GameTimerRef.EndTimerBoolean;
