@@ -36,7 +36,6 @@ public class GameMain : MonoBehaviour
     private void Start()
     {
         //Add changing the level here first before doing whats below
-        AdvanceToRoomDelegate += CameraFadeRef.FadeToBlack;
         AdvanceToRoomDelegate += LevelManagerRef.ChangeLevelPrefab;
         AdvanceToRoomDelegate += LevelManagerRef.RepositionPlayer;
         AdvanceToRoomDelegate += PlayerInventoryRef.ClearInventoryList;
@@ -47,7 +46,7 @@ public class GameMain : MonoBehaviour
         PlayerLoseDelegate += LevelManagerRef.RestartLevel;
         PlayerLoseDelegate += GameTimerRef.EndTimerBoolean;
         //Jumpscare stuff
-        PlayJumpScareDelegate += MonsterBehaviorRef.MonstersJumpScarePosition;// i commente this out because im playing it imidenetyky
+        PlayJumpScareDelegate += MonsterBehaviorRef.MonstersJumpScarePosition;
 
         //Jumpscare scary event
         PlayScaryEventDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
