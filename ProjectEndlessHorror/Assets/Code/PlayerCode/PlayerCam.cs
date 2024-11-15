@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
 {
+    [Header("Players Sens")]
     public float sensX;
     public float sensY;
 
@@ -11,6 +12,9 @@ public class PlayerCam : MonoBehaviour
 
     float xRotation;
     float yRotation;
+
+    [Header("Script")]
+    public SettingsController SettingsControllerRef;
 
     private void Start()
     {
@@ -20,17 +24,22 @@ public class PlayerCam : MonoBehaviour
 
     private void Update()
     {
-        //Changed Time.deltaTime to fixed to fix jidder of camera.
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.fixedDeltaTime * sensX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.fixedDeltaTime * sensY;
+        if(SettingsControllerRef.IsSettingMenuOpen)
+            return;
+        else
+        {
+            //Changed Time.deltaTime to fixed to fix jidder of camera.
+            float mouseX = Input.GetAxisRaw("Mouse X") * Time.fixedDeltaTime * sensX;
+            float mouseY = Input.GetAxisRaw("Mouse Y") * Time.fixedDeltaTime * sensY;
 
-        yRotation += mouseX;
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            yRotation += mouseX;
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        //rotate cam and orientation
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        PlayerBody.Rotate(Vector3.up * mouseX);
-       
+            //rotate cam and orientation
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            PlayerBody.Rotate(Vector3.up * mouseX);
+
+        }
     }
 }

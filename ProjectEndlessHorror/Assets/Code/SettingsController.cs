@@ -14,17 +14,27 @@ public class SettingsController : MonoBehaviour
     public TextMeshProUGUI VolumeTextAmount;
     [Header("Settings Prefab")]
     public GameObject SettingsPrefab;
+    [Header("Booleans")]
+    public bool IsSettingMenuOpen = false;
 
     //private void Start() => SettingsPrefab.SetActive(false);
 
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Escape))
+        if(Input.GetKeyUp(KeyCode.Tab) && !IsSettingMenuOpen)//Dont use esc it thows it off when in edtior:(
         {
             SettingsPrefab.SetActive(true);
-        
+            IsSettingMenuOpen = true;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
         }
-               
+        else if(Input.GetKeyUp(KeyCode.Tab) && IsSettingMenuOpen)
+        {
+            IsSettingMenuOpen = false;
+            SettingsPrefab.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     public void ChangeVisualSettings()
