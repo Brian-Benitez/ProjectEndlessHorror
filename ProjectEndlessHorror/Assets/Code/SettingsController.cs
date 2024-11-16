@@ -14,6 +14,10 @@ public class SettingsController : MonoBehaviour
     public TextMeshProUGUI VolumeTextAmount;
     [Header("Settings Prefab")]
     public GameObject SettingsPrefab;
+    [Header("Crosshair")]
+    public GameObject PlayersCrossHair;
+    [Header("Toggle")]
+    public Toggle CrosshairToggle;
     [Header("Booleans")]
     public bool IsSettingMenuOpen = false;
 
@@ -42,6 +46,14 @@ public class SettingsController : MonoBehaviour
         AimSensTextAmount.text = "" + AimSensSlider.value;
         VolumeTextAmount.text = "" + VolumeSlider.value;
         Debug.Log("ayyee");
+    }
+
+    public void EnableCross()
+    {
+        if(CrosshairToggle.isOn)
+            PlayersCrossHair.SetActive(true);
+        else
+            PlayersCrossHair.SetActive(false);
     }
 
 }
