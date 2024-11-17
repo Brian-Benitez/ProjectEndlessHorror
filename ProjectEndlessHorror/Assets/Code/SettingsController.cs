@@ -1,7 +1,10 @@
+using Cinemachine.PostFX;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class SettingsController : MonoBehaviour
@@ -9,10 +12,12 @@ public class SettingsController : MonoBehaviour
     [Header("Slider")]
     public Slider AimSensSlider;
     public Slider VolumeSlider;
+    public Slider BrightnessSlider;
 
     [Header("Texts")]
     public TextMeshProUGUI AimSensTextAmount;
     public TextMeshProUGUI VolumeTextAmount;
+    public TextMeshProUGUI BrightnessTextAmount;
 
     [Header("Settings Prefab")]
     public GameObject SettingsPrefab;
@@ -26,9 +31,26 @@ public class SettingsController : MonoBehaviour
     [Header("Booleans")]
     public bool IsSettingMenuOpen = false;
 
+    [Header("Profile")]
+    private ColorAdjustments ColorAdjustmentsRef;
+    public CinemachineVolumeSettings cinemachineVolumeSettingsRef;
+
+    [Header("Start values")]
+    public int XSenOrginal = 50;
+    public int YSenOrginal = 50;
+    public int VolumeOrginal = 5;
+    public float BrightnessOrginal = .25f;
+
+    //public List<> AudioSources;
+    //AudioSource.Volume and you set what sound it is.
+
     [Header("Scripts")]
     public PlayerCam PlayerCamRef;
- 
+    private void Start()
+    {
+        cinemachineVolumeSettingsRef.m_Profile.TryGet<ColorAdjustments>(out ColorAdjustmentsRef);
+        ChangeSettings();
+    }
 
     private void Update()
     {
@@ -57,6 +79,9 @@ public class SettingsController : MonoBehaviour
         //Volume values here.
         VolumeTextAmount.text = "" + VolumeSlider.value;
         Debug.Log("ayyee");
+
+        ColorAdjustmentsRef.postExposure.value = BrightnessSlider.value;
+        BrightnessTextAmount.text = "" + BrightnessSlider.value.ToString("0.00");
     }
 
     public void EnableCross()

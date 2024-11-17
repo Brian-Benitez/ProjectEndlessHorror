@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerCam : MonoBehaviour
 {
     [Header("Players Sens")]
-    public float sensX;
-    public float sensY;
+    public float sensX = 50;
+    public float sensY = 50;
 
     public Transform PlayerBody;
 
