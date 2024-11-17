@@ -9,19 +9,26 @@ public class SettingsController : MonoBehaviour
     [Header("Slider")]
     public Slider AimSensSlider;
     public Slider VolumeSlider;
+
     [Header("Texts")]
     public TextMeshProUGUI AimSensTextAmount;
     public TextMeshProUGUI VolumeTextAmount;
+
     [Header("Settings Prefab")]
     public GameObject SettingsPrefab;
+
     [Header("Crosshair")]
     public GameObject PlayersCrossHair;
+
     [Header("Toggle")]
     public Toggle CrosshairToggle;
+
     [Header("Booleans")]
     public bool IsSettingMenuOpen = false;
 
-    //private void Start() => SettingsPrefab.SetActive(false);
+    [Header("Scripts")]
+    public PlayerCam PlayerCamRef;
+ 
 
     private void Update()
     {
@@ -41,9 +48,13 @@ public class SettingsController : MonoBehaviour
         }
     }
 
-    public void ChangeVisualSettings()
+    public void ChangeSettings()
     {
+        //Player sens values here.
         AimSensTextAmount.text = "" + AimSensSlider.value;
+        PlayerCamRef.sensX = AimSensSlider.value;
+        PlayerCamRef.sensY = AimSensSlider.value;
+        //Volume values here.
         VolumeTextAmount.text = "" + VolumeSlider.value;
         Debug.Log("ayyee");
     }
