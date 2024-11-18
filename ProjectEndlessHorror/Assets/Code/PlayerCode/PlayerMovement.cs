@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SettingsControllerRef.IsSettingMenuOpen)
+        if (SettingsControllerRef.IsGamePaused)
             return;
         else
         {

@@ -24,7 +24,7 @@ public class PlayerCam : MonoBehaviour
 
     private void Update()
     {
-        if(SettingsControllerRef.IsSettingMenuOpen)
+        if(SettingsControllerRef.IsGamePaused)
             return;
         else
         {

@@ -7,16 +7,19 @@ public class MainDoor : MonoBehaviour, IInteractable
 {
     public PlayerInventory PlayerInventoryRef;
     public LevelManager LevelManagerRef;
-    public CameraFade CameraFadeRef;    
+    public CameraFade CameraFadeRef;
+    public SettingsController SettingsControllerRef;    
 
     public void Interact()
     {
         if (PlayerInventoryRef.DoesPlayerHaveKey() || LevelManagerRef.LevelIndex == 0)
         {
+            SettingsControllerRef.PausePlayerInput();
             CameraFadeRef.FadeToBlack();
             Delay(1f, () =>
             {
                 GameMain.instance.AdvanceToNextLevel();
+                SettingsControllerRef.UnPausePlayersInput();
             });
         }
         else

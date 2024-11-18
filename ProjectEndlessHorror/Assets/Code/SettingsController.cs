@@ -29,7 +29,7 @@ public class SettingsController : MonoBehaviour
     public Toggle CrosshairToggle;
 
     [Header("Booleans")]
-    public bool IsSettingMenuOpen = false;
+    public bool IsGamePaused = false;
 
     [Header("Profile")]
     private ColorAdjustments ColorAdjustmentsRef;
@@ -54,16 +54,16 @@ public class SettingsController : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Tab) && !IsSettingMenuOpen)//Dont use esc it thows it off when in edtior:(
+        if(Input.GetKeyUp(KeyCode.Tab) && !IsGamePaused)//Dont use esc it thows it off when in edtior:(
         {
             SettingsPrefab.SetActive(true);
-            IsSettingMenuOpen = true;
+            IsGamePaused = true;
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
         }
-        else if(Input.GetKeyUp(KeyCode.Tab) && IsSettingMenuOpen)
+        else if(Input.GetKeyUp(KeyCode.Tab) && IsGamePaused)
         {
-            IsSettingMenuOpen = false;
+            IsGamePaused = false;
             SettingsPrefab.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -91,5 +91,8 @@ public class SettingsController : MonoBehaviour
         else
             PlayersCrossHair.SetActive(false);
     }
+
+    public void PausePlayerInput() => IsGamePaused = true;
+    public void UnPausePlayersInput() => IsGamePaused = false;
 
 }

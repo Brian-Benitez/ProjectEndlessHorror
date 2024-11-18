@@ -5,19 +5,26 @@ using UnityEngine;
 
 public class PlayerInteractions : MonoBehaviour
 {
+    public SettingsController SettingsControllerRef;
+
     void Update()
     {
-        //player input
-        Ray ray = new Ray(transform.position, transform.forward);
-        if (Input.GetMouseButtonDown(0))
+        if (SettingsControllerRef.IsGamePaused)
+            return;
+        else
         {
-            Debug.Log("hit hit");
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            //player input
+            Ray ray = new Ray(transform.position, transform.forward);
+            if (Input.GetMouseButtonDown(0))
             {
-                if(hit.transform.TryGetComponent<IInteractable>(out IInteractable interactable))
+                Debug.Log("hit hit");
+                if (Physics.Raycast(ray, out RaycastHit hit))
                 {
-                    interactable.Interact();
-                    Debug.Log("hit");
+                    if (hit.transform.TryGetComponent<IInteractable>(out IInteractable interactable))
+                    {
+                        interactable.Interact();
+                        Debug.Log("hit");
+                    }
                 }
             }
         }

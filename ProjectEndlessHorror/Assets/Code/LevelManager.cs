@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
             LevelPrefabs[LevelIndex].SetActive(true);
             Debug.Log("new level  + " + LevelIndex);
             EnableLastKey();
+            return;
         }
     }
     /// <summary>
