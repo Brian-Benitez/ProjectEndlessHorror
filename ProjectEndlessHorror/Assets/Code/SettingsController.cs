@@ -21,6 +21,8 @@ public class SettingsController : MonoBehaviour
 
     [Header("Settings Prefab")]
     public GameObject SettingsPrefab;
+    public GameObject SettingsMenuPrefab;
+    public GameObject CreditMenuPrefab;
 
     [Header("Crosshair")]
     public GameObject PlayersCrossHair;
@@ -60,6 +62,7 @@ public class SettingsController : MonoBehaviour
             IsGamePaused = true;
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
+            DisableCreditsMenuPrefab();
         }
         else if(Input.GetKeyUp(KeyCode.Tab) && IsGamePaused)
         {
@@ -69,7 +72,9 @@ public class SettingsController : MonoBehaviour
             Cursor.visible = false;
         }
     }
-
+    /// <summary>
+    /// Changes all settings to whatever the player chooses.
+    /// </summary>
     public void ChangeSettings()
     {
         //Player sens values here.
@@ -78,12 +83,29 @@ public class SettingsController : MonoBehaviour
         PlayerCamRef.sensY = AimSensSlider.value;
         //Volume values here.
         VolumeTextAmount.text = "" + VolumeSlider.value;
-        Debug.Log("ayyee");
 
         ColorAdjustmentsRef.postExposure.value = BrightnessSlider.value;
         BrightnessTextAmount.text = "" + BrightnessSlider.value.ToString("0.00");
     }
-
+    /// <summary>
+    /// Disables the settings menu and shows the credits menu.
+    /// </summary>
+    public void EnableCreditsMenuPrefab()
+    {
+        DisableSettingsTexts();
+        EnableCreditsMenu();
+    }
+    /// <summary>
+    /// Turns off credits menu and enbales the settings again.
+    /// </summary>
+    public void DisableCreditsMenuPrefab()
+    {
+        DisableCreditsMenu();
+        EnableSettingsTexts();
+    }
+    /// <summary>
+    /// Turns crosshair on or off.
+    /// </summary>
     public void EnableCross()
     {
         if(CrosshairToggle.isOn)
@@ -94,5 +116,11 @@ public class SettingsController : MonoBehaviour
 
     public void PausePlayerInput() => IsGamePaused = true;
     public void UnPausePlayersInput() => IsGamePaused = false;
+
+    ////Private functions below!++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    private void DisableSettingsTexts() => SettingsMenuPrefab.SetActive(false);
+    private void EnableSettingsTexts() => SettingsMenuPrefab.SetActive(true);
+    private void DisableCreditsMenu() => CreditMenuPrefab.SetActive(false);
+    private void EnableCreditsMenu() => CreditMenuPrefab.SetActive(true);
 
 }
