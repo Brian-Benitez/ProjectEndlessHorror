@@ -15,9 +15,11 @@ public class PlayerInteractions : MonoBehaviour
         {
             //player input
             Ray ray = new Ray(transform.position, transform.forward);
+            
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("hit hit");
+                Debug.DrawLine(transform.position, transform.forward);
+                Debug.Log("hit hit " + transform.name);
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
                     if (hit.transform.TryGetComponent<IInteractable>(out IInteractable interactable))

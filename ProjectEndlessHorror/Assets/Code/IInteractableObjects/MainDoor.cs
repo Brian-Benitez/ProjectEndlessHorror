@@ -12,7 +12,16 @@ public class MainDoor : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (PlayerInventoryRef.DoesPlayerHaveKey() || LevelManagerRef.LevelIndex == 0)
+        if (LevelManagerRef.LevelIndex == 5)//Ending scene
+        {
+            CameraFadeRef.FadeToBlack();//Fade to black, have dialoge play, then kill the game.
+            Delay(15f, () =>
+            {
+                Debug.Log("killing game");
+                Application.Quit();
+            });
+        }
+        else if (PlayerInventoryRef.DoesPlayerHaveKey() || LevelManagerRef.LevelIndex == 0)
         {
             SettingsControllerRef.PausePlayerInput();
             CameraFadeRef.FadeToBlack();

@@ -16,7 +16,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("Indexs")]
     public int LevelIndex = 0;
-    private int _levelCountMax = 4;
+    private int _levelCountMax = 5;
 
     private void Start() => KeyInVendingMachine.gameObject.SetActive(false);
 
