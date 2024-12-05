@@ -46,7 +46,7 @@ public class GameMain : MonoBehaviour
         PlayerLoseDelegate += LevelManagerRef.RestartLevel;
         PlayerLoseDelegate += GameTimerRef.EndTimerBoolean;
         //Jumpscare stuff
-        PlayJumpScareDelegate += MonsterBehaviorRef.MonstersJumpScarePosition;
+        PlayJumpScareDelegate += MonsterBehaviorRef.MonstersJumpScarePositionAndPlayerReset;
 
         //Jumpscare scary event
         PlayScaryEventDelegate += MonsterBehaviorRef.SpawnMonsterInArea;

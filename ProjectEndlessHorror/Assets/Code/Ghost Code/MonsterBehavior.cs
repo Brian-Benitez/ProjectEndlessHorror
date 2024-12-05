@@ -22,6 +22,7 @@ public class MonsterBehavior : MonoBehaviour
     [Header("Scripts")]
     public LevelManager LevelManagerRef;
     public CameraController CameraControllerRef;
+    public CameraFade CameraFadeRef;
 
 
     /// <summary>
@@ -70,13 +71,26 @@ public class MonsterBehavior : MonoBehaviour
         this.transform.position = SpawnPointPerLevel[LevelManagerRef.LevelIndex].transform.position;
         Debug.Log("what the level index " + LevelManagerRef.LevelIndex);
     }
-
-    public void MonstersJumpScarePosition()
+    /// <summary>
+    /// Starts the jumpscare then resets level and player
+    /// </summary>
+    public void MonstersJumpScarePositionAndPlayerReset()
     {
         this.transform.position = JumpScarePos.transform.position;
         CameraControllerRef.TurnOnJumpScareCam();
         Debug.Log("jumpscare");
         //Play jump scare animation here.
+
+        Delay(3f, () =>
+        {
+            CameraFadeRef.FadeToBlack();
+            LevelManagerRef.LevelIndex = 0;
+            GameMain.instance.AdvanceToNextLevel();
+            Delay(2f, () =>
+            {
+                CameraControllerRef.TurnOnPlayerCam();
+            });
+        });
     }
 
     public void RestartMonstersBehavior()
