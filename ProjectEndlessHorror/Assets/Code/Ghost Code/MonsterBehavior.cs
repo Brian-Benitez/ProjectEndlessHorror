@@ -81,14 +81,15 @@ public class MonsterBehavior : MonoBehaviour
         Debug.Log("jumpscare");
         //Play jump scare animation here.
 
-        Delay(3f, () =>
+        Delay(1f, () =>
         {
             CameraFadeRef.FadeToBlack();
-            LevelManagerRef.LevelIndex = 0;
-            GameMain.instance.AdvanceToNextLevel();
-            Delay(2f, () =>
+            Delay(3f, () =>
             {
+                SpawnMonsterInArea();
                 CameraControllerRef.TurnOnPlayerCam();
+                LevelManagerRef.LevelIndex = 0;
+                GameMain.instance.AdvanceToNextLevel();
             });
         });
     }
