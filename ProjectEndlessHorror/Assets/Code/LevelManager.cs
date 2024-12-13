@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class LevelManager : MonoBehaviour
     public GameObject SecuritySecondDoorPrefab;
     public GameObject GlassDoorSecondDoorPrefabTwo;
     public GameObject KeyInVendingMachine;
+    public List<GameObject> AllKeysInAllRooms;
 
     [Header("Indexs")]
     public int LevelIndex = 0;
@@ -71,7 +73,9 @@ public class LevelManager : MonoBehaviour
 
     public void RestartLevel()
     {
+        AllKeysInAllRooms.ToList().ForEach(key => { key.gameObject.SetActive(true); });
         RepositionPlayer();
         LevelIndex = 0;
+        GameMain.instance.AdvanceToNextLevel();
     }
 }

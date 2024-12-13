@@ -84,12 +84,11 @@ public class MonsterBehavior : MonoBehaviour
         Delay(1f, () =>
         {
             CameraFadeRef.FadeToBlack();
-            Delay(3f, () =>
+            Delay(2f, () =>
             {
                 SpawnMonsterInArea();
                 CameraControllerRef.TurnOnPlayerCam();
-                LevelManagerRef.LevelIndex = 0;
-                GameMain.instance.AdvanceToNextLevel();
+                LevelManagerRef.RestartLevel();
             });
         });
     }
