@@ -11,7 +11,7 @@ public class ReadPlayerInput : MonoBehaviour
     private string _playersInput;
 
     public LevelManager LevelManagerRef;
-
+    public SettingsController SettingsControllerRef;
     private void Start()
     {
         DisablePlayersInputText();
@@ -19,8 +19,9 @@ public class ReadPlayerInput : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Escape))
+        if(Input.GetKeyUp(KeyCode.E))//disable door code UI
         {
+            SettingsControllerRef.IsGamePaused = false;
             DisablePlayersInputText();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -34,17 +35,22 @@ public class ReadPlayerInput : MonoBehaviour
 
         if (_playersInput == "0740")
         {
+            SettingsControllerRef.IsGamePaused = false;
             LevelManagerRef.RotateSideDoor();
             DisablePlayersInputText();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
         else
+        {
             Debug.Log("play no sound");
+            _playersInput = " ";
+        }
     }
 
     public void EnablePlayersInputText()
     {
+        SettingsControllerRef.IsGamePaused = true;
         InputText.gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
