@@ -11,10 +11,7 @@ public class GameTimer : MonoBehaviour
     [Header("Scripts")]
     public MonsterBehavior MonsterBehaviorRef;
 
-    private void Start()
-    {
-        TimerIsRunning = true; 
-    }
+    private void Start() => TimerIsRunning = true;
 
     private void Update()
     {

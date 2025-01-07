@@ -8,6 +8,9 @@ public class ReadPlayerInput : MonoBehaviour
     [Header("Game Objects")]
     public GameObject InputText;
 
+    [Header("Strings")]
+    public string DoorCodeNumber = "0740";
+
     private string _playersInput;
 
     public LevelManager LevelManagerRef;
@@ -33,7 +36,7 @@ public class ReadPlayerInput : MonoBehaviour
         _playersInput = input;
         Debug.Log(_playersInput);
 
-        if (_playersInput == "0740")
+        if (_playersInput == DoorCodeNumber)
         {
             SettingsControllerRef.IsGamePaused = false;
             LevelManagerRef.RotateSideDoor();

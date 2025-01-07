@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class MainDoor : MonoBehaviour, IInteractable
 {
+    [Header("Scripts")]
     public PlayerInventory PlayerInventoryRef;
     public LevelManager LevelManagerRef;
     public CameraFade CameraFadeRef;
