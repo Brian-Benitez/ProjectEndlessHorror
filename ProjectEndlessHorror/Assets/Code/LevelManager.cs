@@ -65,6 +65,7 @@ public class LevelManager : MonoBehaviour
     /// Spawns the player back into pos after finishing a level.
     /// </summary>
     public void RepositionPlayer() => Player.transform.position = PlayerSpawnPoint.transform.position;
+
     public void EnableLastKey()
     {
         if(LevelIndex == 4)
