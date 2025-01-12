@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class MonsterAnimations : MonoBehaviour
 {
-    public GameObject MonsterObject;
+    public Animator MonsterAnimator;
 
-    //i need more reseach to look into before writing this up.
+    private void Start()
+    {
+        
+    }
 }

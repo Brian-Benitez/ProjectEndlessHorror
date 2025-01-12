@@ -884,7 +884,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3423830017061082071}
-  m_LocalRotation: {x: -0.0000000020639304, y: 0.000000008025992, z: -0.07327658, w: 0.99731165}
+  m_LocalRotation: {x: -0.0000000020639304, y: 0.000000008025992, z: -0.07327658,
+    w: 0.99731165}
   m_LocalPosition: {x: 0.030800521, y: -0.00000049723513, z: 0.0000000867101}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2262,7 +2263,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6684858560637082352}
-  m_LocalRotation: {x: -0.0000000053332316, y: -0.00000011781289, z: -0.20134683, w: 0.97952}
+  m_LocalRotation: {x: -0.0000000053332316, y: -0.00000011781289, z: -0.20134683,
+    w: 0.97952}
   m_LocalPosition: {x: 0.04251385, y: -0.000000814808, z: -0.00000021132622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3220,7 +3222,7 @@ SkinnedMeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   serializedVersion: 2
-  m_Quality: 0
+  m_Quality: 4
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 2959467708922500008, guid: 939dd2b1b2633e840b9645b503fa3457, type: 3}
