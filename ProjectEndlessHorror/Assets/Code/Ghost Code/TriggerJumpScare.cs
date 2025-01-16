@@ -12,11 +12,4 @@ public class TriggerJumpScare : MonoBehaviour
             GameMain.instance.PlayingJumpScareDelegate();
         }
     }
-
-    private static void Delay(float time, System.Action _callBack)
-    {
-        Sequence seq = DOTween.Sequence();
-
-        seq.AppendInterval(time).AppendCallback(() => _callBack());
-    }
 }

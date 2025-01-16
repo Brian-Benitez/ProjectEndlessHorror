@@ -23,6 +23,7 @@ public class MonsterBehavior : MonoBehaviour
     public LevelManager LevelManagerRef;
     public CameraController CameraControllerRef;
     public CameraFade CameraFadeRef;
+    public MonsterAnimations MonsterAnimationsRef;
 
 
     /// <summary>
@@ -76,19 +77,28 @@ public class MonsterBehavior : MonoBehaviour
     /// </summary>
     public void MonstersJumpScarePositionAndPlayerReset()
     {
-        this.transform.position = JumpScarePos.transform.position;
+        int randomWaitTime = Random.Range(1, 3);
+        Debug.Log("whats the wait time " + randomWaitTime);
+        CameraFadeRef.FadeToBlack();
         CameraControllerRef.TurnOnJumpScareCam();
-        Debug.Log("jumpscare");
-        //Play jump scare animation here.
 
-        Delay(1f, () =>
+        //Randomly wait for jumpscare
+        Delay(randomWaitTime, () =>
         {
-            CameraFadeRef.FadeToBlack();
+            CameraFadeRef.FadeOffOfBlack();
+            MonsterAnimationsRef.StartJumpScareMonsterAnimation();
+            Debug.Log("jumpscare");
+
             Delay(2f, () =>
             {
-                SpawnMonsterInArea();
-                CameraControllerRef.TurnOnPlayerCam();
-                LevelManagerRef.RestartLevel();
+                CameraFadeRef.FadeToBlack();
+
+                Delay(0.5f, () =>
+                {
+                    SpawnMonsterInArea();
+                    CameraControllerRef.TurnOnPlayerCam();
+                    LevelManagerRef.RestartLevel();
+                });
             });
         });
     }

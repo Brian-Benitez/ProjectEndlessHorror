@@ -6,6 +6,7 @@ public class MonsterAnimations : MonoBehaviour
 {
     [Header("Animator")]
     public Animator MonsterAnimator;
+    public Animator JumpScareMonsterAnimator;
 
     [Header("Scripts")]
     public LevelManager LevelManagerRef;
@@ -25,6 +26,14 @@ public class MonsterAnimations : MonoBehaviour
                 
         }
     }
+
+    public void StartJumpScareMonsterAnimation()
+    {
+        JumpScareMonsterAnimator.gameObject.SetActive(true);
+        ///JumpScareMonsterAnimator.Play("JumpScare");
+    }
+
+    public void StopJumpScareAnimation() => JumpScareMonsterAnimator.gameObject.SetActive(false); 
     /// <summary>
     /// Set all bools from the animator to false.
     /// </summary>
