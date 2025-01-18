@@ -20,11 +20,14 @@ public class LevelManager : MonoBehaviour
     public int LevelIndex = 0;
     private int _levelCountMax = 5;
 
+    [Header("Scripts")]
+    public MonsterBehavior MonsterBehaviorRef;
+
     private void Start() => KeyInVendingMachine.gameObject.SetActive(false);
 
-    public void ChangeLevelPrefab()
+    public void ChangeLevelPrefab()//this gets called when u die, so we need to make this better so when u die in level u dont go to new level
     {
-        if (LevelIndex == _levelCountMax)
+        if (LevelIndex == _levelCountMax || MonsterBehaviorRef.GotJumpScared)
             return;
         else
         {
@@ -75,8 +78,11 @@ public class LevelManager : MonoBehaviour
     public void RestartLevel()
     {
         AllKeysInAllRooms.ToList().ForEach(key => { key.gameObject.SetActive(true); });
-        RepositionPlayer();
-        LevelIndex = 0;
         GameMain.instance.AdvanceToNextLevel();
+    }
+
+    public void RestartGame()
+    {
+        LevelIndex = 0;
     }
 }

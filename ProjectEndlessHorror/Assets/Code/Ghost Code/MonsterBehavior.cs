@@ -13,6 +13,9 @@ public class MonsterBehavior : MonoBehaviour
     [Header("Positions")]
     public Transform JumpScarePos;
 
+    [Header("Booleans")]
+    public bool GotJumpScared = false;
+
     [Header("Lists of spawn points")]
     public List<GameObject> SpawnPointPerLevel;
 
@@ -81,6 +84,7 @@ public class MonsterBehavior : MonoBehaviour
         Debug.Log("whats the wait time " + randomWaitTime);
         CameraFadeRef.FadeToBlack();
         CameraControllerRef.TurnOnJumpScareCam();
+        GotScaredBool();
 
         //Randomly wait for jumpscare
         Delay(randomWaitTime, () =>
@@ -109,6 +113,11 @@ public class MonsterBehavior : MonoBehaviour
         EnableObject();
     }
     //HELPER functions +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    public void GotScaredBool() => GotJumpScared = true;
+    
+    public void RestartJumpScareBool() => GotJumpScared = false;
+
     /// <summary>
     /// Enables this object.
     /// </summary>
