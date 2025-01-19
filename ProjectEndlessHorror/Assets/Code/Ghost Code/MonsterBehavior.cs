@@ -83,11 +83,17 @@ public class MonsterBehavior : MonoBehaviour
     /// </summary>
     public void SpawnMonsterInArea()
     {
+        Debug.Log("SPAWN IN");
         EnableObject();
+
+        if(StartChaseSequnceRef.IsChasingPlayer)
+            this.transform.position = SpawnPointPerLevel[SpawnPointPerLevel.Count].transform.position;
+        Debug.Log("what is the spawn poiunt " + SpawnPointPerLevel.Count);
 
         if(LevelManagerRef.LevelIndex == 4)
             DisableObject();
-        this.transform.position = SpawnPointPerLevel[LevelManagerRef.LevelIndex].transform.position;
+        else
+            this.transform.position = SpawnPointPerLevel[LevelManagerRef.LevelIndex].transform.position;
     }
     /// <summary>
     /// Starts the jumpscare then resets level and player
