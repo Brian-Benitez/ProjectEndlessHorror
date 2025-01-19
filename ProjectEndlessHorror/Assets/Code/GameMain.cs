@@ -37,6 +37,7 @@ public class GameMain : MonoBehaviour
     {
         //Add changing the level here first before doing whats below
         AdvanceToRoomDelegate += LevelManagerRef.ChangeLevelPrefab;
+        AdvanceToRoomDelegate += MonsterBehaviorRef.AddAIndex;
         AdvanceToRoomDelegate += LevelManagerRef.RepositionPlayer;
         AdvanceToRoomDelegate += PlayerInventoryRef.ClearInventoryList;
         AdvanceToRoomDelegate += MonsterBehaviorRef.SpawnMonsterInArea;

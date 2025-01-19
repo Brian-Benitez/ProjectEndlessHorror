@@ -9,6 +9,7 @@ public class MonsterBehavior : MonoBehaviour
     [SerializeField] private float _speed = 1.5f;//Monsters speed to points or to the player
     [SerializeField] private int _spawnPointIndex = 0;
     [SerializeField] public float WaitSpeedForMonster = 0.5f;
+    [SerializeField] public int MonsterTravelEndPoints = 0;
 
     [Header("Positions")]
     public Transform JumpScarePos;
@@ -35,7 +36,12 @@ public class MonsterBehavior : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();   
     }
 
+    private void Start()
+    {
+        Debug.Log("whats the fiuck " + SpawnPointPerLevel.Count);
+    }
 
+    public void AddAIndex()=> _spawnPointIndex++;
     public void ChasePlayer()
     {
         while(Vector3.Distance(this.transform.position, PlayersPos.transform.position) > 1f)//if your far, chase player
@@ -53,19 +59,19 @@ public class MonsterBehavior : MonoBehaviour
         if (_spawnPointIndex == SpawnPointPerLevel.Count)
             yield break;
         else
-            while (Vector3.Distance(this.transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position) > 0.05f)//start this and dont end until they are less than 0.05 meters away
+            while (Vector3.Distance(this.transform.position, EndPointsOfMovement[MonsterTravelEndPoints].transform.position) > 0.05f)//start this and dont end until they are less than 0.05 meters away
             {
-                this.transform.position = Vector3.MoveTowards(transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position, _speed * Time.deltaTime);
+                this.transform.position = Vector3.MoveTowards(transform.position, EndPointsOfMovement[MonsterTravelEndPoints].transform.position, _speed * Time.deltaTime);
                 yield return null;
             }
 
-        if(Vector3.Distance(this.transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position) <= 0.05f)//if it gets to its point, turn off monster.
+        if(Vector3.Distance(this.transform.position, EndPointsOfMovement[MonsterTravelEndPoints].transform.position) <= 0.05f)//if it gets to its point, turn off monster.
         {
             if(LevelManagerRef.LevelIndex == 4)
                 LevelManagerRef.ReopenSideDoor();
 
             DisableObject();
-            _spawnPointIndex++;
+            MonsterTravelEndPoints++;
         }
     }
 
@@ -87,13 +93,16 @@ public class MonsterBehavior : MonoBehaviour
         EnableObject();
 
         if(StartChaseSequnceRef.IsChasingPlayer)
-            this.transform.position = SpawnPointPerLevel[SpawnPointPerLevel.Count].transform.position;
-        Debug.Log("what is the spawn poiunt " + SpawnPointPerLevel.Count);
+            this.transform.position = SpawnPointPerLevel[5].transform.position;
 
         if(LevelManagerRef.LevelIndex == 4)
+        {
             DisableObject();
-        else
-            this.transform.position = SpawnPointPerLevel[LevelManagerRef.LevelIndex].transform.position;
+        }
+
+        this.transform.position = SpawnPointPerLevel[_spawnPointIndex].transform.position;
+        Debug.Log("what is the spawnpoint index " + _spawnPointIndex);
+
     }
     /// <summary>
     /// Starts the jumpscare then resets level and player
