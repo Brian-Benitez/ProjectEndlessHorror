@@ -2,7 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class MonsterBehavior : MonoBehaviour
 {
     [Header("Monsters Info")]
@@ -12,7 +12,7 @@ public class MonsterBehavior : MonoBehaviour
 
     [Header("Positions")]
     public Transform JumpScarePos;
-
+    public Transform PlayersPos;
     [Header("Booleans")]
     public bool GotJumpScared = false;
 
@@ -27,8 +27,24 @@ public class MonsterBehavior : MonoBehaviour
     public CameraController CameraControllerRef;
     public CameraFade CameraFadeRef;
     public MonsterAnimations MonsterAnimationsRef;
+    public StartChaseSequnce StartChaseSequnceRef;
+
+    private NavMeshAgent _navMeshAgent;
+    private void Awake()
+    {
+        _navMeshAgent = GetComponent<NavMeshAgent>();   
+    }
 
 
+    public void ChasePlayer()
+    {
+        while(Vector3.Distance(this.transform.position, PlayersPos.transform.position) > 1f)//if your far, chase player
+        {
+            _navMeshAgent.destination = PlayersPos.transform.position;
+        }
+        if (Vector3.Distance(transform.position, PlayersPos.transform.position) < 1f)//if you reach player, disable self
+            DisableObject();
+    }
     /// <summary>
     /// Moves the monster to the point it needs to be.
     /// </summary>
@@ -37,13 +53,13 @@ public class MonsterBehavior : MonoBehaviour
         if (_spawnPointIndex == SpawnPointPerLevel.Count)
             yield break;
         else
-            while (Vector3.Distance(transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position) > 0.05f)//start this and dont end until they are less than 0.05 meters away
+            while (Vector3.Distance(this.transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position) > 0.05f)//start this and dont end until they are less than 0.05 meters away
             {
-                transform.position = Vector3.MoveTowards(transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position, _speed * Time.deltaTime);
+                this.transform.position = Vector3.MoveTowards(transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position, _speed * Time.deltaTime);
                 yield return null;
             }
 
-        if(Vector3.Distance(transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position) <= 0.05f)//if it gets to its point, turn off monster.
+        if(Vector3.Distance(this.transform.position, EndPointsOfMovement[_spawnPointIndex].transform.position) <= 0.05f)//if it gets to its point, turn off monster.
         {
             if(LevelManagerRef.LevelIndex == 4)
                 LevelManagerRef.ReopenSideDoor();
@@ -71,9 +87,7 @@ public class MonsterBehavior : MonoBehaviour
 
         if(LevelManagerRef.LevelIndex == 4)
             DisableObject();
-        Debug.Log("what the level index before " + LevelManagerRef.LevelIndex);
         this.transform.position = SpawnPointPerLevel[LevelManagerRef.LevelIndex].transform.position;
-        Debug.Log("what the level index " + LevelManagerRef.LevelIndex);
     }
     /// <summary>
     /// Starts the jumpscare then resets level and player
