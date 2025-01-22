@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start() => KeyInVendingMachine.gameObject.SetActive(false);
 
-    public void ChangeLevelPrefab()//this gets called when u die, so we need to make this better so when u die in level u dont go to new level
+    public void ChangeLevelPrefab()
     {
         if (LevelIndex == _levelCountMax || MonsterBehaviorRef.GotJumpScared)
             return;

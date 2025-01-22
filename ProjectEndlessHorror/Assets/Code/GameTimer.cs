@@ -24,7 +24,7 @@ public class GameTimer : MonoBehaviour
                 Debug.Log("time is ran out.");
                 TimeRemaining = 0;
                 TimerIsRunning = false;
-                GameMain.instance.PlayLostViaTimeDelegate();
+                MonsterBehaviorRef.TimedMonsterJumpScare();
             }
         }
     }

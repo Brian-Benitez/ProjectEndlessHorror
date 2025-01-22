@@ -4,11 +4,14 @@ using UnityEngine;
 using Cinemachine;
 public class CameraController : MonoBehaviour
 {
+    [Header("Cameras")]
     public CinemachineVirtualCamera PlayerCam;
     public CinemachineVirtualCamera JumpScareCam;
     public Camera InstanceJumpScareCam;
 
-
+    [Header("Scripts")]
+    public MonsterBehavior MonsterBehaviorRef;
+    public GameTimer GameTimerRef;
     public void InstanceJumpScareCamOn()
     {
         PlayerCam.gameObject.SetActive(false);
@@ -23,17 +26,24 @@ public class CameraController : MonoBehaviour
     /// <summary>
     /// Turn on player cam and turn off jump scare cam.
     /// </summary>
-    public void TurnOnPlayerCam()//we need to make a distrintion of what camera we turn on, there is the game timer jumpscare and now a sudden jumpscare cam. Get the srcipts and make a if else
+    public void TurnOnPlayerCam()
     {
-        JumpScareCam.gameObject.SetActive(false);
-        PlayerCam.gameObject.SetActive(true);
+        if(MonsterBehaviorRef.GotJumpScared && GameTimerRef.TimerIsRunning == false)
+            InstanceJumpScareCamOff();
+        else if(GameTimerRef.TimerIsRunning == true)
+            TurnOffTimedJumpScareCam();
     }
     /// <summary>
     /// Turn on jump scare cam and turn off player cam.
     /// </summary>
-    public void TurnOnJumpScareCam()
+    public void TurnOnTimedJumpScareCam()
     {
         PlayerCam.gameObject.SetActive(false);
         JumpScareCam.gameObject.SetActive(true);
+    }
+    private void TurnOffTimedJumpScareCam()
+    {
+        PlayerCam.gameObject.SetActive(true);
+        JumpScareCam.gameObject.SetActive(false);
     }
 }

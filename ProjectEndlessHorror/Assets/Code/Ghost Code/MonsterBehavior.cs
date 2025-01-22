@@ -37,6 +37,7 @@ public class MonsterBehavior : MonoBehaviour
     }
 
     public void AddAIndex()=> _spawnPointIndex++;
+
     public void ChasePlayer()
     {
         while(Vector3.Distance(this.transform.position, PlayersPos.transform.position) > 1f)//if your far, chase player
@@ -109,9 +110,7 @@ public class MonsterBehavior : MonoBehaviour
 
             Delay(0.5f, () =>
             {
-                SpawnMonsterInArea();
-                CameraControllerRef.TurnOnPlayerCam();
-                LevelManagerRef.RestartLevel();
+                GameMain.instance.PlayLostViaTimeDelegate();
             });
         });
 
@@ -124,7 +123,7 @@ public class MonsterBehavior : MonoBehaviour
         int randomWaitTime = Random.Range(1, 3);
         Debug.Log("whats the wait time " + randomWaitTime);
         CameraFadeRef.FadeToBlack();
-        CameraControllerRef.TurnOnJumpScareCam();
+        CameraControllerRef.TurnOnTimedJumpScareCam();
         GotScaredBool();
 
         //Randomly wait for jumpscare
@@ -140,9 +139,7 @@ public class MonsterBehavior : MonoBehaviour
 
                 Delay(0.5f, () =>
                 {
-                    SpawnMonsterInArea();
-                    CameraControllerRef.TurnOnPlayerCam();
-                    LevelManagerRef.RestartLevel();
+                    GameMain.instance.PlayLostViaTimeDelegate();
                 });
             });
         });

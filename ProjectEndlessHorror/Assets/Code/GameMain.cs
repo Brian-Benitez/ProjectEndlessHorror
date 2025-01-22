@@ -43,17 +43,17 @@ public class GameMain : MonoBehaviour
         AdvanceToRoomDelegate += PlayerInventoryRef.ClearInventoryList;
         AdvanceToRoomDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
         AdvanceToRoomDelegate += GameTimerRef.StartTimerBoolean;
-        AdvanceToRoomDelegate += CameraFadeRef.FadeOffOfBlack;
         AdvanceToRoomDelegate += MonsterBehaviorRef.RestartJumpScareBool;
+        AdvanceToRoomDelegate += CameraFadeRef.FadeOffOfBlack;
 
         //Losing game stuff
         PlayerLostToTimeDelegate += LevelManagerRef.RepositionPlayer;
         PlayerLostToTimeDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
         PlayerLostToTimeDelegate += PlayerInventoryRef.ClearInventoryList;
-        PlayerLostToTimeDelegate += CameraFadeRef.FadeOffOfBlack;
+        PlayerLostToTimeDelegate += CameraControllerRef.TurnOnPlayerCam;
         PlayerLostToTimeDelegate += GameTimerRef.StartTimerBoolean;
         PlayerLostToTimeDelegate += MonsterBehaviorRef.RestartJumpScareBool;
-        PlayerLostToTimeDelegate += CameraControllerRef.TurnOnPlayerCam;
+        PlayerLostToTimeDelegate += CameraFadeRef.FadeOffOfBlack;
 
         //Jumpscare stuff
         PlayJumpScareDelegate += MonsterBehaviorRef.PlayInstanceJumpScare;
