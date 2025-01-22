@@ -10,7 +10,7 @@ public class MonsterBehavior : MonoBehaviour
     [SerializeField] private int _spawnPointIndex = 0;
     [SerializeField] public float WaitSpeedForMonster = 0.5f;
     [SerializeField] public int MonsterTravelEndPoints = 0;
-
+    
     [Header("Positions")]
     public Transform JumpScarePos;
     public Transform PlayersPos;
@@ -34,11 +34,6 @@ public class MonsterBehavior : MonoBehaviour
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();   
-    }
-
-    private void Start()
-    {
-        Debug.Log("whats the fiuck " + SpawnPointPerLevel.Count);
     }
 
     public void AddAIndex()=> _spawnPointIndex++;
@@ -104,10 +99,27 @@ public class MonsterBehavior : MonoBehaviour
         Debug.Log("what is the spawnpoint index " + _spawnPointIndex);
 
     }
+
+    public void PlayInstanceJumpScare()
+    {
+        CameraControllerRef.InstanceJumpScareCamOn();
+        Delay(2f, () =>
+        {
+            CameraFadeRef.FadeToBlack();
+
+            Delay(0.5f, () =>
+            {
+                SpawnMonsterInArea();
+                CameraControllerRef.TurnOnPlayerCam();
+                LevelManagerRef.RestartLevel();
+            });
+        });
+
+    }
     /// <summary>
     /// Starts the jumpscare then resets level and player
     /// </summary>
-    public void MonstersJumpScarePositionAndPlayerReset()
+    public void TimedMonsterJumpScare()
     {
         int randomWaitTime = Random.Range(1, 3);
         Debug.Log("whats the wait time " + randomWaitTime);
@@ -159,7 +171,7 @@ public class MonsterBehavior : MonoBehaviour
     
    private static void Delay(float time, System.Action _callBack)
    {
-       Sequence seq = DOTween.Sequence();
+        Sequence seq = DOTween.Sequence();
 
        seq.AppendInterval(time).AppendCallback(() => _callBack());
    }

@@ -24,7 +24,7 @@ public class GameTimer : MonoBehaviour
                 Debug.Log("time is ran out.");
                 TimeRemaining = 0;
                 TimerIsRunning = false;
-                GameMain.instance.PlayingJumpScareDelegate();
+                GameMain.instance.PlayLostViaTimeDelegate();
             }
         }
     }
@@ -34,5 +34,4 @@ public class GameTimer : MonoBehaviour
         TimerIsRunning = true;
         TimeRemaining = 300f;
     }
-    public void EndTimerBoolean() => TimerIsRunning = false;
 }

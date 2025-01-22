@@ -22,6 +22,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("Scripts")]
     public MonsterBehavior MonsterBehaviorRef;
+    public GameTimer GameTimerRef;
 
     private void Start() => KeyInVendingMachine.gameObject.SetActive(false);
 
@@ -77,8 +78,11 @@ public class LevelManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        AllKeysInAllRooms.ToList().ForEach(key => { key.gameObject.SetActive(true); });
-        GameMain.instance.AdvanceToNextLevel();
+        if(GameTimerRef.TimerIsRunning == false || MonsterBehaviorRef.GotJumpScared)
+        {
+            Debug.Log("restart level");
+            AllKeysInAllRooms.ToList().ForEach(key => { key.gameObject.SetActive(true); });
+        }
     }
 
     public void RestartGame()

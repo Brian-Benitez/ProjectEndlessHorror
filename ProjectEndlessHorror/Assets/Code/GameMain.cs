@@ -13,7 +13,7 @@ public class GameMain : MonoBehaviour
     JumpScareDelegate PlayJumpScareDelegate;
 
     delegate void LosingEvent();
-    LosingEvent PlayerLoseDelegate;
+    LosingEvent PlayerLostToTimeDelegate;
 
     delegate void ScaryEventDelegate();
     ScaryEventDelegate PlayScaryEventDelegate;
@@ -24,6 +24,7 @@ public class GameMain : MonoBehaviour
     public MonsterBehavior MonsterBehaviorRef;  
     public GameTimer GameTimerRef;
     public CameraFade CameraFadeRef;
+    public CameraController CameraControllerRef;
 
     private void Awake()
     {
@@ -44,11 +45,18 @@ public class GameMain : MonoBehaviour
         AdvanceToRoomDelegate += GameTimerRef.StartTimerBoolean;
         AdvanceToRoomDelegate += CameraFadeRef.FadeOffOfBlack;
         AdvanceToRoomDelegate += MonsterBehaviorRef.RestartJumpScareBool;
+
         //Losing game stuff
-        PlayerLoseDelegate += LevelManagerRef.RestartLevel;//rename to restart game 
-        PlayerLoseDelegate += GameTimerRef.EndTimerBoolean;
+        PlayerLostToTimeDelegate += LevelManagerRef.RepositionPlayer;
+        PlayerLostToTimeDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
+        PlayerLostToTimeDelegate += PlayerInventoryRef.ClearInventoryList;
+        PlayerLostToTimeDelegate += CameraFadeRef.FadeOffOfBlack;
+        PlayerLostToTimeDelegate += GameTimerRef.StartTimerBoolean;
+        PlayerLostToTimeDelegate += MonsterBehaviorRef.RestartJumpScareBool;
+        PlayerLostToTimeDelegate += CameraControllerRef.TurnOnPlayerCam;
+
         //Jumpscare stuff
-        PlayJumpScareDelegate += MonsterBehaviorRef.MonstersJumpScarePositionAndPlayerReset;
+        PlayJumpScareDelegate += MonsterBehaviorRef.PlayInstanceJumpScare;
 
         //Jumpscare scary event
         PlayScaryEventDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
@@ -63,7 +71,7 @@ public class GameMain : MonoBehaviour
     /// <summary>
     /// Plays the deleagte event to play the losing event.
     /// </summary>
-    public void PlayLosingDelegate() => PlayerLoseDelegate?.Invoke();
+    public void PlayLostViaTimeDelegate() => PlayerLostToTimeDelegate?.Invoke();
 
     /// <summary>
     /// Plays the delegate event to jump scare the player.
