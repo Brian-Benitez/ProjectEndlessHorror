@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +49,7 @@ public class LevelManager : MonoBehaviour
         if(LevelIndex == 2)
         {
             Debug.Log("open door");
-            SecuritySecondDoorPrefab.transform.Rotate(new Vector3(0, 90, 0));
+            SecuritySecondDoorPrefab.transform.DORotate(new Vector3(0, 90, 0), 3f);
         }
             
         if (LevelIndex == 4)
@@ -62,7 +63,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void ReopenSideDoor()
     {
-        GlassDoorSecondDoorPrefabTwo.transform.Rotate(new Vector3(0, -90, 0));
+        GlassDoorSecondDoorPrefabTwo.transform.DORotate(new Vector3(0, -90, 0), 3f);
         Debug.Log("reopen door");
     }
     /// <summary>

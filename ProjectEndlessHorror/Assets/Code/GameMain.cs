@@ -48,6 +48,7 @@ public class GameMain : MonoBehaviour
 
         //Losing game stuff
         PlayerLostToTimeDelegate += LevelManagerRef.RepositionPlayer;
+        PlayerLostToTimeDelegate += LevelManagerRef.RestartLevel;
         PlayerLostToTimeDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
         PlayerLostToTimeDelegate += PlayerInventoryRef.ClearInventoryList;
         PlayerLostToTimeDelegate += CameraControllerRef.TurnOnPlayerCam;

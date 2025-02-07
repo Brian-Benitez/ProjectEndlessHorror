@@ -103,6 +103,7 @@ public class MonsterBehavior : MonoBehaviour
 
     public void PlayInstanceJumpScare()
     {
+        GotJumpScared = true;
         CameraControllerRef.InstanceJumpScareCamOn();
         Delay(2f, () =>
         {
@@ -111,6 +112,7 @@ public class MonsterBehavior : MonoBehaviour
             Delay(0.5f, () =>
             {
                 GameMain.instance.PlayLostViaTimeDelegate();
+                Debug.Log("THIS PLAYS");
             });
         });
 
@@ -120,6 +122,7 @@ public class MonsterBehavior : MonoBehaviour
     /// </summary>
     public void TimedMonsterJumpScare()
     {
+        GotJumpScared = true;
         int randomWaitTime = Random.Range(1, 3);
         Debug.Log("whats the wait time " + randomWaitTime);
         CameraFadeRef.FadeToBlack();
