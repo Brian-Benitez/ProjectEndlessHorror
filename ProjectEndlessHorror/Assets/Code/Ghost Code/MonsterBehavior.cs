@@ -85,6 +85,8 @@ public class MonsterBehavior : MonoBehaviour
     /// </summary>
     public void SpawnMonsterInArea()
     {
+        MonsterAnimationsRef.SetAnimationForMonster();
+
         Debug.Log("SPAWN IN");
         EnableObject();
 

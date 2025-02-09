@@ -13,17 +13,27 @@ public class MonsterAnimations : MonoBehaviour
 
     public void SetAnimationForMonster()
     {
+        Debug.Log("animation update");
         SetAllBoolsToFalse();
-
+        Debug.Log("check index " + LevelManagerRef.LevelIndex);
         switch (LevelManagerRef.LevelIndex)
         {
             case 1://Walking encounter
                 MonsterAnimator.SetBool("IsWalking", true);
                 break;
+            case 2:
+                MonsterAnimator.SetBool("IsIdle", true);
+                break;
+            case 3:
+                MonsterAnimator.SetBool("IsKneeling", true);
+                break;
+            case 4:
+                MonsterAnimator.SetBool("IsRunning", true);
+                break;
 
             default:
+                Debug.Log("This is default do nothing");
                 break;
-                
         }
     }
 
