@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class PlayerInteractions : MonoBehaviour
 {
+    [Header("Scripts")]
     public SettingsController SettingsControllerRef;
+    public AudioController AudioControllerRef;
 
     void Update()
     {
@@ -25,7 +27,7 @@ public class PlayerInteractions : MonoBehaviour
                     if (hit.transform.TryGetComponent<IInteractable>(out IInteractable interactable))
                     {
                         interactable.Interact();
-                        Debug.Log("hit");
+                        AudioControllerRef.PlayPlayerClickingSound();
                     }
                 }
             }

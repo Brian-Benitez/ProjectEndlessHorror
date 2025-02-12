@@ -48,6 +48,7 @@ public class SettingsController : MonoBehaviour
 
     [Header("Scripts")]
     public PlayerCam PlayerCamRef;
+    public AudioController AudioControllerRef;
     private void Start()
     {
         cinemachineVolumeSettingsRef.m_Profile.TryGet<ColorAdjustments>(out ColorAdjustmentsRef);
@@ -63,6 +64,7 @@ public class SettingsController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
             DisableCreditsMenuPrefab();
+            AudioControllerRef.PlayOnSettingClickSound();
         }
         else if(Input.GetKeyUp(KeyCode.Tab) && IsGamePaused)
         {
@@ -70,6 +72,7 @@ public class SettingsController : MonoBehaviour
             SettingsPrefab.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            AudioControllerRef.PlayOnSettingClickSound();
         }
     }
     /// <summary>

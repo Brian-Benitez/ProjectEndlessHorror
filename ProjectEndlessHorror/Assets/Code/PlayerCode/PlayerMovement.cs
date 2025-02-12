@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController controller;
+    public CharacterController Controller;
 
     public float speed = 12f;
     public float gravity = -9.81f;
@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Scripts")]
     public SettingsController SettingsControllerRef;
+    public AudioController AudioControllerRef;  
 
 
     // Update is called once per frame
@@ -45,17 +46,23 @@ public class PlayerMovement : MonoBehaviour
 
             Vector3 move = transform.right * x + transform.forward * z;
 
-            controller.Move(move * speed * Time.deltaTime);
+            Controller.Move(move * speed * Time.deltaTime);
 
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                controller.Move(move * Runspeed * Time.deltaTime);
+                Controller.Move(move * Runspeed * Time.deltaTime);
             }
 
             velocity.y += gravity * Time.deltaTime;
 
-            controller.Move(velocity * Time.deltaTime);
+            Controller.Move(velocity * Time.deltaTime);
+
+            //Sound of footsteps here. if it dont work, its propbably because its in update
+            if (move != Vector3.zero)
+                AudioControllerRef.PlayerFootStepAudioPlay();
+            else
+                AudioControllerRef.StopPlayingFootStep();
 
         }
     }
