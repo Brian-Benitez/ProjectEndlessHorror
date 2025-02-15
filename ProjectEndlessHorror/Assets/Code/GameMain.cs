@@ -25,6 +25,7 @@ public class GameMain : MonoBehaviour
     public GameTimer GameTimerRef;
     public CameraFade CameraFadeRef;
     public CameraController CameraControllerRef;
+    public AudioController AudioControllerRef;
 
     private void Awake()
     {
@@ -52,6 +53,7 @@ public class GameMain : MonoBehaviour
         PlayerLostToTimeDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
         PlayerLostToTimeDelegate += PlayerInventoryRef.ClearInventoryList;
         PlayerLostToTimeDelegate += CameraControllerRef.TurnOnPlayerCam;
+        PlayerLostToTimeDelegate += AudioControllerRef.RestartRoundSound;
         PlayerLostToTimeDelegate += GameTimerRef.StartTimerBoolean;
         PlayerLostToTimeDelegate += MonsterBehaviorRef.RestartJumpScareBool;
         PlayerLostToTimeDelegate += CameraFadeRef.FadeOffOfBlack;

@@ -39,4 +39,12 @@ public class AudioController : MonoBehaviour
     public void PlayPlayerClickingSound() => PlayerClickAudio.Play();
    //public void StopPlayerClickingSound() => PlayerClickAudio?.Stop();
 
+    public void MonsterEventSound() => MonsterEventAudio.Play();
+    public void RestartRoundSound() => RestartRoundAudio.Play();
+
+    public void FinalMintueSound()
+    {
+        FinalMinuteAudio.Play();
+        Debug.Log("play final");
+    }
 }

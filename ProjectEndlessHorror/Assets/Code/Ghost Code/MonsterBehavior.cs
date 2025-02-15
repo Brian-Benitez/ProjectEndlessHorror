@@ -29,6 +29,7 @@ public class MonsterBehavior : MonoBehaviour
     public CameraFade CameraFadeRef;
     public MonsterAnimations MonsterAnimationsRef;
     public StartChaseSequnce StartChaseSequnceRef;
+    public AudioController AudioControllerRef;
 
     private NavMeshAgent _navMeshAgent;
     private void Awake()
@@ -52,6 +53,8 @@ public class MonsterBehavior : MonoBehaviour
     /// </summary>
     IEnumerator MoveMonsterToPoint()//NOTE, IF U DO THIS BEFORE THE COROTINE FINISHES THE LEVEL, IT WILL DO IT AGAIN.
     {
+        AudioControllerRef.MonsterEventSound();
+
         if (_spawnPointIndex == SpawnPointPerLevel.Count)
             yield break;
         else

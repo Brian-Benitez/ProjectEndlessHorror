@@ -59,10 +59,10 @@ public class PlayerMovement : MonoBehaviour
             Controller.Move(velocity * Time.deltaTime);
 
             //Sound of footsteps here. if it dont work, its propbably because its in update
-            if (move != Vector3.zero)
-                AudioControllerRef.PlayerFootStepAudioPlay();
-            else
-                AudioControllerRef.StopPlayingFootStep();
+            //if (move != Vector3.zero)
+                //AudioControllerRef.PlayerFootStepAudioPlay();
+            //else
+                //AudioControllerRef.StopPlayingFootStep();
 
         }
     }

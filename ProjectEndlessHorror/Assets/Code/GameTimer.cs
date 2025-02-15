@@ -7,9 +7,11 @@ public class GameTimer : MonoBehaviour
     [Header("Game timer info")]
     public float TimeRemaining = 5;
     public bool TimerIsRunning = false;
+    public bool IsFinalMintue = false;
 
     [Header("Scripts")]
     public MonsterBehavior MonsterBehaviorRef;
+    public AudioController AudioControllerRef;
 
     private void Start() => TimerIsRunning = true;
 
@@ -26,12 +28,21 @@ public class GameTimer : MonoBehaviour
                 TimerIsRunning = false;
                 MonsterBehaviorRef.TimedMonsterJumpScare();
             }
+
+            if (TimeRemaining <= 60f)
+                if (!IsFinalMintue)
+                    PlaySound();
         }
     }
-
     public void StartTimerBoolean()
     {
         TimerIsRunning = true;
+        IsFinalMintue = false;
         TimeRemaining = 300f;
+    }
+    private void PlaySound()
+    {
+        IsFinalMintue = true;
+        AudioControllerRef.FinalMintueSound();
     }
 }
