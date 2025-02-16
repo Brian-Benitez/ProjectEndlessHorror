@@ -93,16 +93,13 @@ public class MonsterBehavior : MonoBehaviour
     /// </summary>
     public void SpawnMonsterInArea()
     {
+        Debug.Log("SPAWN IN");
         if (LevelManagerRef.LevelIndex == 4)
             this.transform.Rotate(0, 90, 0);
 
         MonsterAnimationsRef.SetAnimationForMonster();
 
-        Debug.Log("SPAWN IN");
         EnableObject();
-
-        if(StartChaseSequnceRef.IsChasingPlayer)
-            this.transform.position = SpawnPointPerLevel[5].transform.position;
             
         if(LevelManagerRef.LevelIndex == 4)
         {
@@ -112,6 +109,11 @@ public class MonsterBehavior : MonoBehaviour
         this.transform.position = SpawnPointPerLevel[_spawnPointIndex].transform.position;
         Debug.Log("what is the spawnpoint index " + _spawnPointIndex);
 
+        if (StartChaseSequnceRef.IsChasingPlayer)
+        {
+            EnableObject();
+            this.transform.position = SpawnPointPerLevel[5].transform.position;
+        }
     }
 
     public void PlayInstanceJumpScare()

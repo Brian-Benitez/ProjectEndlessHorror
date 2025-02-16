@@ -13,30 +13,31 @@ public class MonsterAnimations : MonoBehaviour
 
     public void SetAnimationForMonster()
     {
+        ResetsAnimations();
         Debug.Log("animation update");
-        SetAllBoolsToFalse();
         Debug.Log("check index " + LevelManagerRef.LevelIndex);
         switch (LevelManagerRef.LevelIndex)
         {
             case 1://Walking encounter
-                MonsterAnimator.SetBool("IsWalking", true);
+                MonsterAnimator.SetTrigger("SetWalkingTrigger");
+                Debug.Log("SEE THIS");
                 break;
             case 2:
-                MonsterAnimator.SetBool("IsIdle", true);
+                MonsterAnimator.SetTrigger("SetIdleTrigger");
+                Debug.Log("aehh");
                 break;
             case 3:
-                MonsterAnimator.SetBool("IsKneeling", true);
+                MonsterAnimator.SetTrigger("SetKneelingTrigger");
                 break;
             case 4:
-                MonsterAnimator.SetBool("IsRunning", true);
-                break;
-
-            default:
-                Debug.Log("This is default do nothing");
+                MonsterAnimator.SetTrigger("SetRunningTrigger");
                 break;
         }
     }
-
+    private void ResetsAnimations()
+    {
+        MonsterAnimator.ResetTrigger("SetWalkingTrigger");
+    }
     public void StartJumpScareMonsterAnimation()
     {
         JumpScareMonsterAnimator.gameObject.SetActive(true);
@@ -47,11 +48,4 @@ public class MonsterAnimations : MonoBehaviour
     /// <summary>
     /// Set all bools from the animator to false.
     /// </summary>
-    private void SetAllBoolsToFalse()
-    {
-        MonsterAnimator.SetBool("IsWalking", false);
-        MonsterAnimator.SetBool("IsKneeling", false);
-        MonsterAnimator.SetBool("IsIdle", false);
-        MonsterAnimator.SetBool("IsRunning", false);
-    }
 }
