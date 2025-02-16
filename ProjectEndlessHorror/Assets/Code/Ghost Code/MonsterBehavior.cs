@@ -37,10 +37,15 @@ public class MonsterBehavior : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();   
     }
 
+    private void Start()
+    {
+        _navMeshAgent.gameObject.SetActive(false);
+    }
     public void AddAIndex()=> _spawnPointIndex++;
 
     public void ChasePlayer()
     {
+        _navMeshAgent.gameObject.SetActive(true);
         while(Vector3.Distance(this.transform.position, PlayersPos.transform.position) > 1f)//if your far, chase player
         {
             _navMeshAgent.destination = PlayersPos.transform.position;
@@ -88,6 +93,9 @@ public class MonsterBehavior : MonoBehaviour
     /// </summary>
     public void SpawnMonsterInArea()
     {
+        if (LevelManagerRef.LevelIndex == 4)
+            this.transform.Rotate(0, 90, 0);
+
         MonsterAnimationsRef.SetAnimationForMonster();
 
         Debug.Log("SPAWN IN");
@@ -95,7 +103,7 @@ public class MonsterBehavior : MonoBehaviour
 
         if(StartChaseSequnceRef.IsChasingPlayer)
             this.transform.position = SpawnPointPerLevel[5].transform.position;
-
+            
         if(LevelManagerRef.LevelIndex == 4)
         {
             DisableObject();

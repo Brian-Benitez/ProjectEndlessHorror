@@ -14,7 +14,7 @@ public class StartChaseSequnce : MonoBehaviour
         {
             IsChasingPlayer = true;
             MonsterBehaviorRef.SpawnMonsterInArea();
-            MonsterBehaviorRef.ChasePlayer();
+            //MonsterBehaviorRef.ChasePlayer();
         }
     }
 }
