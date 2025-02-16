@@ -13,31 +13,27 @@ public class MonsterAnimations : MonoBehaviour
 
     public void SetAnimationForMonster()
     {
-        ResetsAnimations();
         Debug.Log("animation update");
         Debug.Log("check index " + LevelManagerRef.LevelIndex);
         switch (LevelManagerRef.LevelIndex)
         {
-            case 1://Walking encounter
-                MonsterAnimator.SetTrigger("SetWalkingTrigger");
-                Debug.Log("SEE THIS");
+            case 1:
+                MonsterAnimator.SetTrigger("TRWalking");
                 break;
             case 2:
-                MonsterAnimator.SetTrigger("SetIdleTrigger");
+                MonsterAnimator.SetTrigger("TRIdle");
                 Debug.Log("aehh");
                 break;
             case 3:
-                MonsterAnimator.SetTrigger("SetKneelingTrigger");
+                MonsterAnimator.SetTrigger("TRKneeling");
                 break;
             case 4:
-                MonsterAnimator.SetTrigger("SetRunningTrigger");
+                MonsterAnimator.SetTrigger("TRunning");
                 break;
         }
+        Debug.Log("check index again" + LevelManagerRef.LevelIndex);
     }
-    private void ResetsAnimations()
-    {
-        MonsterAnimator.ResetTrigger("SetWalkingTrigger");
-    }
+
     public void StartJumpScareMonsterAnimation()
     {
         JumpScareMonsterAnimator.gameObject.SetActive(true);

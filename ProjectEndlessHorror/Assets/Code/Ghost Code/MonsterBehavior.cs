@@ -96,11 +96,9 @@ public class MonsterBehavior : MonoBehaviour
         Debug.Log("SPAWN IN");
         if (LevelManagerRef.LevelIndex == 4)
             this.transform.Rotate(0, 90, 0);
-
+        EnableObject();
         MonsterAnimationsRef.SetAnimationForMonster();
 
-        EnableObject();
-            
         if(LevelManagerRef.LevelIndex == 4)
         {
             DisableObject();
