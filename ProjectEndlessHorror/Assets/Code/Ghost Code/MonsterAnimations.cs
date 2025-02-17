@@ -28,7 +28,7 @@ public class MonsterAnimations : MonoBehaviour
                 MonsterAnimator.SetTrigger("TRKneeling");
                 break;
             case 4:
-                MonsterAnimator.SetTrigger("TRunning");
+                MonsterAnimator.SetTrigger("TRRunning");
                 break;
         }
         Debug.Log("check index again" + LevelManagerRef.LevelIndex);

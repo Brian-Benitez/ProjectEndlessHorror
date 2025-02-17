@@ -13,8 +13,9 @@ public class StartChaseSequnce : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             IsChasingPlayer = true;
+            MonsterBehaviorRef.EnableObject();
             MonsterBehaviorRef.SpawnMonsterInArea();
-            //MonsterBehaviorRef.ChasePlayer();
+            MonsterBehaviorRef.StartChasingPlayer();
         }
     }
 }

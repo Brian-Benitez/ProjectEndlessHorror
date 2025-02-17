@@ -37,22 +37,8 @@ public class MonsterBehavior : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();   
     }
 
-    private void Start()
-    {
-        _navMeshAgent.gameObject.SetActive(false);
-    }
     public void AddAIndex()=> _spawnPointIndex++;
 
-    public void ChasePlayer()
-    {
-        _navMeshAgent.gameObject.SetActive(true);
-        while(Vector3.Distance(this.transform.position, PlayersPos.transform.position) > 1f)//if your far, chase player
-        {
-            _navMeshAgent.destination = PlayersPos.transform.position;
-        }
-        if (Vector3.Distance(transform.position, PlayersPos.transform.position) < 1f)//if you reach player, disable self
-            DisableObject();
-    }
     /// <summary>
     /// Moves the monster to the point it needs to be.
     /// </summary>
@@ -79,6 +65,20 @@ public class MonsterBehavior : MonoBehaviour
         }
     }
 
+    IEnumerator MonsterChasingPlayer()
+    {
+        this.transform.LookAt(PlayersPos);
+        while(Vector3.Distance(this.transform.position, PlayersPos.transform.position) > 1f)
+        {
+            this.transform.position = Vector3.MoveTowards(transform.position, PlayersPos.transform.position, _speed * Time.deltaTime);
+            yield return null;
+        }
+        if(Vector3.Distance(this.transform.position, PlayersPos.transform.position) <= 1f)
+        {
+            DisableObject();
+        }
+    }
+
     public void StartMonsterMovement()
     {
         Delay(WaitSpeedForMonster, () =>
@@ -88,30 +88,39 @@ public class MonsterBehavior : MonoBehaviour
         });
     } 
 
+    public void StartChasingPlayer()
+    {
+        StartCoroutine(MonsterChasingPlayer());
+    }
+
     /// <summary>
     /// Total of 5 levels, 4 out of the 5 levels the monster will spawn in.
     /// </summary>
     public void SpawnMonsterInArea()
     {
-        Debug.Log("SPAWN IN");
-        if (LevelManagerRef.LevelIndex == 4)
-            this.transform.Rotate(0, 90, 0);
         EnableObject();
+
         MonsterAnimationsRef.SetAnimationForMonster();
 
         if(LevelManagerRef.LevelIndex == 4)
         {
-            DisableObject();
+            if(StartChaseSequnceRef.IsChasingPlayer == false)
+            {
+                DisableObject();
+                Debug.Log("lpoppk");
+            }
         }
-
-        this.transform.position = SpawnPointPerLevel[_spawnPointIndex].transform.position;
-        Debug.Log("what is the spawnpoint index " + _spawnPointIndex);
 
         if (StartChaseSequnceRef.IsChasingPlayer)
         {
+            Debug.Log("chase player");
             EnableObject();
+            UnRotateModel();
             this.transform.position = SpawnPointPerLevel[5].transform.position;
         }
+        else
+            this.transform.position = SpawnPointPerLevel[_spawnPointIndex].transform.position;
+        Debug.Log("what is the spawnpoint index " + _spawnPointIndex);
     }
 
     public void PlayInstanceJumpScare()
@@ -167,6 +176,23 @@ public class MonsterBehavior : MonoBehaviour
         EnableObject();
     }
     //HELPER functions +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    public void RotateModel()
+    {
+        if (LevelManagerRef.LevelIndex == 4)
+        {
+            this.transform.Rotate(0, 90, 0);
+            Debug.Log("how much does it get caled");
+        }
+    }
+
+    public void UnRotateModel()
+    {
+        if (LevelManagerRef.LevelIndex == 4)
+        {
+            this.transform.Rotate(0, 0, 0);
+        }
+    }
 
     public void GotScaredBool() => GotJumpScared = true;
     
