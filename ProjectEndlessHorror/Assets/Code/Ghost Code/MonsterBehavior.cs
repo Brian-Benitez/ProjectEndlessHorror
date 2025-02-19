@@ -31,12 +31,6 @@ public class MonsterBehavior : MonoBehaviour
     public StartChaseSequnce StartChaseSequnceRef;
     public AudioController AudioControllerRef;
 
-    private NavMeshAgent _navMeshAgent;
-    private void Awake()
-    {
-        _navMeshAgent = GetComponent<NavMeshAgent>();   
-    }
-
     public void AddAIndex()=> _spawnPointIndex++;
 
     /// <summary>
@@ -65,20 +59,6 @@ public class MonsterBehavior : MonoBehaviour
         }
     }
 
-    IEnumerator MonsterChasingPlayer()
-    {
-        this.transform.LookAt(PlayersPos);
-        while(Vector3.Distance(this.transform.position, PlayersPos.transform.position) > 1f)
-        {
-            this.transform.position = Vector3.MoveTowards(transform.position, PlayersPos.transform.position, _speed * Time.deltaTime);
-            yield return null;
-        }
-        if(Vector3.Distance(this.transform.position, PlayersPos.transform.position) <= 1f)
-        {
-            DisableObject();
-        }
-    }
-
     public void StartMonsterMovement()
     {
         Delay(WaitSpeedForMonster, () =>
@@ -87,11 +67,6 @@ public class MonsterBehavior : MonoBehaviour
             Debug.Log("delay call here");
         });
     } 
-
-    public void StartChasingPlayer()
-    {
-        StartCoroutine(MonsterChasingPlayer());
-    }
 
     /// <summary>
     /// Total of 5 levels, 4 out of the 5 levels the monster will spawn in.

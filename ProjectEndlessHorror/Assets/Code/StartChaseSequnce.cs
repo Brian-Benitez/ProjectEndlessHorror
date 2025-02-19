@@ -8,6 +8,7 @@ public class StartChaseSequnce : MonoBehaviour
     public bool IsChasingPlayer = false;
     [Header("Scripts")]
     public MonsterBehavior MonsterBehaviorRef;
+    public MonsterMovement MonsterMovementRef;
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -15,7 +16,7 @@ public class StartChaseSequnce : MonoBehaviour
             IsChasingPlayer = true;
             MonsterBehaviorRef.EnableObject();
             MonsterBehaviorRef.SpawnMonsterInArea();
-            MonsterBehaviorRef.StartChasingPlayer();
+            MonsterMovementRef.TurnOnMonstersNavMesh();
         }
     }
 }

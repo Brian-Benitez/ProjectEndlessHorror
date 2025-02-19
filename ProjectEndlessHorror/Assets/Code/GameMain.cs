@@ -26,6 +26,7 @@ public class GameMain : MonoBehaviour
     public CameraFade CameraFadeRef;
     public CameraController CameraControllerRef;
     public AudioController AudioControllerRef;
+    public MonsterMovement MonsterMovementRef;  
 
     private void Awake()
     {
@@ -49,6 +50,7 @@ public class GameMain : MonoBehaviour
 
         //Losing game stuff
         PlayerLostToTimeDelegate += LevelManagerRef.RepositionPlayer;
+        PlayerLostToTimeDelegate += MonsterMovementRef.TurnOffMonstersNavMesh;
         PlayerLostToTimeDelegate += LevelManagerRef.RestartLevel;
         PlayerLostToTimeDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
         PlayerLostToTimeDelegate += PlayerInventoryRef.ClearInventoryList;
