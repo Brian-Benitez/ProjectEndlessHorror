@@ -74,7 +74,7 @@ public class MonsterBehavior : MonoBehaviour
     public void SpawnMonsterInArea()
     {
         EnableObject();
-
+        AudioControllerRef.MonsterProximitySound();
         MonsterAnimationsRef.SetAnimationForMonster();
 
         if(LevelManagerRef.LevelIndex == 4)

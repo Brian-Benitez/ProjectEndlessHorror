@@ -42,6 +42,12 @@ public class AudioController : MonoBehaviour
     public void MonsterEventSound() => MonsterEventAudio.Play();
     public void RestartRoundSound() => RestartRoundAudio.Play();
 
+    public void MonsterProximitySound()
+    {
+        MonsterProximityAudio.Stop();
+        MonsterProximityAudio.Play();
+    }
+
     public void FinalMintueSound()
     {
         FinalMinuteAudio.Play();
