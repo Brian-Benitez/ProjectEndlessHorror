@@ -59,19 +59,15 @@ public class SettingsController : MonoBehaviour
     {
         if(Input.GetKeyUp(KeyCode.Tab) && !IsGamePaused)//Dont use esc it thows it off when in edtior:(
         {
+            PausePlayerMovement();
             SettingsPrefab.SetActive(true);
-            IsGamePaused = true;
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = true;
             DisableCreditsMenuPrefab();
             AudioControllerRef.PlayOnSettingClickSound();
         }
         else if(Input.GetKeyUp(KeyCode.Tab) && IsGamePaused)
         {
-            IsGamePaused = false;
+            UnpausePlayerMovement();
             SettingsPrefab.SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
             AudioControllerRef.PlayOnSettingClickSound();
         }
     }
@@ -115,6 +111,20 @@ public class SettingsController : MonoBehaviour
             PlayersCrossHair.SetActive(true);
         else
             PlayersCrossHair.SetActive(false);
+    }
+
+    public void PausePlayerMovement()
+    {
+        PausePlayerInput();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
+
+    public void UnpausePlayerMovement()
+    {
+        UnPausePlayersInput();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void PausePlayerInput() => IsGamePaused = true;
