@@ -11,12 +11,17 @@ public class LorePages : MonoBehaviour, IInteractable
     [Header("Pages")]
     public List<GameObject> Pages;
 
+    [Header("Locations To Spawn in")]
+    public List<Transform> PageLocations;
+
     [Header("Booleans")]
     public bool PageIsOpen = false;
 
     [Header("Scripts")]
     public LevelManager LevelManagerRef;
     public SettingsController SettingsControllerRef;
+
+    void Start() => SwitchPlaces();
 
     public void Update()
     {
@@ -31,7 +36,13 @@ public class LorePages : MonoBehaviour, IInteractable
         PageLetterUI.SetActive(true);
     }
 
-    public void DisableAllPages()
+    public void SwitchPlaces()
+    {
+        this.transform.position = PageLocations[LevelManagerRef.LevelIndex].transform.position;
+        Debug.Log("Switch posistions");
+    }
+
+    private void DisableAllPages()
     {
         Pages.ForEach(p => p.SetActive(false));
         PageLetterUI.SetActive(false);

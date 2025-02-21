@@ -27,6 +27,7 @@ public class GameMain : MonoBehaviour
     public CameraController CameraControllerRef;
     public AudioController AudioControllerRef;
     public MonsterMovement MonsterMovementRef;  
+    public LorePages LorePagesRef;
 
     private void Awake()
     {
@@ -40,6 +41,7 @@ public class GameMain : MonoBehaviour
     {
         //Add changing the level here first before doing whats below
         AdvanceToRoomDelegate += LevelManagerRef.ChangeLevelPrefab;
+        AdvanceToRoomDelegate += LorePagesRef.SwitchPlaces;
         AdvanceToRoomDelegate += MonsterBehaviorRef.AddAIndex;
         AdvanceToRoomDelegate += LevelManagerRef.RepositionPlayer;
         AdvanceToRoomDelegate += PlayerInventoryRef.ClearInventoryList;
