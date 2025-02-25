@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerInteractions : MonoBehaviour
 {
+    [Header("Floats")]
+    public float MaxRayCastDistance = 5f;
     [Header("Scripts")]
     public SettingsController SettingsControllerRef;
     public AudioController AudioControllerRef;
@@ -22,7 +24,7 @@ public class PlayerInteractions : MonoBehaviour
             {
                 Debug.DrawLine(transform.position, transform.forward);
                 Debug.Log("hit hit " + transform.name);
-                if (Physics.Raycast(ray, out RaycastHit hit))
+                if (Physics.Raycast(ray, out RaycastHit hit, MaxRayCastDistance))
                 {
                     if (hit.transform.TryGetComponent<IInteractable>(out IInteractable interactable))
                     {
