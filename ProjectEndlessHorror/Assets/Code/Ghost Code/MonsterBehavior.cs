@@ -102,10 +102,11 @@ public class MonsterBehavior : MonoBehaviour
     {
         GotJumpScared = true;
         CameraControllerRef.InstanceJumpScareCamOn();
-        Delay(2f, () =>
+        MonsterAnimationsRef.StartJumpScareMonsterAnimation();
+        Delay(0.3f, () =>
         {
             CameraFadeRef.FadeToBlack();
-
+            
             Delay(0.5f, () =>
             {
                 GameMain.instance.PlayLostViaTimeDelegate();
@@ -133,7 +134,7 @@ public class MonsterBehavior : MonoBehaviour
             MonsterAnimationsRef.StartJumpScareMonsterAnimation();
             Debug.Log("jumpscare");
 
-            Delay(2f, () =>
+            Delay(0.3f, () =>
             {
                 CameraFadeRef.FadeToBlack();
 

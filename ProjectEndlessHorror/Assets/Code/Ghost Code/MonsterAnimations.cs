@@ -36,11 +36,11 @@ public class MonsterAnimations : MonoBehaviour
 
     public void StartJumpScareMonsterAnimation()
     {
-        JumpScareMonsterAnimator.gameObject.SetActive(true);
-        ///JumpScareMonsterAnimator.Play("JumpScare");
+        JumpScareMonsterAnimator.SetBool("IsJumpScare", true);
+        Debug.Log("monster jump ahh");
     }
 
-    public void StopJumpScareAnimation() => JumpScareMonsterAnimator.gameObject.SetActive(false); 
+    public void StopJumpScareAnimation() => JumpScareMonsterAnimator.SetBool("IsJumpScare", false);
     /// <summary>
     /// Set all bools from the animator to false.
     /// </summary>

@@ -28,7 +28,7 @@ public class GameMain : MonoBehaviour
     public AudioController AudioControllerRef;
     public MonsterMovement MonsterMovementRef;  
     public LorePages LorePagesRef;
-
+    public MonsterAnimations MonsterAnimationsRef;
     private void Awake()
     {
         if(instance != null && instance != this)
@@ -52,6 +52,7 @@ public class GameMain : MonoBehaviour
 
         //Losing game stuff
         PlayerLostToTimeDelegate += LevelManagerRef.RepositionPlayer;
+        PlayerLostToTimeDelegate += MonsterAnimationsRef.StopJumpScareAnimation;
         PlayerLostToTimeDelegate += MonsterMovementRef.TurnOffMonstersNavMesh;
         PlayerLostToTimeDelegate += LevelManagerRef.RestartLevel;
         PlayerLostToTimeDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
