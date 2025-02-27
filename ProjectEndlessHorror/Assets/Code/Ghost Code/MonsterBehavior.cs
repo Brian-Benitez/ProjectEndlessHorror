@@ -10,6 +10,8 @@ public class MonsterBehavior : MonoBehaviour
     [SerializeField] private int _spawnPointIndex = 0;
     [SerializeField] public float WaitSpeedForMonster = 0.5f;
     [SerializeField] public int MonsterTravelEndPoints = 0;
+    public float DurationOfJumpScare = 0.5f;
+    public float DurationOfWaitTime = 2f;
     
     [Header("Positions")]
     public Transform JumpScarePos;
@@ -103,11 +105,11 @@ public class MonsterBehavior : MonoBehaviour
         GotJumpScared = true;
         CameraControllerRef.InstanceJumpScareCamOn();
         MonsterAnimationsRef.StartJumpScareMonsterAnimation();
-        Delay(0.3f, () =>
+        Delay(DurationOfJumpScare, () =>
         {
             CameraFadeRef.FadeToBlack();
             
-            Delay(0.5f, () =>
+            Delay(DurationOfWaitTime, () =>
             {
                 GameMain.instance.PlayLostViaTimeDelegate();
                 Debug.Log("THIS PLAYS");
@@ -134,11 +136,11 @@ public class MonsterBehavior : MonoBehaviour
             MonsterAnimationsRef.StartJumpScareMonsterAnimation();
             Debug.Log("jumpscare");
 
-            Delay(0.3f, () =>
+            Delay(DurationOfJumpScare, () =>
             {
                 CameraFadeRef.FadeToBlack();
 
-                Delay(0.5f, () =>
+                Delay(DurationOfWaitTime, () =>
                 {
                     GameMain.instance.PlayLostViaTimeDelegate();
                 });
