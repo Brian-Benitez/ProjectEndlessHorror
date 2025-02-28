@@ -20,6 +20,7 @@ public class ReadPlayerInput : MonoBehaviour
     private void Start()
     {
         DisablePlayersInputText();
+        DisableEasterEggInputText();
     }
 
     private void Update()
@@ -28,6 +29,7 @@ public class ReadPlayerInput : MonoBehaviour
         {
             SettingsControllerRef.IsGamePaused = false;
             DisablePlayersInputText();
+            DisableEasterEggInputText();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
@@ -53,6 +55,30 @@ public class ReadPlayerInput : MonoBehaviour
         }
     }
 
+    public void EasterEggCode(string code)
+    {
+        _playersInput = code;
+
+        if (_playersInput == EasterEggNumber)
+        {
+            Debug.Log("play easter egg audio");
+            SettingsControllerRef.IsGamePaused = false;
+            DisableEasterEggInputText();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+            _playersInput = " ";
+    }
+
+    public void EnableEasterEggUI()
+    {
+
+        SettingsControllerRef.IsGamePaused = true;
+        EasterEggInputText.gameObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
     public void EnablePlayersInputText()
     {
         SettingsControllerRef.IsGamePaused = true;
@@ -61,4 +87,5 @@ public class ReadPlayerInput : MonoBehaviour
         Cursor.visible = true;
     }
     public void DisablePlayersInputText() => InputText.gameObject.SetActive(false);
+    public void DisableEasterEggInputText() => EasterEggInputText.gameObject.SetActive(false);
 }
