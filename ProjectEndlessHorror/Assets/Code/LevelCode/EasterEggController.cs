@@ -1,24 +1,20 @@
-using interfaces;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class EasterEggController : MonoBehaviour, IInteractable
+public class EasterEggController : MonoBehaviour
 {
     [Header("Booleans")]
     public bool IsEasterEggEnabled = false;
 
-    public void Interact()
-    {
-        EasterEggCode();
-    }
+ 
+    public void EnableEasterEggBool() => IsEasterEggEnabled = true;
 
-    private void EasterEggCode()
-    {
+    public void DisableEasterEggBool() => IsEasterEggEnabled = false;
 
-    }
-
-    private void EnableEasterEgg()
+    public void EasterEggState()
     {
 
     }
+
 }

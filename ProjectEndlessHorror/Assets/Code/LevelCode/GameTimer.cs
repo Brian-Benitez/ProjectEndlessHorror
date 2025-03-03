@@ -12,6 +12,7 @@ public class GameTimer : MonoBehaviour
     [Header("Scripts")]
     public MonsterBehavior MonsterBehaviorRef;
     public AudioController AudioControllerRef;
+    public EasterEggController EasterEggControllerRef;
 
     private void Start() => TimerIsRunning = true;
 
@@ -19,19 +20,24 @@ public class GameTimer : MonoBehaviour
     {
         if(TimerIsRunning)
         {
-            if (TimeRemaining > 0)
-                TimeRemaining -= Time.deltaTime;
+            if (EasterEggControllerRef.IsEasterEggEnabled == true)
+                return;
             else
             {
-                Debug.Log("time is ran out.");
-                TimeRemaining = 0;
-                TimerIsRunning = false;
-                MonsterBehaviorRef.TimedMonsterJumpScare();
-            }
+                if (TimeRemaining > 0)
+                    TimeRemaining -= Time.deltaTime;
+                else
+                {
+                    Debug.Log("time is ran out.");
+                    TimeRemaining = 0;
+                    TimerIsRunning = false;
+                    MonsterBehaviorRef.TimedMonsterJumpScare();
+                }
 
-            if (TimeRemaining <= 60f)
-                if (!IsFinalMintue)
-                    PlaySound();
+                if (TimeRemaining <= 60f)
+                    if (!IsFinalMintue)
+                        PlaySound();
+            }
         }
     }
     public void StartTimerBoolean()

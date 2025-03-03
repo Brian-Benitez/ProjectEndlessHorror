@@ -14,9 +14,11 @@ public class ReadPlayerInput : MonoBehaviour
     public string EasterEggNumber = " ";
 
     private string _playersInput;
+
     [Header("Scripts")]
     public LevelManager LevelManagerRef;
     public SettingsController SettingsControllerRef;
+    public EasterEggController EasterEggControllerRef;
     private void Start()
     {
         DisablePlayersInputText();
@@ -63,6 +65,7 @@ public class ReadPlayerInput : MonoBehaviour
         {
             Debug.Log("play easter egg audio");
             SettingsControllerRef.IsGamePaused = false;
+            EasterEggControllerRef.EnableEasterEggBool();
             DisableEasterEggInputText();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
