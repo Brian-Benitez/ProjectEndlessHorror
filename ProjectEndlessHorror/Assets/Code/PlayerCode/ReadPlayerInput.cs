@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,7 @@ public class ReadPlayerInput : MonoBehaviour
     public LevelManager LevelManagerRef;
     public SettingsController SettingsControllerRef;
     public EasterEggController EasterEggControllerRef;
+
     private void Start()
     {
         DisablePlayersInputText();
@@ -62,22 +64,14 @@ public class ReadPlayerInput : MonoBehaviour
         _playersInput = code;
 
         if (_playersInput == EasterEggNumber)
-        {
-            Debug.Log("play easter egg audio");
-            SettingsControllerRef.IsGamePaused = false;
-            EasterEggControllerRef.EnableEasterEggBool();
-            DisableEasterEggInputText();
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+            EasterEggControllerRef.EasterEggState();
         else
             _playersInput = " ";
     }
 
     public void EnableEasterEggUI()
     {
-
-        SettingsControllerRef.IsGamePaused = true;
+        SettingsControllerRef.PausePlayerInput();
         EasterEggInputText.gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
@@ -91,4 +85,5 @@ public class ReadPlayerInput : MonoBehaviour
     }
     public void DisablePlayersInputText() => InputText.gameObject.SetActive(false);
     public void DisableEasterEggInputText() => EasterEggInputText.gameObject.SetActive(false);
+
 }
