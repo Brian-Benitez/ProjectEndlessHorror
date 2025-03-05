@@ -65,6 +65,7 @@ public class GameMain : MonoBehaviour
 
         //Jumpscare stuff
         PlayJumpScareDelegate += MonsterBehaviorRef.PlayInstanceJumpScare;
+        PlayJumpScareDelegate += AudioControllerRef.JumpScareSoundPlay;
 
         //Jumpscare scary event
         PlayScaryEventDelegate += MonsterBehaviorRef.SpawnMonsterInArea;

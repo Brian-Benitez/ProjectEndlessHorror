@@ -20,6 +20,7 @@ public class ReadPlayerInput : MonoBehaviour
     public LevelManager LevelManagerRef;
     public SettingsController SettingsControllerRef;
     public EasterEggController EasterEggControllerRef;
+    public AudioController AudioControllerRef;
 
     private void Start()
     {
@@ -49,6 +50,7 @@ public class ReadPlayerInput : MonoBehaviour
             SettingsControllerRef.IsGamePaused = false;
             LevelManagerRef.RotateSideDoor();
             DisablePlayersInputText();
+            AudioControllerRef.SecurityOfficeSound();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }

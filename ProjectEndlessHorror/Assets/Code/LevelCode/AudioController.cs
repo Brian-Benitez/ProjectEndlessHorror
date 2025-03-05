@@ -41,10 +41,14 @@ public class AudioController : MonoBehaviour
     public void PlayPlayerClickingSound() => PlayerClickAudio.Play();
    //public void StopPlayerClickingSound() => PlayerClickAudio?.Stop();
 
+    public void SecurityOfficeSound() => OfficeAmbienceAudio.Play();
+
     public void PlayEasterEggSound() => EasterEggAudio.Play();
 
     public void MonsterEventSound() => MonsterEventAudio.Play();
     public void RestartRoundSound() => RestartRoundAudio.Play();
+
+    public void JumpScareSoundPlay() => MonsterKillAudio.Play();
 
     public void MonsterProximitySound()
     {
