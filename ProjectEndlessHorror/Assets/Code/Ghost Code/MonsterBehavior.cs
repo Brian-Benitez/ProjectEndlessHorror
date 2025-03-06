@@ -127,13 +127,13 @@ public class MonsterBehavior : MonoBehaviour
         Debug.Log("whats the wait time " + randomWaitTime);
         CameraFadeRef.FadeToBlack();
         CameraControllerRef.TurnOnTimedJumpScareCam();
+        MonsterAnimationsRef.StartJumpScareMonsterAnimation();
         GotScaredBool();
 
         //Randomly wait for jumpscare
         Delay(randomWaitTime, () =>
         {
             CameraFadeRef.FadeOffOfBlack();
-            MonsterAnimationsRef.StartJumpScareMonsterAnimation();
             Debug.Log("jumpscare");
 
             Delay(DurationOfJumpScare, () =>

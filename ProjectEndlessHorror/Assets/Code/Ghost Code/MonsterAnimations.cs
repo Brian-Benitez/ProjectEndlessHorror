@@ -6,10 +6,17 @@ public class MonsterAnimations : MonoBehaviour
 {
     [Header("Animator")]
     public Animator MonsterAnimator;
-    public Animator JumpScareMonsterAnimator;
+
+    [Header("GameObject")]
+    public GameObject MonsterPrefab;
 
     [Header("Scripts")]
     public LevelManager LevelManagerRef;
+
+    private void Start()
+    {
+        StopJumpScareAnimation();
+    }
 
     public void SetAnimationForMonster()
     {
@@ -34,14 +41,7 @@ public class MonsterAnimations : MonoBehaviour
         Debug.Log("check index again" + LevelManagerRef.LevelIndex);
     }
 
-    public void StartJumpScareMonsterAnimation()
-    {
-        JumpScareMonsterAnimator.SetBool("IsJumpScare", true);
-        Debug.Log("monster jump ahh");
-    }
+    public void StartJumpScareMonsterAnimation() => MonsterPrefab.gameObject.SetActive(true);
 
-    public void StopJumpScareAnimation() => JumpScareMonsterAnimator.SetBool("IsJumpScare", false);
-    /// <summary>
-    /// Set all bools from the animator to false.
-    /// </summary>
+    public void StopJumpScareAnimation() => MonsterPrefab.gameObject.SetActive(false);
 }
