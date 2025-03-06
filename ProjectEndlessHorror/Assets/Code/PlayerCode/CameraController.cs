@@ -41,7 +41,7 @@ public class CameraController : MonoBehaviour
         PlayerCam.gameObject.SetActive(false);
         JumpScareCam.gameObject.SetActive(true);
     }
-    private void TurnOffTimedJumpScareCam()
+    public void TurnOffTimedJumpScareCam()
     {
         PlayerCam.gameObject.SetActive(true);
         JumpScareCam.gameObject.SetActive(false);

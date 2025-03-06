@@ -53,6 +53,8 @@ public class GameMain : MonoBehaviour
         //Losing game stuff
         PlayerLostToTimeDelegate += LevelManagerRef.RepositionPlayer;
         PlayerLostToTimeDelegate += MonsterAnimationsRef.StopJumpScareAnimation;
+        PlayerLostToTimeDelegate += CameraControllerRef.TurnOffTimedJumpScareCam;
+        PlayerLostToTimeDelegate += CameraControllerRef.InstanceJumpScareCamOff;
         PlayerLostToTimeDelegate += MonsterMovementRef.TurnOffMonstersNavMesh;
         PlayerLostToTimeDelegate += LevelManagerRef.RestartLevel;
         PlayerLostToTimeDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
