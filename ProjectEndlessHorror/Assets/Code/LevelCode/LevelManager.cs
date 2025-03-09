@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     public List<GameObject> LevelPrefabs;
     public GameObject SecuritySecondDoorPrefab;
     public GameObject GlassDoorSecondDoorPrefabTwo;
+    public GameObject LevelThreeDoorPrefab;
     public GameObject KeyInVendingMachine;
     public List<GameObject> AllKeysInAllRooms;
 
@@ -67,6 +68,8 @@ public class LevelManager : MonoBehaviour
         GlassDoorSecondDoorPrefabTwo.transform.DORotate(new Vector3(0, -90, 0), 3f);
         Debug.Log("reopen door");
     }
+
+    public void OpenLevelThreeDoor() => LevelThreeDoorPrefab.transform.DORotate(new Vector3(0, -90, 0), 3f);
     /// <summary>
     /// Spawns the player back into pos after finishing a level.
     /// </summary>

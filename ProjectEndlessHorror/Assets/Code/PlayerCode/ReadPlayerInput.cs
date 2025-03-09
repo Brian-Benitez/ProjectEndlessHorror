@@ -8,10 +8,12 @@ public class ReadPlayerInput : MonoBehaviour
 {
     [Header("Game Objects")]
     public GameObject InputText;
+    public GameObject LevelThreeDoorText;
     public GameObject EasterEggInputText;
 
     [Header("Strings")]
-    public string DoorCodeNumber = "0740";
+    [SerializeField] private string DoorCodeNumber = "0740";
+    [SerializeField] private string LevelThreeDoorNumber = "835";
     public string EasterEggNumber = " ";
 
     private string _playersInput;
@@ -26,6 +28,7 @@ public class ReadPlayerInput : MonoBehaviour
     {
         DisablePlayersInputText();
         DisableEasterEggInputText();
+        DisableLevelThreeInputText();
     }
 
     private void Update()
@@ -35,6 +38,7 @@ public class ReadPlayerInput : MonoBehaviour
             SettingsControllerRef.IsGamePaused = false;
             DisablePlayersInputText();
             DisableEasterEggInputText();
+            DisableLevelThreeInputText();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
@@ -53,11 +57,32 @@ public class ReadPlayerInput : MonoBehaviour
             AudioControllerRef.SecurityOfficeSound();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            this.gameObject.GetComponent<BoxCollider>().enabled = false;
         }
         else
         {
             Debug.Log("play no sound");
             _playersInput = " ";
+        }
+    }
+
+    public void LevelThreeDoorCode(string input)
+    {
+        _playersInput = input;
+
+        if(_playersInput == LevelThreeDoorNumber)
+        {
+            SettingsControllerRef.IsGamePaused = false;
+            LevelManagerRef.OpenLevelThreeDoor();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            DisableLevelThreeInputText();
+
+        }
+        else
+        {
+            _playersInput = " ";
+            Debug.Log("play error sound");
         }
     }
 
@@ -85,7 +110,16 @@ public class ReadPlayerInput : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
     }
+
+    public void EnableLevelThreeInputText()
+    {
+        SettingsControllerRef.PausePlayerInput();
+        LevelThreeDoorText.gameObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
     public void DisablePlayersInputText() => InputText.gameObject.SetActive(false);
     public void DisableEasterEggInputText() => EasterEggInputText.gameObject.SetActive(false);
+    public void DisableLevelThreeInputText() => LevelThreeDoorText.gameObject.SetActive(false);
 
 }
