@@ -12,10 +12,9 @@ public class ReadPlayerInput : MonoBehaviour
     public GameObject EasterEggInputText;
 
     [Header("Strings")]
-    [SerializeField] private string DoorCodeNumber = "0740";
-    [SerializeField] private string LevelThreeDoorNumber = "835";
-    public string EasterEggNumber = " ";
-
+    private string _doorCodeNumber = "0740";
+    private string _levelThreeDoorNumber = "835";
+    private string _easterEggNumber = "122213234313";
     private string _playersInput;
 
     [Header("Scripts")]
@@ -49,7 +48,7 @@ public class ReadPlayerInput : MonoBehaviour
         _playersInput = input;
         Debug.Log(_playersInput);
 
-        if (_playersInput == DoorCodeNumber)
+        if (_playersInput == _doorCodeNumber)
         {
             SettingsControllerRef.IsGamePaused = false;
             LevelManagerRef.RotateSideDoor();
@@ -70,7 +69,7 @@ public class ReadPlayerInput : MonoBehaviour
     {
         _playersInput = input;
 
-        if(_playersInput == LevelThreeDoorNumber)
+        if(_playersInput == _levelThreeDoorNumber)
         {
             SettingsControllerRef.IsGamePaused = false;
             LevelManagerRef.OpenLevelThreeDoor();
@@ -90,7 +89,7 @@ public class ReadPlayerInput : MonoBehaviour
     {
         _playersInput = code;
 
-        if (_playersInput == EasterEggNumber)
+        if (_playersInput == _easterEggNumber)
             EasterEggControllerRef.EasterEggState();
         else
             _playersInput = " ";

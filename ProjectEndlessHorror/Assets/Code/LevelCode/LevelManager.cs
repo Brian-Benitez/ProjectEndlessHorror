@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
     public Transform Player;
     public Transform PlayerSpawnPoint;
 
-    [Header("Levels")]
+    [Header("GameObjects")]
     public List<GameObject> LevelPrefabs;
     public GameObject SecuritySecondDoorPrefab;
     public GameObject GlassDoorSecondDoorPrefabTwo;
@@ -69,7 +69,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("reopen door");
     }
 
-    public void OpenLevelThreeDoor() => LevelThreeDoorPrefab.transform.DORotate(new Vector3(0, -90, 0), 3f);
+    public void OpenLevelThreeDoor() => LevelThreeDoorPrefab.transform.DORotate(new Vector3(0, 90, 0), 3f);
     /// <summary>
     /// Spawns the player back into pos after finishing a level.
     /// </summary>
