@@ -35,12 +35,7 @@ public class AudioController : MonoBehaviour
 
     //Player Settings audio (In settings controller play this once only)
     public void PlayOnSettingClickSound() => PlayerSettingClickAudio.Play();
-    //public void StopOnSettingClickSound() => PlayerSettingClickAudio.Stop();
-
-    //Players clicking audio (its in players interactions play this once only)
-    public void PlayPlayerClickingSound() => PlayerClickAudio.Play();
-   //public void StopPlayerClickingSound() => PlayerClickAudio?.Stop();
-
+  
     public void SecurityOfficeSound() => OfficeAmbienceAudio.Play();
 
     public void PlayEasterEggSound() => EasterEggAudio.Play();
@@ -61,4 +56,9 @@ public class AudioController : MonoBehaviour
         FinalMinuteAudio.Play();
         Debug.Log("play final");
     }
+
+    //Sound Effects-------------------------------------------------------------------------------------------------------------------------------------
+    public void UnlockKeyDoorSound() => UnlockDoorAudio.Play();
+    public void PressKeyPadSound() => PressKeyPadAudio.Play();
+    public void PlayPlayerClickingSound() => PlayerClickAudio.Play();
 }
