@@ -9,7 +9,8 @@ public class MainDoor : MonoBehaviour, IInteractable
     public PlayerInventory PlayerInventoryRef;
     public LevelManager LevelManagerRef;
     public CameraFade CameraFadeRef;
-    public SettingsController SettingsControllerRef;    
+    public SettingsController SettingsControllerRef;
+    public AudioController AudioControllerRef;
 
     public void Interact()
     {
@@ -24,6 +25,7 @@ public class MainDoor : MonoBehaviour, IInteractable
         }
         else if (PlayerInventoryRef.DoesPlayerHaveKey() || LevelManagerRef.LevelIndex == 0)
         {
+            AudioControllerRef.PlayUnlockKeyDoorSound();
             SettingsControllerRef.PausePlayerInput();
             CameraFadeRef.FadeToBlack();
             Delay(1f, () =>
@@ -33,7 +35,7 @@ public class MainDoor : MonoBehaviour, IInteractable
             });
         }
         else
-            Debug.Log("does not have the key");
+            AudioControllerRef.PlayLockDoorSound();
     }
 
     private static void Delay(float time, System.Action _callBack)

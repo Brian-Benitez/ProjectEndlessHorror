@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
+    public static AudioController instance;
+
+    [Header("Booleans")]
+    public bool isPlayingMainAmbience = false;
+
     [Header("Players Audio")]
     public AudioSource PlayerClickAudio;
     public AudioSource PlayerSettingClickAudio;
@@ -15,6 +20,7 @@ public class AudioController : MonoBehaviour
     public AudioSource MonsterKillAudio;
 
     [Header("Ambience")]
+    public AudioSource SecurityAmbienceAudio;
     public AudioSource OfficeAmbienceAudio;
     public AudioSource HallwayAmbienceAudio;
     public AudioSource GrabKeyAudio;
@@ -28,15 +34,23 @@ public class AudioController : MonoBehaviour
     public AudioSource RestartRoundAudio;
 
     public AudioSource EasterEggAudio;
+    [Header("Scripts")]
+    public LevelManager LevelManagerRef;
+
+    private void Awake()
+    {
+        if(instance == null)
+            instance = this;
+    }
 
     //Player footsteps audio (its in player movement loop this)
     public void PlayerFootStepAudioPlay() => PlayerFootStepAudio.Play();
     public void StopPlayingFootStep() => PlayerFootStepAudio.Stop();
-
-    //Player Settings audio (In settings controller play this once only)
     public void PlayOnSettingClickSound() => PlayerSettingClickAudio.Play();
+    //Player Audio^------------------------------------------------------------------------------------------------------------------------------------------------
   
-    public void SecurityOfficeSound() => OfficeAmbienceAudio.Play();
+    public void OfficeAmbienceSound() => OfficeAmbienceAudio.Play();
+    public void SecurityOfficeSound() => SecurityAmbienceAudio.Play();
 
     public void PlayEasterEggSound() => EasterEggAudio.Play();
 
@@ -58,7 +72,62 @@ public class AudioController : MonoBehaviour
     }
 
     //Sound Effects-------------------------------------------------------------------------------------------------------------------------------------
-    public void UnlockKeyDoorSound() => UnlockDoorAudio.Play();
-    public void PressKeyPadSound() => PressKeyPadAudio.Play();
+    public void PlayUnlockKeyDoorSound() => UnlockDoorAudio.Play();
+    public void PlayLockDoorSound() => LockedDoorAudio.Play();
+    public void PlayPressKeyPadSound() => PressKeyPadAudio.Play();
     public void PlayPlayerClickingSound() => PlayerClickAudio.Play();
+
+    public void PlayGrabKeysSound() => GrabKeyAudio.Play();
+    public void PlayGrabCashSound() => GrabCashAudio.Play();    
+
+    public void PlayStallDoorOpenSound() => StallOpenAudio.Play();
+    private void PlayBangingStallDoorSound() => StallBangingAudio.Play();
+    private void StopBangingStallDoorSound() => StallBangingAudio.Stop();
+
+    /// <summary>
+    /// This checks if its the right level to play this sound, the level index it needs to check is 3.
+    /// </summary>
+    public void PlayStallBangingOnLvlThree()
+    {
+        if (LevelManagerRef.LevelIndex == 3)
+            PlayBangingStallDoorSound();
+        else
+            StopBangingStallDoorSound();
+    }
+
+    public void SwapTracks()
+    {
+        StopAllCoroutines();
+        StartCoroutine(FadeTrack());
+    }
+    private IEnumerator FadeTrack()
+    {
+        float timeToFade = 1.25f;
+        float timeElasped = 0;
+        if(isPlayingMainAmbience)
+        {
+            OfficeAmbienceAudio.Play();
+            while (timeElasped < timeToFade)
+            {
+                OfficeAmbienceAudio.volume = Mathf.Lerp(0, 1, timeElasped / timeToFade);
+                HallwayAmbienceAudio.volume = Mathf.Lerp(1, 0, timeElasped / timeToFade);
+                timeElasped += Time.deltaTime;
+                yield return null;
+            }
+            HallwayAmbienceAudio.Stop();
+        }
+        else
+        {
+            HallwayAmbienceAudio.Play();
+            while (timeElasped < timeToFade)
+            {
+                HallwayAmbienceAudio.volume = Mathf.Lerp(0, 1, timeElasped / timeToFade);
+                OfficeAmbienceAudio.volume = Mathf.Lerp(1, 0, timeElasped / timeToFade);
+                timeElasped += Time.deltaTime;
+                yield return null;
+            }
+            OfficeAmbienceAudio.Stop();
+        }
+
+    }
 }

@@ -56,7 +56,7 @@ public class ReadPlayerInput : MonoBehaviour
             AudioControllerRef.SecurityOfficeSound();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            AudioControllerRef.UnlockKeyDoorSound();
+            AudioControllerRef.PlayUnlockKeyDoorSound();
         }
         else
         {
@@ -76,7 +76,7 @@ public class ReadPlayerInput : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             DisableLevelThreeInputText();
-            AudioControllerRef.UnlockKeyDoorSound();
+            AudioControllerRef.PlayUnlockKeyDoorSound();
         }
         else
         {
@@ -108,7 +108,7 @@ public class ReadPlayerInput : MonoBehaviour
         InputText.gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
-        AudioControllerRef.PressKeyPadSound();
+        AudioControllerRef.PlayPressKeyPadSound();
     }
 
     public void EnableLevelThreeInputText()
@@ -117,7 +117,7 @@ public class ReadPlayerInput : MonoBehaviour
         LevelThreeDoorText.gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
-        AudioControllerRef.PressKeyPadSound();
+        AudioControllerRef.PlayPressKeyPadSound();
     }
     public void DisablePlayersInputText() => InputText.gameObject.SetActive(false);
     public void DisableEasterEggInputText() => EasterEggInputText.gameObject.SetActive(false);

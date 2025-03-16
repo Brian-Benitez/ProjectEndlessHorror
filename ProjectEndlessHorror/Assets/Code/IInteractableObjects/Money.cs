@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class Money : MonoBehaviour, IInteractable
 {
+    [Header("Scripts")]
     public PlayerInventory PlayerInventoryRef;
     public LevelManager LevelManagerRef;
+    public AudioController AudioControllerRef;
+
     public void Interact()
     {
+        AudioControllerRef.PlayGrabCashSound();
         PlayerInventoryRef.PlayersInventoryList.Add(transform.gameObject);
         Debug.Log("added key to inventory");
         LevelManagerRef.RotateSideDoor();
