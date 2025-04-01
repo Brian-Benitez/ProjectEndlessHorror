@@ -14,11 +14,8 @@ public class AudioController : MonoBehaviour
     public AudioSource PlayerSettingClickAudio;
     public AudioSource PlayerFootStepAudio;
     //done^
-    public AudioSource VOOne;
-    public AudioSource VOTwo;
-    public AudioSource VOThree;
-    public AudioSource VOFour;
-    public AudioSource EightThreeFiveVO;
+    [Header("Vo's")]
+    public List<AudioSource> VoiceOvers;
 
     [Header("Monster Audio")]
     public AudioSource MonsterProximityAudio;
@@ -77,12 +74,12 @@ public class AudioController : MonoBehaviour
         Debug.Log("play final");
     }
     //VO's--------------------------------------------------------------------------------------------------------------------------------------------->
-    public void PlayVOOne() => VOOne.Play();
-    public void PlayVOTwo() => VOTwo.Play();
-    public void PlayVOThree() => VOThree.Play();
-    public void PlayVOFour() => VOFour.Play();
-    public void PlayEightThreeFive() => EightThreeFiveVO.Play();
-
+    public void PlayingLevelVO()
+    {
+        VoiceOvers.ForEach(x => x.Stop());  
+        VoiceOvers[LevelManagerRef.LevelIndex].Play();
+        Debug.Log("Playing voice over for this level");
+    }
 
     //Sound Effects-------------------------------------------------------------------------------------------------------------------------------------
     public void PlayUnlockKeyDoorSound() => UnlockDoorAudio.Play();
