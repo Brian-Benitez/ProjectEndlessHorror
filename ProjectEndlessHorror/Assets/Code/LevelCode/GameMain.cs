@@ -49,7 +49,7 @@ public class GameMain : MonoBehaviour
         AdvanceToRoomDelegate += GameTimerRef.StartTimerBoolean;
         AdvanceToRoomDelegate += MonsterBehaviorRef.RestartJumpScareBool;
         AdvanceToRoomDelegate += CameraFadeRef.FadeOffOfBlack;
-        AdvanceToRoomDelegate += AudioControllerRef.PlayStallBangingOnLvlThree;
+        AdvanceToRoomDelegate += AudioControllerRef.PlayCertainSoundsOnLvlThree;
         AdvanceToRoomDelegate += AudioControllerRef.PlayingLevelVO;
 
         //Losing game stuff

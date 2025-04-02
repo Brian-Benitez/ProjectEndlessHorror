@@ -35,6 +35,7 @@ public class AudioController : MonoBehaviour
     public AudioSource StallBangingAudio;
     public AudioSource FinalMinuteAudio;
     public AudioSource RestartRoundAudio;
+    public AudioSource EightThreeFiveAudio;
 
     public AudioSource EasterEggAudio;
     [Header("Scripts")]
@@ -94,6 +95,9 @@ public class AudioController : MonoBehaviour
     private void PlayBangingStallDoorSound() => StallBangingAudio.Play();
     private void StopBangingStallDoorSound() => StallBangingAudio.Stop();
 
+    private void PlayDoorCodeAudio() => EightThreeFiveAudio.Play();
+    private void StopDoorCodeAudio() => EightThreeFiveAudio.Stop();
+
     /// <summary>
     /// Adjust all audio in the scene.
     /// </summary>
@@ -114,6 +118,7 @@ public class AudioController : MonoBehaviour
         MonsterKillAudio.volume = volumevalue;
         RestartRoundAudio.volume = volumevalue;
         MonsterEventAudio.volume = volumevalue;
+        EightThreeFiveAudio.volume = volumevalue;
         //EasterEggAudio.volume = volumevalue;
         SecurityAmbienceAudio.volume = volumevalue;
         OfficeAmbienceAudio.volume = volumevalue; 
@@ -123,14 +128,21 @@ public class AudioController : MonoBehaviour
     }
 
     /// <summary>
-    /// This checks if its the right level to play this sound, the level index it needs to check is 3.
+    /// This checks if its the right level to play these sounds, the level index it needs to check is 3.
     /// </summary>
-    public void PlayStallBangingOnLvlThree()
+    public void PlayCertainSoundsOnLvlThree()
     {
         if (LevelManagerRef.LevelIndex == 3)
+        {
             PlayBangingStallDoorSound();
+            PlayDoorCodeAudio();
+        }  
         else
+        {
             StopBangingStallDoorSound();
+            StopDoorCodeAudio();
+        }
+            
     }
 
     public void SwapTracks()
