@@ -95,6 +95,34 @@ public class AudioController : MonoBehaviour
     private void StopBangingStallDoorSound() => StallBangingAudio.Stop();
 
     /// <summary>
+    /// Adjust all audio in the scene.
+    /// </summary>
+    /// <param name="volumevalue"></param>
+    public void AdjustAllVolume(float volumevalue)
+    {
+        StallBangingAudio.volume = volumevalue;
+        StallBangingAudio.volume = volumevalue;
+        StallBangingAudio.volume = volumevalue;
+        GrabCashAudio.volume = volumevalue;
+        GrabCashAudio.volume = volumevalue;
+        PressKeyPadAudio.volume = volumevalue;
+        PlayerClickAudio.volume = volumevalue;
+        LockedDoorAudio.volume = volumevalue;
+        UnlockDoorAudio.volume = volumevalue;
+        FinalMinuteAudio.volume = volumevalue;
+        MonsterProximityAudio.volume = volumevalue;
+        MonsterKillAudio.volume = volumevalue;
+        RestartRoundAudio.volume = volumevalue;
+        MonsterEventAudio.volume = volumevalue;
+        //EasterEggAudio.volume = volumevalue;
+        SecurityAmbienceAudio.volume = volumevalue;
+        OfficeAmbienceAudio.volume = volumevalue; 
+        PlayerSettingClickAudio.volume = volumevalue;
+        //PlayerFootStepAudio.volume = volumevalue;
+        VoiceOvers.ForEach(x => x.volume = volumevalue);
+    }
+
+    /// <summary>
     /// This checks if its the right level to play this sound, the level index it needs to check is 3.
     /// </summary>
     public void PlayStallBangingOnLvlThree()

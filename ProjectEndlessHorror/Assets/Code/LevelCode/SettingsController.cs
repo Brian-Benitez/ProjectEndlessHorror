@@ -81,11 +81,14 @@ public class SettingsController : MonoBehaviour
         PlayerCamRef.sensX = AimSensSlider.value;
         PlayerCamRef.sensY = AimSensSlider.value;
         //Volume values here.
-        VolumeTextAmount.text = "" + VolumeSlider.value;
+        VolumeTextAmount.text = "" + VolumeSlider.value.ToString("0.00");
 
         ColorAdjustmentsRef.postExposure.value = BrightnessSlider.value;
         BrightnessTextAmount.text = "" + BrightnessSlider.value.ToString("0.00");
     }
+
+    public void ChangeVolume() => AudioController.instance.AdjustAllVolume(VolumeSlider.value);
+
     /// <summary>
     /// Disables the settings menu and shows the credits menu.
     /// </summary>
