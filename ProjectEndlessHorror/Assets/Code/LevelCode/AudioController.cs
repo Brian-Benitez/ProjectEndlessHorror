@@ -12,8 +12,7 @@ public class AudioController : MonoBehaviour
     [Header("Players Audio")]
     public AudioSource PlayerClickAudio;
     public AudioSource PlayerSettingClickAudio;
-    public AudioSource PlayerFootStepAudio;
-    //done^
+    
     [Header("Vo's")]
     public List<AudioSource> VoiceOvers;
 
@@ -47,9 +46,6 @@ public class AudioController : MonoBehaviour
             instance = this;
     }
 
-    //Player footsteps audio (its in player movement loop this)
-    public void PlayerFootStepAudioPlay() => PlayerFootStepAudio.Play();
-    public void StopPlayingFootStep() => PlayerFootStepAudio.Stop();
     public void PlayOnSettingClickSound() => PlayerSettingClickAudio.Play();
     //Player Audio^------------------------------------------------------------------------------------------------------------------------------------------------
   

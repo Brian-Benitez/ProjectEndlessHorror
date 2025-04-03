@@ -20,10 +20,23 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
     bool isGrounded;
+    [Header("Footsteps parameter")]
+    public bool IsMoving;
+    public AudioSource FootStepAudioSource;
+    public AudioClip[] FootStepAudioClip;
+    public float WalkStepInterval = 0.5f;
+    public float SprintStepInterval = 0.3f;
+    public float VelocityThreshold = 2.0f;
+
+    public float nextSteptime;
+    public int OldFSIndex = 0;
+
+
+
+
 
     [Header("Scripts")]
     public SettingsController SettingsControllerRef;
-    public AudioController AudioControllerRef;  
 
 
     // Update is called once per frame
@@ -58,12 +71,37 @@ public class PlayerMovement : MonoBehaviour
 
             Controller.Move(velocity * Time.deltaTime);
 
-            //Sound of footsteps here. if it dont work, its propbably because its in update
-            //if (move != Vector3.zero)
-                //AudioControllerRef.PlayerFootStepAudioPlay();
-            //else
-                //AudioControllerRef.StopPlayingFootStep();
+            IsMoving = z != 0 || x != 0;
+            Debug.Log(IsMoving);
 
         }
+        HandleFootSteps();
+    }
+
+    private void HandleFootSteps()
+    {
+       float currentStepInterval = Input.GetKey(KeyCode.LeftShift) ? SprintStepInterval : WalkStepInterval;
+        if(IsMoving && Time.time > nextSteptime)
+        {
+            FootStepSound();
+            nextSteptime = Time.time + currentStepInterval;
+        }
+    }
+
+    void FootStepSound()
+    {
+        int NewIndex = OldFSIndex;
+        if (OldFSIndex == 1)//right foot
+        {
+            NewIndex = 0;
+        }
+        else if (OldFSIndex == 0)//left foot
+        {
+            NewIndex = 1;
+        }
+        OldFSIndex = NewIndex;
+
+        FootStepAudioSource.clip = FootStepAudioClip[NewIndex];
+        FootStepAudioSource.Play();
     }
 }
