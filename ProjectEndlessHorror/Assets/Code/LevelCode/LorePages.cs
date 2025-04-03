@@ -25,7 +25,7 @@ public class LorePages : MonoBehaviour, IInteractable
 
     public void Update()
     {
-        if(Input.GetKeyUp(KeyCode.E) && PageIsOpen)
+        if(Input.GetKeyUp(KeyCode.E)  || Input.GetKeyUp(KeyCode.Tab)&& PageIsOpen)
             DisableAllPages();
     }
     public void Interact()

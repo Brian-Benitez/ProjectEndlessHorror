@@ -10,13 +10,18 @@ public class MainDoor : MonoBehaviour, IInteractable
     public LevelManager LevelManagerRef;
     public CameraFade CameraFadeRef;
     public SettingsController SettingsControllerRef;
-    public AudioController AudioControllerRef;
-
+    public EasterEggController EasterEggControllerRef;
     public void Interact()
     {
         if (LevelManagerRef.LevelIndex == 5)//Ending scene
         {
             CameraFadeRef.FadeToBlack();//Fade to black, have dialoge play, then kill the game.
+
+            if (EasterEggControllerRef.IsEasterEggEnabled)
+                Debug.Log("play this audio");
+            else
+                Debug.Log("play this audio then");
+
             Delay(15f, () =>
             {
                 Debug.Log("killing game");
@@ -25,7 +30,7 @@ public class MainDoor : MonoBehaviour, IInteractable
         }
         else if (PlayerInventoryRef.DoesPlayerHaveKey() || LevelManagerRef.LevelIndex == 0)
         {
-            AudioControllerRef.PlayUnlockKeyDoorSound();
+            AudioController.instance.PlayUnlockKeyDoorSound();
             SettingsControllerRef.PausePlayerInput();
             CameraFadeRef.FadeToBlack();
             Delay(1f, () =>
@@ -35,7 +40,7 @@ public class MainDoor : MonoBehaviour, IInteractable
             });
         }
         else
-            AudioControllerRef.PlayLockDoorSound();
+            AudioController.instance.PlayLockDoorSound();
     }
 
     private static void Delay(float time, System.Action _callBack)
