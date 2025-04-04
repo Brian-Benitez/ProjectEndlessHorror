@@ -69,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
             Controller.Move(velocity * Time.deltaTime);
 
             IsMoving = z != 0 || x != 0;
-            Debug.Log(IsMoving);
 
         }
         HandleFootSteps();

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Steamworks;
 using interfaces;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,39 +15,62 @@ public class MainDoor : MonoBehaviour, IInteractable
     public EasterEggController EasterEggControllerRef;
     public void Interact()
     {
-        if (LevelManagerRef.LevelIndex == 5)//Ending scene
-        {
-            CameraFadeRef.FadeToBlack();//Fade to black, have dialoge play, then kill the game.
-
-            if (EasterEggControllerRef.IsEasterEggEnabled)
-                Debug.Log("play this audio");
-            else
-                Debug.Log("play this audio then");
-
-            Delay(EndingDialogueTimer, () =>// it was 15 sec now its this <---
+        //if(SteamManager.Initialized)
+        //{
+            if (LevelManagerRef.LevelIndex == 5)//Ending scene
             {
-                if (!EasterEggControllerRef.IsEasterEggEnabled)
-                    GameMain.instance.PlayingRestartGameLogicDelegate();
-                else
+                CameraFadeRef.FadeToBlack();//Fade to black, have dialoge play, then kill the game.
+
+                if (EasterEggControllerRef.IsEasterEggEnabled)
                 {
-                    Debug.Log("killing game");
-                    Application.Quit();
+                    /*
+                    Steamworks.SteamUserStats.GetAchievement("Achievement_Two", out bool achivementCompleted);
+                    if (!achivementCompleted)
+                    {
+                        SteamUserStats.SetAchievement("Achievement_Two");
+                        SteamUserStats.StoreStats();
+                    }
+                    */
+                    Debug.Log("play this audio");
                 }
-            });
-        }
-        else if (PlayerInventoryRef.DoesPlayerHaveKey() || LevelManagerRef.LevelIndex == 0)
-        {
-            AudioController.instance.PlayUnlockKeyDoorSound();
-            SettingsControllerRef.PausePlayerInput();
-            CameraFadeRef.FadeToBlack();
-            Delay(1f, () =>
+                else
+                    Debug.Log("play this audio then");
+
+                Delay(EndingDialogueTimer, () =>// it was 15 sec now its this <---
+                {
+                    if (!EasterEggControllerRef.IsEasterEggEnabled)
+                    {
+                        GameMain.instance.PlayingRestartGameLogicDelegate();
+                        /*
+                        Steamworks.SteamUserStats.GetAchievement("Achievement_One", out bool achivementCompleted);
+                        if(!achivementCompleted)
+                        {
+                            SteamUserStats.SetAchievement("Achievement_One");
+                            SteamUserStats.StoreStats();
+                        }
+                        */
+                    }
+                    else
+                    {
+                        Debug.Log("killing game");
+                        Application.Quit();
+                    }
+                });
+            }
+            else if (PlayerInventoryRef.DoesPlayerHaveKey() || LevelManagerRef.LevelIndex == 0)
             {
-                GameMain.instance.AdvanceToNextLevel();
-                SettingsControllerRef.UnPausePlayersInput();
-            });
-        }
-        else
-            AudioController.instance.PlayLockDoorSound();
+                AudioController.instance.PlayUnlockKeyDoorSound();
+                SettingsControllerRef.PausePlayerInput();
+                CameraFadeRef.FadeToBlack();
+                Delay(1f, () =>
+                {
+                    GameMain.instance.AdvanceToNextLevel();
+                    SettingsControllerRef.UnPausePlayersInput();
+                });
+            }
+            else
+                AudioController.instance.PlayLockDoorSound();
+        //}
     }
 
     private static void Delay(float time, System.Action _callBack)
