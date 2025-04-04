@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Player Parameter")]
     public CharacterController Controller;
-
     public float speed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
     public float Runspeed = 16;
-
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -20,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
     bool isGrounded;
+
     [Header("Footsteps parameter")]
     public bool IsMoving;
     public AudioSource FootStepAudioSource;
@@ -30,9 +30,6 @@ public class PlayerMovement : MonoBehaviour
 
     public float nextSteptime;
     public int OldFSIndex = 0;
-
-
-
 
 
     [Header("Scripts")]
@@ -102,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
         OldFSIndex = NewIndex;
 
         FootStepAudioSource.clip = FootStepAudioClip[NewIndex];
+        FootStepAudioSource.pitch = Random.Range(0.8f, 1f);
         FootStepAudioSource.Play();
     }
 }
