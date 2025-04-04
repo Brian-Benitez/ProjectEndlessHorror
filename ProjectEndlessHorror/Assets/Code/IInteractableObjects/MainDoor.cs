@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class MainDoor : MonoBehaviour, IInteractable
 {
+    public float EndingDialogueTimer = 45f;
     [Header("Scripts")]
     public PlayerInventory PlayerInventoryRef;
     public LevelManager LevelManagerRef;
@@ -22,10 +23,15 @@ public class MainDoor : MonoBehaviour, IInteractable
             else
                 Debug.Log("play this audio then");
 
-            Delay(15f, () =>
+            Delay(EndingDialogueTimer, () =>// it was 15 sec now its this <---
             {
-                Debug.Log("killing game");
-                Application.Quit();
+                if (!EasterEggControllerRef.IsEasterEggEnabled)
+                    GameMain.instance.PlayingRestartGameLogicDelegate();
+                else
+                {
+                    Debug.Log("killing game");
+                    Application.Quit();
+                }
             });
         }
         else if (PlayerInventoryRef.DoesPlayerHaveKey() || LevelManagerRef.LevelIndex == 0)

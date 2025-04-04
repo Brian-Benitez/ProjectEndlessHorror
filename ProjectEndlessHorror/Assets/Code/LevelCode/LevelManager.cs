@@ -93,5 +93,6 @@ public class LevelManager : MonoBehaviour
     public void RestartGame()
     {
         LevelIndex = 0;
+        AllKeysInAllRooms.ToList().ForEach(key => { key.gameObject.SetActive(true); });
     }
 }
