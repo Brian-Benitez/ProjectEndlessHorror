@@ -9,6 +9,7 @@ public class StartChaseSequnce : MonoBehaviour
     [Header("Scripts")]
     public MonsterBehavior MonsterBehaviorRef;
     public MonsterMovement MonsterMovementRef;
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -19,4 +20,6 @@ public class StartChaseSequnce : MonoBehaviour
             MonsterMovementRef.TurnOnMonstersNavMesh();
         }
     }
+
+    public void TurnOffChaseBool() => IsChasingPlayer = false;
 }

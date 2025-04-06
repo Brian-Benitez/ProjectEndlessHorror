@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour
     public Transform Player;
     public Transform PlayerSpawnPoint;
 
+    public GameObject Monster;
+
     [Header("GameObjects")]
     public List<GameObject> LevelPrefabs;
     public GameObject SecuritySecondDoorPrefab;
@@ -89,7 +91,8 @@ public class LevelManager : MonoBehaviour
             AllKeysInAllRooms.ToList().ForEach(key => { key.gameObject.SetActive(true); });
         }
     }
-
+    public void TurnOffMonster() => Monster.gameObject.SetActive(false);
+    public void TurnOnMonster() => Monster.gameObject.SetActive(true);
     public void RestartGame()
     {
         LevelIndex = 0;

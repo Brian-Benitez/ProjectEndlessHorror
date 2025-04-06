@@ -16,8 +16,9 @@ public class MonsterMovement : MonoBehaviour
 
     private void Update()
     {
-        if(StartChaseSequnceRef.IsChasingPlayer)
+        if (StartChaseSequnceRef.IsChasingPlayer && !GameMain.instance.IsGameFinished)
             MonsterNavMeshAgent.SetDestination(PlayerPos.transform.position);
+
     }
 
     public void TurnOnMonstersNavMesh()

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameMain : MonoBehaviour
 {
+    [Header("Game Manager Parameter")]
+    public bool IsGameFinished = false;
+
     public static GameMain instance;
 
     delegate void AdvanceToNewRoom();
@@ -31,6 +34,7 @@ public class GameMain : MonoBehaviour
     public MonsterMovement MonsterMovementRef;  
     public LorePages LorePagesRef;
     public MonsterAnimations MonsterAnimationsRef;
+    public StartChaseSequnce StartChaseSequnceRef;
     private void Awake()
     {
         if(instance != null && instance != this)
@@ -73,7 +77,7 @@ public class GameMain : MonoBehaviour
         PlayJumpScareDelegate += MonsterBehaviorRef.PlayInstanceJumpScare;
         PlayJumpScareDelegate += AudioController.instance.JumpScareSoundPlay;
 
-        //Jumpscare scary event
+        //Jumpscare scary event 
         PlayScaryEventDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
         PlayScaryEventDelegate += MonsterBehaviorRef.EnableObject;
         PlayScaryEventDelegate += MonsterBehaviorRef.StartMonsterMovement;
@@ -90,6 +94,8 @@ public class GameMain : MonoBehaviour
         PlayRestartGameLogicDelegate += LorePagesRef.SwitchPlaces;
         PlayRestartGameLogicDelegate += CameraFadeRef.FadeOffOfBlack;
         PlayRestartGameLogicDelegate += AudioController.instance.PlayingLevelVO;
+        PlayRestartGameLogicDelegate += GameIsFinishedSetFalse;
+        PlayRestartGameLogicDelegate += StartChaseSequnceRef.TurnOffChaseBool;
     }
     /// <summary>
     /// Plays a delegate event to advance to the next room.
@@ -117,4 +123,6 @@ public class GameMain : MonoBehaviour
         else
             Debug.Log("can't play scary event yet");
     }
+    public void GameIsFinishedSetTrue() => IsGameFinished = true;
+    public void GameIsFinishedSetFalse() => IsGameFinished = false;
 }

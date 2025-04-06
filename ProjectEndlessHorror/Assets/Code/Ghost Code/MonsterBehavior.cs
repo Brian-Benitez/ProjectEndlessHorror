@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class MonsterBehavior : MonoBehaviour
 {
     [Header("Monsters Info")]
-    [SerializeField] private float _speed = 1.5f;//Monsters speed to points or to the player
+    [SerializeField] private float _speedToPoints = 1.5f;//Monsters speed to points
     [SerializeField] private int _spawnPointIndex = 0;
     [SerializeField] public float WaitSpeedForMonster = 0.5f;
     [SerializeField] public int MonsterTravelEndPoints = 0;
@@ -47,7 +47,7 @@ public class MonsterBehavior : MonoBehaviour
         else
             while (Vector3.Distance(this.transform.position, EndPointsOfMovement[MonsterTravelEndPoints].transform.position) > 0.05f)//start this and dont end until they are less than 0.05 meters away
             {
-                this.transform.position = Vector3.MoveTowards(transform.position, EndPointsOfMovement[MonsterTravelEndPoints].transform.position, _speed * Time.deltaTime);
+                this.transform.position = Vector3.MoveTowards(transform.position, EndPointsOfMovement[MonsterTravelEndPoints].transform.position, _speedToPoints * Time.deltaTime);
                 yield return null;
             }
 

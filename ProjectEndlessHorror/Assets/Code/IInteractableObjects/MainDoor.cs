@@ -6,31 +6,38 @@ using System.Collections.Generic;
 using UnityEngine;
 public class MainDoor : MonoBehaviour, IInteractable
 {
+    [Header("End game parameteres")]
     public float EndingDialogueTimer = 45f;
+
     [Header("Scripts")]
     public PlayerInventory PlayerInventoryRef;
     public LevelManager LevelManagerRef;
     public CameraFade CameraFadeRef;
     public SettingsController SettingsControllerRef;
     public EasterEggController EasterEggControllerRef;
+    public StartChaseSequnce StartChaseSequnceRef;
+    public MonsterBehavior MonsterBehaviorRef;
     public void Interact()
     {
-        //if(SteamManager.Initialized)
-        //{
-            if (LevelManagerRef.LevelIndex == 5)//Ending scene
+        if(SteamManager.Initialized)
+        {
+            if (LevelManagerRef.LevelIndex == 4)//Ending scene
             {
+                Debug.Log("end ofgame");
+                LevelManagerRef.TurnOffMonster();
                 CameraFadeRef.FadeToBlack();//Fade to black, have dialoge play, then kill the game.
+                GameMain.instance.GameIsFinishedSetTrue();
 
                 if (EasterEggControllerRef.IsEasterEggEnabled)
                 {
-                    /*
+                    
                     Steamworks.SteamUserStats.GetAchievement("Achievement_Two", out bool achivementCompleted);
                     if (!achivementCompleted)
                     {
                         SteamUserStats.SetAchievement("Achievement_Two");
                         SteamUserStats.StoreStats();
                     }
-                    */
+                    
                     Debug.Log("play this audio");
                 }
                 else
@@ -40,15 +47,16 @@ public class MainDoor : MonoBehaviour, IInteractable
                 {
                     if (!EasterEggControllerRef.IsEasterEggEnabled)
                     {
+                        LevelManagerRef.TurnOnMonster();
                         GameMain.instance.PlayingRestartGameLogicDelegate();
-                        /*
+                        
                         Steamworks.SteamUserStats.GetAchievement("Achievement_One", out bool achivementCompleted);
                         if(!achivementCompleted)
                         {
                             SteamUserStats.SetAchievement("Achievement_One");
                             SteamUserStats.StoreStats();
                         }
-                        */
+                        
                     }
                     else
                     {
@@ -70,7 +78,7 @@ public class MainDoor : MonoBehaviour, IInteractable
             }
             else
                 AudioController.instance.PlayLockDoorSound();
-        //}
+        }
     }
 
     private static void Delay(float time, System.Action _callBack)
