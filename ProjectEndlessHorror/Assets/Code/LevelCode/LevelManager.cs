@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -22,7 +23,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("Indexs")]
     public int LevelIndex = 0;
-    private int _levelCountMax = 5;
+    public int _levelCountMax = 4;//this is counting startting from 0
 
     [Header("Scripts")]
     public MonsterBehavior MonsterBehaviorRef;
@@ -32,15 +33,23 @@ public class LevelManager : MonoBehaviour
 
     public void ChangeLevelPrefab()
     {
-        if (LevelIndex == _levelCountMax || MonsterBehaviorRef.GotJumpScared)
+        if (MonsterBehaviorRef.GotJumpScared)
             return;
+        else if (LevelIndex == _levelCountMax)
+        {
+            LevelPrefabs[LevelIndex].SetActive(false);
+            LevelIndex = 0;
+            LevelPrefabs[LevelIndex].SetActive(true);
+            Debug.Log("restart");
+        }
         else
         {
+            Debug.Log("what the old index "  +  LevelIndex);    
             LevelPrefabs[LevelIndex].SetActive(false);
             LevelIndex++;
             LevelPrefabs[LevelIndex].SetActive(true);
             Debug.Log("new level  + " + LevelIndex);
-            EnableLastKey();
+            EnableFakeKeyInVendingMachine();
             return;
         }
     }
@@ -77,7 +86,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void RepositionPlayer() => Player.transform.position = PlayerSpawnPoint.transform.position;
 
-    public void EnableLastKey()
+    public void EnableFakeKeyInVendingMachine()
     {
         if(LevelIndex == 4)
             KeyInVendingMachine.gameObject.SetActive(true);
@@ -88,14 +97,13 @@ public class LevelManager : MonoBehaviour
         if(GameTimerRef.TimerIsRunning == false || MonsterBehaviorRef.GotJumpScared)
         {
             Debug.Log("restart level");
-            AllKeysInAllRooms.ToList().ForEach(key => { key.gameObject.SetActive(true); });
+            AllKeysInAllRooms.ToList().ForEach(key => { key.gameObject.SetActive(true); });//When u get jumpscared this enables all  keys!
         }
     }
     public void TurnOffMonster() => Monster.gameObject.SetActive(false);
     public void TurnOnMonster() => Monster.gameObject.SetActive(true);
     public void RestartGame()
     {
-        LevelIndex = 0;
         AllKeysInAllRooms.ToList().ForEach(key => { key.gameObject.SetActive(true); });
     }
 }

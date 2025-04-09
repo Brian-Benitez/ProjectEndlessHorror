@@ -15,6 +15,8 @@ public class AudioController : MonoBehaviour
     
     [Header("Vo's")]
     public List<AudioSource> VoiceOvers;
+    public AudioSource EasterEggEndingAudio;
+    public AudioSource NoEasterEggEndingAudio;
 
     [Header("Monster Audio")]
     public AudioSource MonsterProximityAudio;
@@ -36,7 +38,7 @@ public class AudioController : MonoBehaviour
     public AudioSource RestartRoundAudio;
     public AudioSource EightThreeFiveAudio;
 
-    public AudioSource EasterEggAudio;
+    
     [Header("Scripts")]
     public LevelManager LevelManagerRef;
 
@@ -52,7 +54,8 @@ public class AudioController : MonoBehaviour
     public void OfficeAmbienceSound() => OfficeAmbienceAudio.Play();
     public void SecurityOfficeSound() => SecurityAmbienceAudio.Play();
 
-    public void PlayEasterEggSound() => EasterEggAudio.Play();
+    public void PlayEasterEggEndingSound() => EasterEggEndingAudio.Play();
+    public void PlayNoEasterEggEndingSound() => NoEasterEggEndingAudio.Play();
 
     public void MonsterEventSound() => MonsterEventAudio.Play();
     public void RestartRoundSound() => RestartRoundAudio.Play();

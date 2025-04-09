@@ -150,7 +150,7 @@ public class MonsterBehavior : MonoBehaviour
 
     public void RestartMonstersBehavior()
     {
-        _spawnPointIndex = 1;
+        _spawnPointIndex = 0;
         EnableObject();
     }
     //HELPER functions +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

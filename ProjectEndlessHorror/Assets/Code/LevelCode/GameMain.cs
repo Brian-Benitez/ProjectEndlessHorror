@@ -86,7 +86,9 @@ public class GameMain : MonoBehaviour
         PlayRestartGameLogicDelegate += LevelManagerRef.RestartGame;
         PlayRestartGameLogicDelegate += LevelManagerRef.ChangeLevelPrefab;//this will put the player in the first actual level not the "tutorial"
         PlayRestartGameLogicDelegate += LevelManagerRef.RepositionPlayer;
+        PlayRestartGameLogicDelegate += StartChaseSequnceRef.TurnOffChaseBool;
         PlayRestartGameLogicDelegate += MonsterBehaviorRef.RestartMonstersBehavior;
+        PlayRestartGameLogicDelegate += MonsterMovementRef.TurnOffMonstersNavMesh;
         PlayRestartGameLogicDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
         PlayRestartGameLogicDelegate += MonsterBehaviorRef.RestartJumpScareBool;
         PlayRestartGameLogicDelegate += PlayerInventoryRef.ClearInventoryList;
@@ -95,7 +97,6 @@ public class GameMain : MonoBehaviour
         PlayRestartGameLogicDelegate += CameraFadeRef.FadeOffOfBlack;
         PlayRestartGameLogicDelegate += AudioController.instance.PlayingLevelVO;
         PlayRestartGameLogicDelegate += GameIsFinishedSetFalse;
-        PlayRestartGameLogicDelegate += StartChaseSequnceRef.TurnOffChaseBool;
     }
     /// <summary>
     /// Plays a delegate event to advance to the next room.
