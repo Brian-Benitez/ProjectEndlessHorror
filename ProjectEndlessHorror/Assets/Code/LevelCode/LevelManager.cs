@@ -2,7 +2,6 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -20,6 +19,7 @@ public class LevelManager : MonoBehaviour
     public GameObject LevelThreeDoorPrefab;
     public GameObject KeyInVendingMachine;
     public List<GameObject> AllKeysInAllRooms;
+    public GameObject FinalKeyObject;
 
     [Header("Indexs")]
     public int LevelIndex = 0;
@@ -105,5 +105,6 @@ public class LevelManager : MonoBehaviour
     public void RestartGame()
     {
         AllKeysInAllRooms.ToList().ForEach(key => { key.gameObject.SetActive(true); });
+        FinalKeyObject.SetActive(false);
     }
 }
