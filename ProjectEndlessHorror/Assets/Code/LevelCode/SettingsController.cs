@@ -131,9 +131,9 @@ public class SettingsController : MonoBehaviour
     public void UnPausePlayersInput() => IsGamePaused = false;
 
     ////Private functions below!++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    private void DisableSettingsTexts() => SettingsMenuPrefab.SetActive(false);
+    public void DisableSettingsTexts() => SettingsMenuPrefab.SetActive(false);
     private void EnableSettingsTexts() => SettingsMenuPrefab.SetActive(true);
-    private void DisableCreditsMenu() => CreditMenuPrefab.SetActive(false);
+    public void DisableCreditsMenu() => CreditMenuPrefab.SetActive(false);
     private void EnableCreditsMenu() => CreditMenuPrefab.SetActive(true);
 
 }

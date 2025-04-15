@@ -75,10 +75,13 @@ public class GameMain : MonoBehaviour
         PlayerLostToTimeDelegate += CameraFadeRef.FadeOffOfBlack;
 
         //Jumpscare stuff
+        PlayJumpScareDelegate += SettingsControllerRef.DisableCreditsMenu;
+        PlayJumpScareDelegate += SettingsControllerRef.DisableSettingsTexts;
+        PlayJumpScareDelegate += SettingsControllerRef.PausePlayerMovement;
         PlayJumpScareDelegate += MonsterBehaviorRef.PlayJumpScare;
         PlayJumpScareDelegate += AudioController.instance.JumpScareSoundPlay;
         PlayJumpScareDelegate += LevelManagerRef.RestartGameKeys;
-        PlayJumpScareDelegate += SettingsControllerRef.PausePlayerMovement;
+        
 
         //Jumpscare Chasing scene scary event 
         PlayScaryEventDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
