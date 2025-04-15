@@ -43,9 +43,6 @@ public class SettingsController : MonoBehaviour
     public int VolumeOrginal = 5;
     public float BrightnessOrginal = .25f;
 
-    //public List<> AudioSources;
-    //AudioSource.Volume and you set what sound it is.
-
     [Header("Scripts")]
     public PlayerCam PlayerCamRef;
     public AudioController AudioControllerRef;

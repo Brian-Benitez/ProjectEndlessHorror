@@ -35,6 +35,7 @@ public class GameMain : MonoBehaviour
     public LorePages LorePagesRef;
     public MonsterAnimations MonsterAnimationsRef;
     public StartChaseSequnce StartChaseSequnceRef;
+    public SettingsController SettingsControllerRef;
     private void Awake()
     {
         if(instance != null && instance != this)
@@ -77,6 +78,7 @@ public class GameMain : MonoBehaviour
         PlayJumpScareDelegate += MonsterBehaviorRef.PlayInstanceJumpScare;
         PlayJumpScareDelegate += AudioController.instance.JumpScareSoundPlay;
         PlayJumpScareDelegate += LevelManagerRef.RestartGameKeys;
+        PlayJumpScareDelegate += SettingsControllerRef.PausePlayerMovement;
 
         //Jumpscare Chasing scene scary event 
         PlayScaryEventDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
@@ -98,6 +100,7 @@ public class GameMain : MonoBehaviour
         PlayRestartGameLogicDelegate += CameraFadeRef.FadeOffOfBlack;
         PlayRestartGameLogicDelegate += AudioController.instance.PlayingLevelVO;
         PlayRestartGameLogicDelegate += GameIsFinishedSetFalse;
+        PlayRestartGameLogicDelegate += SettingsControllerRef.UnpausePlayerMovement;
     }
     /// <summary>
     /// Plays a delegate event to advance to the next room.
