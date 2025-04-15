@@ -7,6 +7,7 @@ public class PlayerInventory : MonoBehaviour
 {
     [Header("Player inventory")]
     public List<GameObject> PlayersInventoryList;
+    public LevelManager LevelManagerRef;
 
     /// <summary>
     /// Checks to see if the player has the key to open the door to the next level
@@ -44,6 +45,19 @@ public class PlayerInventory : MonoBehaviour
     /// </summary>
     public void ClearInventoryList()    //this needs to only take out main key object and leave money 
     {
-        PlayersInventoryList.Clear();
+        if(LevelManagerRef.LevelIndex == 4)
+        {
+            foreach(GameObject objects in PlayersInventoryList)
+            {
+                if (objects.name.Contains("Money"))
+                    Debug.Log("Do Nothing");
+                else
+                    PlayersInventoryList.Remove(objects);
+            }
+        }
+        else
+        {
+            PlayersInventoryList.Clear();
+        }
     }
 }
