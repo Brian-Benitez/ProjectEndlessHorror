@@ -100,7 +100,7 @@ public class MonsterBehavior : MonoBehaviour
         Debug.Log("what is the spawnpoint index " + _spawnPointIndex);
     }
 
-    public void PlayInstanceJumpScare()
+    public void PlayJumpScare()
     {
         GotJumpScared = true;
         CameraControllerRef.InstanceJumpScareCamOn();
@@ -111,41 +111,11 @@ public class MonsterBehavior : MonoBehaviour
             
             Delay(DurationOfWaitTime, () =>
             {
-                GameMain.instance.PlayLostViaTimeDelegate();
+                GameMain.instance.PlayerLostDelegate();
                 Debug.Log("THIS PLAYS");
             });
         });
 
-    }
-    /// <summary>
-    /// Starts the jumpscare then resets level and player
-    /// </summary>
-    public void TimedMonsterJumpScare()
-    {
-        GotJumpScared = true;
-        int randomWaitTime = Random.Range(1, 3);
-        Debug.Log("whats the wait time " + randomWaitTime);
-        CameraFadeRef.FadeToBlack();
-        CameraControllerRef.TurnOnTimedJumpScareCam();
-        MonsterAnimationsRef.StartJumpScareMonsterAnimation();
-        GotScaredBool();
-
-        //Randomly wait for jumpscare
-        Delay(randomWaitTime, () =>
-        {
-            CameraFadeRef.FadeOffOfBlack();
-            Debug.Log("jumpscare");
-
-            Delay(DurationOfJumpScare, () =>
-            {
-                CameraFadeRef.FadeToBlack();
-
-                Delay(DurationOfWaitTime, () =>
-                {
-                    GameMain.instance.PlayLostViaTimeDelegate();
-                });
-            });
-        });
     }
 
     public void RestartMonstersBehavior()

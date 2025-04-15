@@ -75,7 +75,7 @@ public class GameMain : MonoBehaviour
         PlayerLostToTimeDelegate += CameraFadeRef.FadeOffOfBlack;
 
         //Jumpscare stuff
-        PlayJumpScareDelegate += MonsterBehaviorRef.PlayInstanceJumpScare;
+        PlayJumpScareDelegate += MonsterBehaviorRef.PlayJumpScare;
         PlayJumpScareDelegate += AudioController.instance.JumpScareSoundPlay;
         PlayJumpScareDelegate += LevelManagerRef.RestartGameKeys;
         PlayJumpScareDelegate += SettingsControllerRef.PausePlayerMovement;
@@ -110,7 +110,7 @@ public class GameMain : MonoBehaviour
     /// <summary>
     /// Plays the deleagte event to play the losing event.
     /// </summary>
-    public void PlayLostViaTimeDelegate() => PlayerLostToTimeDelegate?.Invoke();
+    public void PlayerLostDelegate() => PlayerLostToTimeDelegate?.Invoke();
 
     /// <summary>
     /// Plays the delegate event to jump scare the player.

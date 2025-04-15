@@ -35,7 +35,7 @@ public class GameTimer : MonoBehaviour
                     Debug.Log("time is ran out.");
                     TimeRemaining = 0;
                     TimerIsRunning = false;
-                    MonsterBehaviorRef.TimedMonsterJumpScare();
+                    MonsterBehaviorRef.PlayJumpScare();
                 }
 
                 if (TimeRemaining <= 60f)
