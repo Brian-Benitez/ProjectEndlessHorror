@@ -20,6 +20,9 @@ public class MainDoor : MonoBehaviour, IInteractable
     public GameTimer GameTimerRef;
     public void Interact()
     {
+        AudioController.instance.StopPlayingAllVO();
+        AudioController.instance.StopPlayingFinalMintue();
+
         //if(SteamManager.Initialized)
         //{
             if (LevelManagerRef.LevelIndex == 4)//Ending scene

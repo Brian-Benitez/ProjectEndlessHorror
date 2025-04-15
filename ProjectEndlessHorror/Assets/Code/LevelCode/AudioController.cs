@@ -51,6 +51,7 @@ public class AudioController : MonoBehaviour
     public void PlayOnSettingClickSound() => PlayerSettingClickAudio.Play();
     //Player Audio^------------------------------------------------------------------------------------------------------------------------------------------------
   
+    //Ambieince---------------------------------------------------------------------------------------------------------------------------------------------------->
     public void OfficeAmbienceSound() => OfficeAmbienceAudio.Play();
     public void SecurityOfficeSound() => SecurityAmbienceAudio.Play();
 
@@ -68,11 +69,12 @@ public class AudioController : MonoBehaviour
         MonsterProximityAudio.Play();
     }
 
-    public void FinalMintueSound()
+    public void FinalMinuteSound()
     {
         FinalMinuteAudio.Play();
         Debug.Log("play final");
     }
+    public void StopPlayingFinalMintue() => FinalMinuteAudio.Stop();
     //VO's--------------------------------------------------------------------------------------------------------------------------------------------->
     public void PlayingLevelVO()
     {
@@ -80,6 +82,8 @@ public class AudioController : MonoBehaviour
         VoiceOvers[LevelManagerRef.LevelIndex].Play();
         Debug.Log("Playing voice over for this level");
     }
+
+    public void StopPlayingAllVO() => VoiceOvers.ForEach(y => y.Stop());    
 
     //Sound Effects-------------------------------------------------------------------------------------------------------------------------------------
     public void PlayUnlockKeyDoorSound() => UnlockDoorAudio.Play();

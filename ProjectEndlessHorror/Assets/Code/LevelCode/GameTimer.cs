@@ -14,7 +14,6 @@ public class GameTimer : MonoBehaviour
 
     [Header("Scripts")]
     public MonsterBehavior MonsterBehaviorRef;
-    public AudioController AudioControllerRef;
     public EasterEggController EasterEggControllerRef;
 
     private void Start() => TimerIsRunning = true;
@@ -55,7 +54,7 @@ public class GameTimer : MonoBehaviour
     private void PlaySound()
     {
         IsFinalMintue = true;
-        AudioControllerRef.FinalMintueSound();
+        AudioController.instance.FinalMinuteSound();
     }
     public void PauseTheGameTimer() => PauseTimer = true;
     private void UnPauseTheGameTimer() => PauseTimer = false;
