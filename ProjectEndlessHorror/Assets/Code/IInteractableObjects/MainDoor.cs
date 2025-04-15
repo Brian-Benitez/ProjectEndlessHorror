@@ -17,6 +17,7 @@ public class MainDoor : MonoBehaviour, IInteractable
     public EasterEggController EasterEggControllerRef;
     public StartChaseSequnce StartChaseSequnceRef;
     public MonsterBehavior MonsterBehaviorRef;
+    public GameTimer GameTimerRef;
     public void Interact()
     {
         //if(SteamManager.Initialized)
@@ -25,6 +26,7 @@ public class MainDoor : MonoBehaviour, IInteractable
             {
                 Debug.Log("end ofgame");
                 LevelManagerRef.TurnOffMonster();
+                GameTimerRef.PauseTheGameTimer();
                 CameraFadeRef.FadeToBlack();//Fade to black, have dialoge play, then kill the game.
                 GameMain.instance.GameIsFinishedSetTrue();
 

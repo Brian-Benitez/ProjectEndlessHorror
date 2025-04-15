@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameTimer : MonoBehaviour
 {
     [Header("Game timer info")]
     public float TimeRemaining = 5;
+    public float SetTimer = 250f;
     public bool TimerIsRunning = false;
+    public bool PauseTimer = false; 
     public bool IsFinalMintue = false;
 
     [Header("Scripts")]
@@ -18,7 +21,9 @@ public class GameTimer : MonoBehaviour
 
     private void Update()
     {
-        if(TimerIsRunning)
+        if(PauseTimer)
+            return;
+        else if(TimerIsRunning && !PauseTimer)
         {
             if (EasterEggControllerRef.IsEasterEggEnabled == true)
                 return;
@@ -42,13 +47,16 @@ public class GameTimer : MonoBehaviour
     }
     public void StartTimerBoolean()
     {
+        UnPauseTheGameTimer();
         TimerIsRunning = true;
         IsFinalMintue = false;
-        TimeRemaining = 300f;
+        TimeRemaining = SetTimer;
     }
     private void PlaySound()
     {
         IsFinalMintue = true;
         AudioControllerRef.FinalMintueSound();
     }
+    public void PauseTheGameTimer() => PauseTimer = true;
+    private void UnPauseTheGameTimer() => PauseTimer = false;
 }
