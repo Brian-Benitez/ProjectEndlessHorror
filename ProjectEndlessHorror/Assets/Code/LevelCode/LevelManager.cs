@@ -92,17 +92,18 @@ public class LevelManager : MonoBehaviour
             KeyInVendingMachine.gameObject.SetActive(true);
     }
 
-    public void RestartLevel()
+    public void RestartLevel()// why is there two of me? Restart Game key is the same???
     {
         if(GameTimerRef.TimerIsRunning == false || MonsterBehaviorRef.GotJumpScared)
         {
             Debug.Log("restart level");
             AllKeysInAllRooms.ToList().ForEach(key => { key.gameObject.SetActive(true); });//When u get jumpscared this enables all  keys!
+            FinalKeyObject.SetActive(false);
         }
     }
     public void TurnOffMonster() => Monster.gameObject.SetActive(false);
     public void TurnOnMonster() => Monster.gameObject.SetActive(true);
-    public void RestartGame()
+    public void RestartGameKeys()
     {
         AllKeysInAllRooms.ToList().ForEach(key => { key.gameObject.SetActive(true); });
         FinalKeyObject.SetActive(false);

@@ -42,7 +42,7 @@ public class PlayerInventory : MonoBehaviour
     /// <summary>
     /// Deletes all gameobjects in the Players inventory list
     /// </summary>
-    public void ClearInventoryList()
+    public void ClearInventoryList()    //this needs to only take out main key object and leave money 
     {
         PlayersInventoryList.Clear();
     }

@@ -76,14 +76,15 @@ public class GameMain : MonoBehaviour
         //Jumpscare stuff
         PlayJumpScareDelegate += MonsterBehaviorRef.PlayInstanceJumpScare;
         PlayJumpScareDelegate += AudioController.instance.JumpScareSoundPlay;
+        PlayJumpScareDelegate += LevelManagerRef.RestartGameKeys;
 
-        //Jumpscare scary event 
+        //Jumpscare Chasing scene scary event 
         PlayScaryEventDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
         PlayScaryEventDelegate += MonsterBehaviorRef.EnableObject;
         PlayScaryEventDelegate += MonsterBehaviorRef.StartMonsterMovement;
 
         //Restarting game logic
-        PlayRestartGameLogicDelegate += LevelManagerRef.RestartGame;
+        PlayRestartGameLogicDelegate += LevelManagerRef.RestartGameKeys;
         PlayRestartGameLogicDelegate += LevelManagerRef.ChangeLevelPrefab;//this will put the player in the first actual level not the "tutorial"
         PlayRestartGameLogicDelegate += LevelManagerRef.RepositionPlayer;
         PlayRestartGameLogicDelegate += StartChaseSequnceRef.TurnOffChaseBool;
