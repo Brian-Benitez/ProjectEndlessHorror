@@ -9,10 +9,12 @@ public class ResetStatsAchievements : MonoBehaviour
 
     private void Start()
     {
+        /*
         if(SteamManager.Initialized)
         {
             if(ResetStatsOnGameStart)
                 Steamworks.SteamUserStats.ResetAllStats(AlsoResetAchievements);
         }
+        */
     }
 }

@@ -1,5 +1,5 @@
 using DG.Tweening;
-using Steamworks;
+//using Steamworks;
 using interfaces;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,8 +19,8 @@ public class MainDoor : MonoBehaviour, IInteractable
     public MonsterBehavior MonsterBehaviorRef;
     public void Interact()
     {
-        if(SteamManager.Initialized)
-        {
+        //if(SteamManager.Initialized)
+        //{
             if (LevelManagerRef.LevelIndex == 4)//Ending scene
             {
                 Debug.Log("end ofgame");
@@ -28,35 +28,36 @@ public class MainDoor : MonoBehaviour, IInteractable
                 CameraFadeRef.FadeToBlack();//Fade to black, have dialoge play, then kill the game.
                 GameMain.instance.GameIsFinishedSetTrue();
 
-                if (EasterEggControllerRef.IsEasterEggEnabled)
-                {
-                    
-                    Steamworks.SteamUserStats.GetAchievement("Achievement_Two", out bool achivementCompleted);
-                    if (!achivementCompleted)
-                    {
-                        SteamUserStats.SetAchievement("Achievement_Two");
-                        SteamUserStats.StoreStats();
-                    }
-                    
-                    Debug.Log("play this audio");
-                }
-                else
-                    Debug.Log("play this audio then");
+            if (EasterEggControllerRef.IsEasterEggEnabled)
+            {
 
-                Delay(EndingDialogueTimer, () =>// it was 15 sec now its this <---
+                //Steamworks.SteamUserStats.GetAchievement("Achievement_Two", out bool achivementCompleted);
+                //if (!achivementCompleted)
+                //{
+                //SteamUserStats.SetAchievement("Achievement_Two");
+                //SteamUserStats.StoreStats();
+                //}
+
+                Debug.Log("play this audio");
+                AudioController.instance.PlayEasterEggEndingSound();
+            }
+            else
+                AudioController.instance.PlayNoEasterEggEndingSound();
+
+            Delay(EndingDialogueTimer, () =>// it was 15 sec now its this <---
                 {
                     if (!EasterEggControllerRef.IsEasterEggEnabled)
                     {
                         LevelManagerRef.TurnOnMonster();
                         GameMain.instance.PlayingRestartGameLogicDelegate();
-                        
+                        /*
                         Steamworks.SteamUserStats.GetAchievement("Achievement_One", out bool achivementCompleted);
                         if(!achivementCompleted)
                         {
                             SteamUserStats.SetAchievement("Achievement_One");
                             SteamUserStats.StoreStats();
                         }
-                        
+                        */
                     }
                     else
                     {
@@ -78,7 +79,7 @@ public class MainDoor : MonoBehaviour, IInteractable
             }
             else
                 AudioController.instance.PlayLockDoorSound();
-        }
+        //}
     }
 
     private static void Delay(float time, System.Action _callBack)
