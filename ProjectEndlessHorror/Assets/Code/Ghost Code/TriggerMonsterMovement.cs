@@ -13,5 +13,6 @@ public class TriggerMonsterMovement : MonoBehaviour
             MonsterBehaviorRef.StartMonsterMovement();
             Debug.Log("this plays");
         }
+        this.gameObject.SetActive(false);
     }
 }

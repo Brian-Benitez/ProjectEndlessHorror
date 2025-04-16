@@ -16,7 +16,7 @@ public class GameMain : MonoBehaviour
     JumpScareDelegate PlayJumpScareDelegate;
 
     delegate void LosingEvent();
-    LosingEvent PlayerLostToTimeDelegate;
+    LosingEvent PlayerLosesDelegate;
 
     delegate void ScaryEventDelegate();
     ScaryEventDelegate PlayScaryEventDelegate;
@@ -56,23 +56,25 @@ public class GameMain : MonoBehaviour
         AdvanceToRoomDelegate += GameTimerRef.StartTimerBoolean;
         AdvanceToRoomDelegate += MonsterBehaviorRef.RestartJumpScareBool;
         AdvanceToRoomDelegate += CameraFadeRef.FadeOffOfBlack;
+        AdvanceToRoomDelegate += MonsterBehaviorRef.RestartJumpScareTrigger;
         AdvanceToRoomDelegate += AudioController.instance.PlayCertainSoundsOnLvlThree;
         AdvanceToRoomDelegate += AudioController.instance.PlayingLevelVO;
 
         //Losing game stuff
-        PlayerLostToTimeDelegate += LevelManagerRef.RepositionPlayer;
-        PlayerLostToTimeDelegate += MonsterAnimationsRef.StopJumpScareAnimation;
-        PlayerLostToTimeDelegate += CameraControllerRef.TurnOffTimedJumpScareCam;
-        PlayerLostToTimeDelegate += CameraControllerRef.InstanceJumpScareCamOff;
-        PlayerLostToTimeDelegate += MonsterMovementRef.TurnOffMonstersNavMesh;
-        PlayerLostToTimeDelegate += LevelManagerRef.RestartLevel;
-        PlayerLostToTimeDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
-        PlayerLostToTimeDelegate += PlayerInventoryRef.ClearInventoryList;
-        PlayerLostToTimeDelegate += CameraControllerRef.TurnOnPlayerCam;
-        PlayerLostToTimeDelegate += AudioController.instance.RestartRoundSound;
-        PlayerLostToTimeDelegate += GameTimerRef.StartTimerBoolean;
-        PlayerLostToTimeDelegate += MonsterBehaviorRef.RestartJumpScareBool;
-        PlayerLostToTimeDelegate += CameraFadeRef.FadeOffOfBlack;
+        PlayerLosesDelegate += LevelManagerRef.RepositionPlayer;
+        PlayerLosesDelegate += MonsterAnimationsRef.StopJumpScareAnimation;
+        PlayerLosesDelegate += CameraControllerRef.TurnOffTimedJumpScareCam;
+        PlayerLosesDelegate += CameraControllerRef.InstanceJumpScareCamOff;
+        PlayerLosesDelegate += MonsterMovementRef.TurnOffMonstersNavMesh;
+        PlayerLosesDelegate += LevelManagerRef.RestartLevel;
+        PlayerLosesDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
+        PlayerLosesDelegate += PlayerInventoryRef.ClearInventoryList;
+        PlayerLosesDelegate += CameraControllerRef.TurnOnPlayerCam;
+        PlayerLosesDelegate += AudioController.instance.RestartRoundSound;
+        PlayerLosesDelegate += GameTimerRef.StartTimerBoolean;
+        PlayerLosesDelegate += MonsterBehaviorRef.RestartJumpScareBool;
+        PlayerLosesDelegate += MonsterBehaviorRef.RestartJumpScareTrigger;
+        PlayerLosesDelegate += CameraFadeRef.FadeOffOfBlack;
 
         //Jumpscare stuff
         PlayJumpScareDelegate += SettingsControllerRef.DisableCreditsMenu;
@@ -113,7 +115,7 @@ public class GameMain : MonoBehaviour
     /// <summary>
     /// Plays the deleagte event to play the losing event.
     /// </summary>
-    public void PlayerLostDelegate() => PlayerLostToTimeDelegate?.Invoke();
+    public void PlayerLostDelegate() => PlayerLosesDelegate?.Invoke();
 
     /// <summary>
     /// Plays the delegate event to jump scare the player.

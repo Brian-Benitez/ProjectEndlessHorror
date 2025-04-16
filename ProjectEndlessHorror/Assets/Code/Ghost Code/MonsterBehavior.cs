@@ -25,6 +25,8 @@ public class MonsterBehavior : MonoBehaviour
     [Header("List of end points")]
     public List <GameObject> EndPointsOfMovement;
 
+    public GameObject TriggerMonsterMovementRef;
+
     [Header("Scripts")]
     public LevelManager LevelManagerRef;
     public CameraController CameraControllerRef;
@@ -32,6 +34,7 @@ public class MonsterBehavior : MonoBehaviour
     public MonsterAnimations MonsterAnimationsRef;
     public StartChaseSequnce StartChaseSequnceRef;
     public AudioController AudioControllerRef;
+    
 
     public void AddAIndex()=> _spawnPointIndex++;
 
@@ -41,6 +44,11 @@ public class MonsterBehavior : MonoBehaviour
     IEnumerator MoveMonsterToPoint()//NOTE, IF U DO THIS BEFORE THE COROTINE FINISHES THE LEVEL, IT WILL DO IT AGAIN.
     {
         AudioControllerRef.MonsterEventSound();
+
+        if (LevelManagerRef.LevelIndex == 4)
+            MonsterTravelEndPoints = 1;
+        else
+            MonsterTravelEndPoints = 0;
 
         if (_spawnPointIndex == SpawnPointPerLevel.Count)
             yield break;
@@ -57,7 +65,6 @@ public class MonsterBehavior : MonoBehaviour
                 LevelManagerRef.ReopenSideDoor();
 
             DisableObject();
-            MonsterTravelEndPoints++;
         }
     }
 
@@ -117,6 +124,8 @@ public class MonsterBehavior : MonoBehaviour
         });
 
     }
+
+    public void RestartJumpScareTrigger() => TriggerMonsterMovementRef.gameObject.SetActive(true);
 
     public void RestartMonstersBehavior()
     {
