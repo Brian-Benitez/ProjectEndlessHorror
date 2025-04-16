@@ -75,6 +75,7 @@ public class GameMain : MonoBehaviour
         PlayerLosesDelegate += MonsterBehaviorRef.RestartJumpScareBool;
         PlayerLosesDelegate += MonsterBehaviorRef.RestartJumpScareTrigger;
         PlayerLosesDelegate += CameraFadeRef.FadeOffOfBlack;
+        PlayerLosesDelegate += SettingsControllerRef.UnpausePlayerMovement;
 
         //Jumpscare stuff
         PlayJumpScareDelegate += SettingsControllerRef.DisableCreditsMenu;
