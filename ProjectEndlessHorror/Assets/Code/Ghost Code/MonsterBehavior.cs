@@ -107,11 +107,12 @@ public class MonsterBehavior : MonoBehaviour
         Debug.Log("what is the spawnpoint index " + _spawnPointIndex);
     }
 
-    public void PlayJumpScare()
+    public void PlayJumpScare()//i should rename this as well....
     {
         GotJumpScared = true;
-        CameraControllerRef.InstanceJumpScareCamOn();
-        MonsterAnimationsRef.StartJumpScareMonsterAnimation();
+        CameraControllerRef.InstanceJumpScareCamOn();//this too
+        MonsterAnimationsRef.StartJumpScareMonsterAnimation();//I should subscribe this to gamemain.....
+        
         Delay(DurationOfJumpScare, () =>
         {
             CameraFadeRef.FadeToBlack();
