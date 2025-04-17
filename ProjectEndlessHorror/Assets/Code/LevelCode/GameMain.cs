@@ -69,9 +69,11 @@ public class GameMain : MonoBehaviour
         PlayerLosesDelegate += LevelManagerRef.RestartLevel;
         PlayerLosesDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
         PlayerLosesDelegate += PlayerInventoryRef.ClearInventoryList;
+        PlayerLosesDelegate += PlayerInventoryRef.ClearInventoryWhenJumpscared;
         PlayerLosesDelegate += CameraControllerRef.TurnOnPlayerCam;
         PlayerLosesDelegate += AudioController.instance.RestartRoundSound;
         PlayerLosesDelegate += GameTimerRef.StartTimerBoolean;
+        PlayerLosesDelegate += StartChaseSequnceRef.TurnOffChaseBool;
         PlayerLosesDelegate += MonsterBehaviorRef.RestartJumpScareBool;
         PlayerLosesDelegate += MonsterBehaviorRef.RestartJumpScareTrigger;
         PlayerLosesDelegate += CameraFadeRef.FadeOffOfBlack;

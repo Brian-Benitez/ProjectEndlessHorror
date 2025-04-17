@@ -43,21 +43,22 @@ public class PlayerInventory : MonoBehaviour
     /// <summary>
     /// Deletes all gameobjects in the Players inventory list
     /// </summary>
-    public void ClearInventoryList()    //this needs to only take out main key object and leave money 
+    public void ClearInventoryList() => PlayersInventoryList.Clear(); //this needs to only take out main key object and leave money 
+
+    /// <summary>
+    /// This function clears speficly when its lvl 4 so they dont have to do the jump scare thing again.
+    /// </summary>
+    public void ClearInventoryWhenJumpscared()
     {
-        if(LevelManagerRef.LevelIndex == 4)
+        if (LevelManagerRef.LevelIndex == 4)
         {
-            foreach(GameObject objects in PlayersInventoryList)
+            foreach (GameObject objects in PlayersInventoryList)
             {
                 if (objects.name.Contains("Money"))
                     Debug.Log("Do Nothing");
                 else
                     PlayersInventoryList.Remove(objects);
             }
-        }
-        else
-        {
-            PlayersInventoryList.Clear();
         }
     }
 }
