@@ -46,7 +46,9 @@ public class MonsterBehavior : MonoBehaviour
         AudioControllerRef.MonsterEventSound();
 
         if (LevelManagerRef.LevelIndex == 4)
+        {
             MonsterTravelEndPoints = 1;
+        }
         else
             MonsterTravelEndPoints = 0;
 
@@ -85,6 +87,7 @@ public class MonsterBehavior : MonoBehaviour
         EnableObject();
         AudioControllerRef.MonsterProximitySound();
         MonsterAnimationsRef.SetAnimationForMonster();
+        UnRotateModel();
 
         if(LevelManagerRef.LevelIndex == 4)
         {

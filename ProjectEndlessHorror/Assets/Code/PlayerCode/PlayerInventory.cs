@@ -50,15 +50,12 @@ public class PlayerInventory : MonoBehaviour
     /// </summary>
     public void ClearInventoryWhenJumpscared()
     {
-        if (LevelManagerRef.LevelIndex == 4)
+        foreach (GameObject objects in PlayersInventoryList)
         {
-            foreach (GameObject objects in PlayersInventoryList)
-            {
-                if (objects.name.Contains("Money"))
-                    Debug.Log("Do Nothing");
-                else
-                    PlayersInventoryList.Remove(objects);
-            }
+            if (objects.name.Contains("Money") && LevelManagerRef.LevelIndex == 4)
+                Debug.Log("Do Nothing");
+            else
+                PlayersInventoryList.Remove(objects);
         }
     }
 }

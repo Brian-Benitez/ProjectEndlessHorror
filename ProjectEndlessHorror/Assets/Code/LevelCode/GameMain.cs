@@ -62,6 +62,7 @@ public class GameMain : MonoBehaviour
 
         //Losing game stuff
         PlayerLosesDelegate += LevelManagerRef.RepositionPlayer;
+        PlayerLosesDelegate += StartChaseSequnceRef.TurnOffChaseBool;
         PlayerLosesDelegate += MonsterAnimationsRef.StopJumpScareAnimation;
         PlayerLosesDelegate += CameraControllerRef.TurnOffTimedJumpScareCam;
         PlayerLosesDelegate += CameraControllerRef.InstanceJumpScareCamOff;
@@ -69,11 +70,9 @@ public class GameMain : MonoBehaviour
         PlayerLosesDelegate += LevelManagerRef.RestartLevel;
         PlayerLosesDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
         PlayerLosesDelegate += PlayerInventoryRef.ClearInventoryList;
-        PlayerLosesDelegate += PlayerInventoryRef.ClearInventoryWhenJumpscared;
         PlayerLosesDelegate += CameraControllerRef.TurnOnPlayerCam;
         PlayerLosesDelegate += AudioController.instance.RestartRoundSound;
         PlayerLosesDelegate += GameTimerRef.StartTimerBoolean;
-        PlayerLosesDelegate += StartChaseSequnceRef.TurnOffChaseBool;
         PlayerLosesDelegate += MonsterBehaviorRef.RestartJumpScareBool;
         PlayerLosesDelegate += MonsterBehaviorRef.RestartJumpScareTrigger;
         PlayerLosesDelegate += CameraFadeRef.FadeOffOfBlack;
@@ -83,6 +82,7 @@ public class GameMain : MonoBehaviour
         PlayJumpScareDelegate += SettingsControllerRef.DisableCreditsMenu;
         PlayJumpScareDelegate += SettingsControllerRef.DisableSettingsTexts;
         PlayJumpScareDelegate += SettingsControllerRef.PausePlayerMovement;
+        PlayJumpScareDelegate += StartChaseSequnceRef.TurnOffChaseBool;
         PlayJumpScareDelegate += MonsterBehaviorRef.PlayJumpScare;
         PlayJumpScareDelegate += AudioController.instance.JumpScareSoundPlay;
         PlayJumpScareDelegate += LevelManagerRef.RestartGameKeys;
