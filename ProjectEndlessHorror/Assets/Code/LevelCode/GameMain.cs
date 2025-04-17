@@ -67,7 +67,6 @@ public class GameMain : MonoBehaviour
         PlayerLosesDelegate += CameraControllerRef.TurnOffTimedJumpScareCam;
         PlayerLosesDelegate += CameraControllerRef.InstanceJumpScareCamOff;
         PlayerLosesDelegate += MonsterMovementRef.TurnOffMonstersNavMesh;
-        PlayerLosesDelegate += LevelManagerRef.RestartLevel;
         PlayerLosesDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
         PlayerLosesDelegate += PlayerInventoryRef.ClearInventoryList;
         PlayerLosesDelegate += CameraControllerRef.TurnOnPlayerCam;
@@ -93,9 +92,10 @@ public class GameMain : MonoBehaviour
         PlayScaryEventDelegate += MonsterBehaviorRef.EnableObject;
         PlayScaryEventDelegate += MonsterBehaviorRef.StartMonsterMovement;
 
-        //Restarting game logic
+        //Restarting the whole game logic
         PlayRestartGameLogicDelegate += LevelManagerRef.RestartGameKeys;
-        PlayRestartGameLogicDelegate += LevelManagerRef.ChangeLevelPrefab;//this will put the player in the first actual level not the "tutorial"
+        PlayRestartGameLogicDelegate += LevelManagerRef.ChangeLevelPrefab;
+        PlayRestartGameLogicDelegate += LevelManagerRef.RestartLevelGameObjects;
         PlayRestartGameLogicDelegate += LevelManagerRef.RepositionPlayer;
         PlayRestartGameLogicDelegate += StartChaseSequnceRef.TurnOffChaseBool;
         PlayRestartGameLogicDelegate += MonsterBehaviorRef.RestartMonstersBehavior;

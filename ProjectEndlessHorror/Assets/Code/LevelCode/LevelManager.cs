@@ -21,6 +21,9 @@ public class LevelManager : MonoBehaviour
     public List<GameObject> AllKeysInAllRooms;
     public GameObject FinalKeyObject;
 
+    public List<GameObject> ToiletStalls;
+    public GameObject JumpScareTriggerBox;
+
     [Header("Indexs")]
     public int LevelIndex = 0;
     public int _levelCountMax = 4;//this is counting startting from 0
@@ -92,14 +95,12 @@ public class LevelManager : MonoBehaviour
             KeyInVendingMachine.gameObject.SetActive(true);
     }
 
-    public void RestartLevel()// why is there two of me? Restart Game key is the same???
-    {
-        if(GameTimerRef.TimerIsRunning == false || MonsterBehaviorRef.GotJumpScared)
-        {
-            Debug.Log("restart level");
-            AllKeysInAllRooms.ToList().ForEach(key => { key.gameObject.SetActive(true); });//When u get jumpscared this enables all  keys!
-            FinalKeyObject.SetActive(false);
-        }
+    public void RestartLevelGameObjects()
+    { 
+        LevelThreeDoorPrefab.transform.Rotate(new Vector3(0,0,0));
+        SecuritySecondDoorPrefab.transform.Rotate(new Vector3(0, 0, 0));
+        ToiletStalls.ForEach(x => x.gameObject.transform.Rotate(new Vector3(0, 0, 0)));
+        JumpScareTriggerBox.gameObject.SetActive(true);
     }
     public void TurnOffMonster() => Monster.gameObject.SetActive(false);
     public void TurnOnMonster() => Monster.gameObject.SetActive(true);

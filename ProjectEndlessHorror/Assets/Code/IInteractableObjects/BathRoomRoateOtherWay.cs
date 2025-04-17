@@ -9,6 +9,6 @@ public class BathRoomRoateOtherWay : MonoBehaviour, IInteractable
     public void Interact()
     {
         transform.DORotate(new Vector3(0, -90, 0), 3f);
-        Debug.Log("ROATATE BITCH");
+        AudioController.instance.PlayStallDoorOpenSound();
     }
 }
