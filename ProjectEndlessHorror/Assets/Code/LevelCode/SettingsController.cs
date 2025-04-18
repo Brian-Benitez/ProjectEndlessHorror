@@ -24,6 +24,10 @@ public class SettingsController : MonoBehaviour
     public GameObject SettingsMenuPrefab;
     public GameObject CreditMenuPrefab;
 
+    [Header("More UI")]
+    public List<GameObject> KeyPadPrefab;
+    public List<GameObject> LorePagesPrefab;
+
     [Header("Crosshair")]
     public GameObject PlayersCrossHair;
 
@@ -130,10 +134,14 @@ public class SettingsController : MonoBehaviour
     public void PausePlayerInput() => IsGamePaused = true;
     public void UnPausePlayersInput() => IsGamePaused = false;
 
-    ////Private functions below!++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     public void DisableSettingsTexts() => SettingsMenuPrefab.SetActive(false);
     private void EnableSettingsTexts() => SettingsMenuPrefab.SetActive(true);
     public void DisableCreditsMenu() => CreditMenuPrefab.SetActive(false);
     private void EnableCreditsMenu() => CreditMenuPrefab.SetActive(true);
+
+    public void DisableKeyPadMenu() => KeyPadPrefab.ForEach(x => x.SetActive(false));
+    public void DisableLorePagesText() => LorePagesPrefab.ForEach(x => x.SetActive(false));
+
 
 }

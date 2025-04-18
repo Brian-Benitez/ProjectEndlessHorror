@@ -80,6 +80,8 @@ public class GameMain : MonoBehaviour
         //Jumpscare stuff
         PlayJumpScareDelegate += SettingsControllerRef.DisableCreditsMenu;
         PlayJumpScareDelegate += SettingsControllerRef.DisableSettingsTexts;
+        PlayJumpScareDelegate += SettingsControllerRef.DisableKeyPadMenu;
+        PlayJumpScareDelegate += SettingsControllerRef.DisableLorePagesText;
         PlayJumpScareDelegate += SettingsControllerRef.PausePlayerMovement;
         PlayJumpScareDelegate += StartChaseSequnceRef.TurnOffChaseBool;
         PlayJumpScareDelegate += MonsterBehaviorRef.PlayJumpScare;
