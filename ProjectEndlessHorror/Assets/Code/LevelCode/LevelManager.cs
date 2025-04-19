@@ -24,6 +24,9 @@ public class LevelManager : MonoBehaviour
     public List<GameObject> ToiletStalls;
     public GameObject JumpScareTriggerBox;
 
+    public List<BathRoomDoor> BathRoomDoors;
+    public List<BathRoomRoateOtherWay> OtherBathRoomDoors;
+
     [Header("Indexs")]
     public int LevelIndex = 0;
     public int _levelCountMax = 4;//this is counting startting from 0
@@ -93,6 +96,12 @@ public class LevelManager : MonoBehaviour
     {
         if(LevelIndex == 4)
             KeyInVendingMachine.gameObject.SetActive(true);
+    }
+
+    public void TurnAllBathroomDoorBoolsOff()
+    {
+        BathRoomDoors.ForEach(door => door.DoorOpen = false);
+        OtherBathRoomDoors.ForEach(otherdoor => otherdoor.DoorOpen = false);    
     }
 
     public void RestartLevelGameObjects()

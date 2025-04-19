@@ -6,9 +6,16 @@ using DG.Tweening;
 
 public class BathRoomDoor : MonoBehaviour, IInteractable
 {
+    public bool DoorOpen = false;
     public void Interact()
     {
-        transform.DORotate(new Vector3(0, 100, 0), 3f);
-        AudioController.instance.PlayStallDoorOpenSound();
+        if (!DoorOpen)
+        {
+            transform.DORotate(new Vector3(0, 100, 0), 3f);
+            AudioController.instance.PlayStallDoorOpenSound();
+            DoorOpen = true;
+        }
+        else
+            return;
     }
 }

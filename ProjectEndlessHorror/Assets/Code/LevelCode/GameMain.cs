@@ -103,6 +103,7 @@ public class GameMain : MonoBehaviour
         PlayRestartGameLogicDelegate += MonsterBehaviorRef.RestartMonstersBehavior;
         PlayRestartGameLogicDelegate += MonsterMovementRef.TurnOffMonstersNavMesh;
         PlayRestartGameLogicDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
+        PlayRestartGameLogicDelegate += LevelManagerRef.TurnAllBathroomDoorBoolsOff;
         PlayRestartGameLogicDelegate += MonsterBehaviorRef.RestartJumpScareBool;
         PlayRestartGameLogicDelegate += PlayerInventoryRef.ClearInventoryList;
         PlayRestartGameLogicDelegate += GameTimerRef.StartTimerBoolean;
