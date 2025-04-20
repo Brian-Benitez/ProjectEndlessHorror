@@ -48,6 +48,7 @@ public class MonsterBehavior : MonoBehaviour
         if (LevelManagerRef.LevelIndex == 4)
         {
             MonsterTravelEndPoints = 1;
+           
         }
         else
             MonsterTravelEndPoints = 0;
@@ -72,6 +73,11 @@ public class MonsterBehavior : MonoBehaviour
 
     public void StartMonsterMovement()
     {
+        if ( LevelManagerRef.LevelIndex == 4)
+        {
+            UnRotateModel();
+            RotateModel();
+        }
         Delay(WaitSpeedForMonster, () =>
         {
             StartCoroutine(MoveMonsterToPoint());
@@ -87,7 +93,6 @@ public class MonsterBehavior : MonoBehaviour
         EnableObject();
         AudioControllerRef.MonsterProximitySound();
         MonsterAnimationsRef.SetAnimationForMonster();
-        UnRotateModel();
 
         if(LevelManagerRef.LevelIndex == 4)
         {
@@ -143,7 +148,7 @@ public class MonsterBehavior : MonoBehaviour
         if (LevelManagerRef.LevelIndex == 4)
         {
             this.transform.Rotate(0, 90, 0);
-            Debug.Log("how much does it get caled");
+            Debug.Log("roate");
         }
     }
 
@@ -152,6 +157,7 @@ public class MonsterBehavior : MonoBehaviour
         if (LevelManagerRef.LevelIndex == 4)
         {
             this.transform.Rotate(0, 0, 0);
+            Debug.Log("rotote normal");
         }
     }
 

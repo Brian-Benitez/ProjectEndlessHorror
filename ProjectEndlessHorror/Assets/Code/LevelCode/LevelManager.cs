@@ -72,7 +72,7 @@ public class LevelManager : MonoBehaviour
             
         if (LevelIndex == 4)
         {
-            MonsterBehaviorRef.RotateModel();
+//change here
             GlassDoorSecondDoorPrefabTwo.transform.Rotate(new Vector3(0, 91, 0));
             Debug.Log("close door");
         }
