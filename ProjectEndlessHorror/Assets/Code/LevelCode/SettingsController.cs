@@ -107,6 +107,10 @@ public class SettingsController : MonoBehaviour
         EnableSettingsTexts();
     }
     /// <summary>
+    /// Closes the game.
+    /// </summary>
+    public void QuitGame() => Application.Quit();
+    /// <summary>
     /// Turns crosshair on or off.
     /// </summary>
     public void EnableCross()
