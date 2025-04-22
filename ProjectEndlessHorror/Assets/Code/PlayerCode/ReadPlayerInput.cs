@@ -57,6 +57,7 @@ public class ReadPlayerInput : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             AudioControllerRef.PlayUnlockKeyDoorSound();
+            LevelManagerRef.LevelTwoKeyPadBoxColldierTurnOff();
         }
         else
         {
@@ -77,6 +78,7 @@ public class ReadPlayerInput : MonoBehaviour
             Cursor.visible = false;
             DisableLevelThreeInputText();
             AudioControllerRef.PlayUnlockKeyDoorSound();
+            LevelManagerRef.LevelThreeKeyPadBoxColldierTurnOff();
         }
         else
         {

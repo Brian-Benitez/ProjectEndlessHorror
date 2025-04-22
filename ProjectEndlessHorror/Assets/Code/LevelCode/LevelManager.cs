@@ -26,6 +26,9 @@ public class LevelManager : MonoBehaviour
     public List<BathRoomDoor> BathRoomDoors;
     public List<BathRoomRoateOtherWay> OtherBathRoomDoors;
 
+    public GameObject LevelTwoKeyPadPrefab;
+    public GameObject LevelThreeKeyPadPrefab;
+
     [Header("Indexs")]
     public int LevelIndex = 0;
     public int _levelCountMax = 4;//this is counting startting from 0
@@ -105,6 +108,8 @@ public class LevelManager : MonoBehaviour
 
     public void RestartLevelGameObjects()
     {
+        LevelTwoKeyPadPrefab.GetComponent<BoxCollider>().enabled = true;
+        LevelThreeKeyPadPrefab.GetComponent <BoxCollider>().enabled = true;
         LevelPrefabs.ForEach(prefab => prefab.gameObject.SetActive(true));
         LevelThreeDoorPrefab.transform.DORotate(new Vector3(0, 0, 0), 0.2f);
         SecuritySecondDoorPrefab.transform.DORotate(new Vector3(0, 0, 0), 0.2f);
@@ -115,6 +120,9 @@ public class LevelManager : MonoBehaviour
     }
     public void TurnOffMonster() => Monster.gameObject.SetActive(false);
     public void TurnOnMonster() => Monster.gameObject.SetActive(true);
+
+    public void LevelTwoKeyPadBoxColldierTurnOff() =>LevelTwoKeyPadPrefab.GetComponent<BoxCollider>().enabled = false;
+    public void LevelThreeKeyPadBoxColldierTurnOff() => LevelThreeKeyPadPrefab.GetComponent<BoxCollider>().enabled = false;
     public void RestartGameKeys()
     {
         AllKeysInAllRooms.ToList().ForEach(key => { key.gameObject.SetActive(true); });

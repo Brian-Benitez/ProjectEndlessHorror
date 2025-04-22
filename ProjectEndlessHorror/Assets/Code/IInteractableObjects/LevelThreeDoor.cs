@@ -9,5 +9,6 @@ public class LevelThreeDoor : MonoBehaviour, IInteractable
    public void Interact()
     {
         ReadPlayerInputRef.EnableLevelThreeInputText();
+       
     }
 }
