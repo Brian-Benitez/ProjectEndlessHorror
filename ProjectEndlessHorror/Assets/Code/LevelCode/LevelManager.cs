@@ -21,7 +21,6 @@ public class LevelManager : MonoBehaviour
     public List<GameObject> AllKeysInAllRooms;
     public GameObject FinalKeyObject;
 
-    public List<GameObject> ToiletStalls;
     public GameObject JumpScareTriggerBox;
 
     public List<BathRoomDoor> BathRoomDoors;
@@ -105,11 +104,14 @@ public class LevelManager : MonoBehaviour
     }
 
     public void RestartLevelGameObjects()
-    { 
-        LevelThreeDoorPrefab.transform.Rotate(new Vector3(0,0,0));
-        SecuritySecondDoorPrefab.transform.Rotate(new Vector3(0, 0, 0));
-        ToiletStalls.ForEach(x => x.gameObject.transform.Rotate(new Vector3(0, 0, 0)));
+    {
+        LevelPrefabs.ForEach(prefab => prefab.gameObject.SetActive(true));
+        LevelThreeDoorPrefab.transform.DORotate(new Vector3(0, 0, 0), 0.2f);
+        SecuritySecondDoorPrefab.transform.DORotate(new Vector3(0, 0, 0), 0.2f);
+        BathRoomDoors.ForEach(x => x.transform.DORotate(new Vector3(0, 180, 0), 0.2f));
+        OtherBathRoomDoors.ForEach(y => y.transform.DORotate(new Vector3(0, 0, 0), 0.2f));
         JumpScareTriggerBox.gameObject.SetActive(true);
+        LevelPrefabs.ForEach(prefab => prefab.gameObject.SetActive(false));
     }
     public void TurnOffMonster() => Monster.gameObject.SetActive(false);
     public void TurnOnMonster() => Monster.gameObject.SetActive(true);

@@ -96,8 +96,8 @@ public class GameMain : MonoBehaviour
 
         //Restarting the whole game logic
         PlayRestartGameLogicDelegate += LevelManagerRef.RestartGameKeys;
-        PlayRestartGameLogicDelegate += LevelManagerRef.ChangeLevelPrefab;
         PlayRestartGameLogicDelegate += LevelManagerRef.RestartLevelGameObjects;
+        PlayRestartGameLogicDelegate += LevelManagerRef.ChangeLevelPrefab;
         PlayRestartGameLogicDelegate += LevelManagerRef.RepositionPlayer;
         PlayRestartGameLogicDelegate += StartChaseSequnceRef.TurnOffChaseBool;
         PlayRestartGameLogicDelegate += MonsterBehaviorRef.RestartMonstersBehavior;
