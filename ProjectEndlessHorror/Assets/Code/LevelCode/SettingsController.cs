@@ -50,6 +50,7 @@ public class SettingsController : MonoBehaviour
     [Header("Scripts")]
     public PlayerCam PlayerCamRef;
     public AudioController AudioControllerRef;
+    public MonsterBehavior MonsterBehaviorRef;
     private void Start()
     {
         cinemachineVolumeSettingsRef.m_Profile.TryGet<ColorAdjustments>(out ColorAdjustmentsRef);
@@ -58,18 +59,23 @@ public class SettingsController : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Tab) && !IsGamePaused)//Dont use esc it thows it off when in edtior:(
+        if(MonsterBehaviorRef.GotJumpScared)
+            return;
+        else
         {
-            PausePlayerMovement();
-            SettingsPrefab.SetActive(true);
-            DisableCreditsMenuPrefab();
-            AudioControllerRef.PlayOnSettingClickSound();
-        }
-        else if(Input.GetKeyUp(KeyCode.Tab) && IsGamePaused)
-        {
-            UnpausePlayerMovement();
-            SettingsPrefab.SetActive(false);
-            AudioControllerRef.PlayOnSettingClickSound();
+            if (Input.GetKeyUp(KeyCode.Tab) && !IsGamePaused)//Dont use esc it thows it off when in edtior:(
+            {
+                PausePlayerMovement();
+                SettingsPrefab.SetActive(true);
+                DisableCreditsMenuPrefab();
+                AudioControllerRef.PlayOnSettingClickSound();
+            }
+            else if (Input.GetKeyUp(KeyCode.Tab) && IsGamePaused)
+            {
+                UnpausePlayerMovement();
+                SettingsPrefab.SetActive(false);
+                AudioControllerRef.PlayOnSettingClickSound();
+            }
         }
     }
     /// <summary>

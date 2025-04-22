@@ -115,7 +115,7 @@ public class MonsterBehavior : MonoBehaviour
         Debug.Log("what is the spawnpoint index " + _spawnPointIndex);
     }
 
-    public void PlayJumpScare()//i should rename this as well....
+    public void PlayJumpScare()
     {
         GotJumpScared = true;
         CameraControllerRef.InstanceJumpScareCamOn();//this too
