@@ -28,8 +28,8 @@ public class EasterEggController : MonoBehaviour
     public void EasterEggState()
     {
         Debug.Log("play easter egg audio");
-        EasterEggObject.GetComponent<BoxCollider>().enabled = false;    
-        //AudioControllerRef.PlayEasterEggSound();
+        EasterEggObject.GetComponent<BoxCollider>().enabled = false;
+        AudioController.instance.PlayUnlockKeyDoorSound();
         SettingsControllerRef.PausePlayerMovement();
         EnableEasterEggBool();
         PlayerInputRef.DisableEasterEggInputText();

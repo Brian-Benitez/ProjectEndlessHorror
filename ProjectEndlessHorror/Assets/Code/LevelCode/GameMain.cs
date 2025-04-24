@@ -108,6 +108,7 @@ public class GameMain : MonoBehaviour
         PlayRestartGameLogicDelegate += PlayerInventoryRef.ClearInventoryList;
         PlayRestartGameLogicDelegate += GameTimerRef.StartTimerBoolean;
         PlayRestartGameLogicDelegate += LorePagesRef.SwitchPlaces;
+        PlayRestartGameLogicDelegate += AudioController.instance.SwapTracks;
         PlayRestartGameLogicDelegate += CameraFadeRef.FadeOffOfBlack;
         PlayRestartGameLogicDelegate += AudioController.instance.PlayingLevelVO;
         PlayRestartGameLogicDelegate += GameIsFinishedSetFalse;

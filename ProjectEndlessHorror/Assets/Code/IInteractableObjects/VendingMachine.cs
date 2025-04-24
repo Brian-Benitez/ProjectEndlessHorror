@@ -19,6 +19,7 @@ public class VendingMachine : MonoBehaviour, IInteractable
         if (PlayerInventoryRef.DoesPlayerHaveADollar() && LevelManagerRef.LevelIndex == 4)
         {
             MainKey.gameObject.SetActive(true);
+            AudioController.instance.PlayKeyFallingOnFloorSound();
             VendingMachineKey.gameObject.SetActive(false);   
             Debug.Log("key is gone!");
         }

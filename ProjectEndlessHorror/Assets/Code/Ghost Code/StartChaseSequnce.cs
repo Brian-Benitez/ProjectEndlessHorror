@@ -18,6 +18,7 @@ public class StartChaseSequnce : MonoBehaviour
             MonsterBehaviorRef.EnableObject();
             MonsterBehaviorRef.SpawnMonsterInArea();
             MonsterMovementRef.TurnOnMonstersNavMesh();
+            AudioController.instance.SwapToScaryChaseTrack();
         }
     }
 

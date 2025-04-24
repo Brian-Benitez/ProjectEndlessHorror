@@ -22,6 +22,7 @@ public class MainDoor : MonoBehaviour, IInteractable
     {
         AudioController.instance.StopPlayingAllVO();
         AudioController.instance.StopPlayingFinalMintue();
+        AudioController.instance.StopAllAmbienceAudio();
 
         //if(SteamManager.Initialized)
         //{

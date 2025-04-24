@@ -20,6 +20,7 @@ public class AudioController : MonoBehaviour
 
     [Header("Monster Audio")]
     public AudioSource MonsterProximityAudio;
+    public AudioSource MonsterScaryChaseAudio;//^using the same audio as the one above but the sound is heard everywhere.
     public AudioSource MonsterEventAudio;
     public AudioSource MonsterKillAudio;
 
@@ -29,6 +30,7 @@ public class AudioController : MonoBehaviour
     public AudioSource HallwayAmbienceAudio;
     public AudioSource GrabKeyAudio;
     public AudioSource GrabCashAudio;
+    public AudioSource KeyFallingAudio;
     public AudioSource LockedDoorAudio;
     public AudioSource UnlockDoorAudio;
     public AudioSource PressKeyPadAudio;
@@ -41,6 +43,7 @@ public class AudioController : MonoBehaviour
     
     [Header("Scripts")]
     public LevelManager LevelManagerRef;
+    public StartChaseSequnce StartChaseSequnceRef;
 
     private void Awake()
     {
@@ -69,6 +72,13 @@ public class AudioController : MonoBehaviour
         MonsterProximityAudio.Play();
     }
 
+    private void PlayMonsterScarySoundChase()
+    {
+        MonsterScaryChaseAudio.Play();
+    }
+
+    public void StopPlayingMonsterScarySound() => MonsterScaryChaseAudio.Stop();
+
     public void FinalMinuteSound()
     {
         FinalMinuteAudio.Play();
@@ -94,6 +104,7 @@ public class AudioController : MonoBehaviour
     public void PlayGrabKeysSound() => GrabKeyAudio.Play();
     public void PlayGrabCashSound() => GrabCashAudio.Play();    
 
+    public void PlayKeyFallingOnFloorSound() => KeyFallingAudio.Play();
     public void PlayStallDoorOpenSound() => StallOpenAudio.Play();
     private void PlayBangingStallDoorSound() => StallBangingAudio.Play();
     private void StopBangingStallDoorSound() => StallBangingAudio.Stop();
@@ -147,14 +158,43 @@ public class AudioController : MonoBehaviour
         }
             
     }
-
+    /// <summary>
+    /// This changes tracks from the main room to the hallway music
+    /// </summary>
     public void SwapTracks()
     {
         StopAllCoroutines();
         StartCoroutine(FadeTrack());
     }
+    /// <summary>
+    /// This turns off hallway music and plays scary chase music
+    /// </summary>
+    public void SwapToScaryChaseTrack()
+    {
+        StopAllCoroutines();
+        StartCoroutine(PlayFinalScaryTrack());
+    }
+
+    private IEnumerator PlayFinalScaryTrack()
+    {
+        float timeToFade = 1.25f;
+        float timeElasped = 0;
+        if (StartChaseSequnceRef.IsChasingPlayer)
+        {
+            PlayMonsterScarySoundChase();
+            while (timeElasped < timeToFade)
+            {
+                MonsterScaryChaseAudio.volume = Mathf.Lerp(0, 1, timeElasped / timeToFade);
+                HallwayAmbienceAudio.volume = Mathf.Lerp(1, 0, timeElasped / timeToFade);
+                timeElasped += Time.deltaTime;
+                yield return null;
+            }
+            HallwayAmbienceAudio.Stop();
+        }
+    }
     private IEnumerator FadeTrack()
     {
+        MonsterScaryChaseAudio.Stop();
         float timeToFade = 1.25f;
         float timeElasped = 0;
         if(isPlayingMainAmbience)
@@ -182,5 +222,14 @@ public class AudioController : MonoBehaviour
             OfficeAmbienceAudio.Stop();
         }
 
+    }
+    /// <summary>
+    /// Stops all ambience audio
+    /// </summary>
+    public void StopAllAmbienceAudio()
+    {
+        OfficeAmbienceAudio.Stop();
+        HallwayAmbienceAudio.Stop();
+        MonsterScaryChaseAudio.Stop();
     }
 }
