@@ -21,6 +21,7 @@ public class VendingMachine : MonoBehaviour, IInteractable
             MainKey.gameObject.SetActive(true);
             AudioController.instance.PlayKeyFallingOnFloorSound();
             VendingMachineKey.gameObject.SetActive(false);   
+            PlayerInventoryRef.RemoveDollarWhenObtainKey();
             Debug.Log("key is gone!");
         }
     }

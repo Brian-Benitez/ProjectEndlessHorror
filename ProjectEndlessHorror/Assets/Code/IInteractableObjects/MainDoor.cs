@@ -31,6 +31,7 @@ public class MainDoor : MonoBehaviour, IInteractable
                 Debug.Log("end ofgame");
                 LevelManagerRef.TurnOffMonster();
                 GameTimerRef.PauseTheGameTimer();
+                SettingsControllerRef.PausePlayerInput();
                 CameraFadeRef.FadeToBlack();//Fade to black, have dialoge play, then kill the game.
                 GameMain.instance.GameIsFinishedSetTrue();
 
@@ -52,6 +53,7 @@ public class MainDoor : MonoBehaviour, IInteractable
 
             Delay(EndingDialogueTimer, () =>// it was 15 sec now its this <---
                 {
+                    SettingsControllerRef.UnPausePlayersInput();
                     if (!EasterEggControllerRef.IsEasterEggEnabled)
                     {
                         LevelManagerRef.TurnOnMonster();

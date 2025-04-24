@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
     public GameObject GlassDoorSecondDoorPrefabTwo;
     public GameObject LevelThreeDoorPrefab;
     public GameObject KeyInVendingMachine;
+    public GameObject Money;
     public List<GameObject> AllKeysInAllRooms;
     public GameObject FinalKeyObject;
 
@@ -123,6 +124,7 @@ public class LevelManager : MonoBehaviour
 
     public void LevelTwoKeyPadBoxColldierTurnOff() =>LevelTwoKeyPadPrefab.GetComponent<BoxCollider>().enabled = false;
     public void LevelThreeKeyPadBoxColldierTurnOff() => LevelThreeKeyPadPrefab.GetComponent<BoxCollider>().enabled = false;
+    
     public void RestartGameKeys()
     {
         AllKeysInAllRooms.ToList().ForEach(key => { key.gameObject.SetActive(true); });

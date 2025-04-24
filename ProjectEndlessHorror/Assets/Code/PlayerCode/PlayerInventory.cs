@@ -40,22 +40,26 @@ public class PlayerInventory : MonoBehaviour
         else
             return false;
     }
+
     /// <summary>
     /// Deletes all gameobjects in the Players inventory list
     /// </summary>
     public void ClearInventoryList() => PlayersInventoryList.Clear(); //this needs to only take out main key object and leave money 
 
     /// <summary>
-    /// This function clears speficly when its lvl 4 so they dont have to do the jump scare thing again.
+    /// This function makes it so when the player has the money, get the key and remove the money from there person, so a bug does not happen
     /// </summary>
-    public void ClearInventoryWhenJumpscared()
+    public void RemoveDollarWhenObtainKey()//this throws a argurment
     {
-        foreach (GameObject objects in PlayersInventoryList)
+        if(DoesPlayerHaveADollar())
         {
-            if (objects.name.Contains("Money") && LevelManagerRef.LevelIndex == 4)
-                Debug.Log("Do Nothing");
-            else
-                PlayersInventoryList.Remove(objects);
+            foreach (GameObject objects in PlayersInventoryList)
+            {
+                if (objects.name.Contains("Dollar") && LevelManagerRef.LevelIndex == 4)
+                    PlayersInventoryList.Remove(objects);
+            }
         }
+        else
+            return;
     }
 }

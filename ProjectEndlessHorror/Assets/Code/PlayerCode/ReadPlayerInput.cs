@@ -61,7 +61,7 @@ public class ReadPlayerInput : MonoBehaviour
         }
         else
         {
-            Debug.Log("play no sound");
+            AudioController.instance.PlayLockDoorSound();
             _playersInput = " ";
         }
     }
@@ -83,7 +83,7 @@ public class ReadPlayerInput : MonoBehaviour
         else
         {
             _playersInput = " ";
-            Debug.Log("play error sound");
+            AudioController.instance.PlayLockDoorSound();
         }
     }
 
