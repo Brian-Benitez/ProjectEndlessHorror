@@ -49,14 +49,14 @@ public class PlayerInventory : MonoBehaviour
     /// <summary>
     /// This function makes it so when the player has the money, get the key and remove the money from there person, so a bug does not happen
     /// </summary>
-    public void RemoveDollarWhenObtainKey()//this throws a argurment
+    public void RemoveDollarWhenObtainKey()//this throws a argurment..waiting to see if it works..
     {
         if(DoesPlayerHaveADollar())
         {
-            foreach (GameObject objects in PlayersInventoryList)
+            foreach(GameObject gameobject in PlayersInventoryList.Reverse<GameObject>())//idk why going backward should work but we will see..
             {
-                if (objects.name.Contains("Dollar") && LevelManagerRef.LevelIndex == 4)
-                    PlayersInventoryList.Remove(objects);
+                if(gameobject.name == "Dollar")
+                    PlayersInventoryList.Remove(gameobject);
             }
         }
         else
