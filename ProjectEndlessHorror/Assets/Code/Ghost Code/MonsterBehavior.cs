@@ -73,11 +73,12 @@ public class MonsterBehavior : MonoBehaviour
 
     public void StartMonsterMovement()
     {
-        if ( LevelManagerRef.LevelIndex == 4)
+        if(LevelManagerRef.LevelIndex == 4)
         {
             UnRotateModel();
             RotateModel();
         }
+
         Delay(WaitSpeedForMonster, () =>
         {
             StartCoroutine(MoveMonsterToPoint());
@@ -91,12 +92,14 @@ public class MonsterBehavior : MonoBehaviour
     public void SpawnMonsterInArea()
     {
         EnableObject();
+        UnRotateModel();
         AudioControllerRef.MonsterProximitySound();
         MonsterAnimationsRef.SetAnimationForMonster();
 
         if(LevelManagerRef.LevelIndex == 4)
         {
-            if(StartChaseSequnceRef.IsChasingPlayer == false)
+           
+            if (StartChaseSequnceRef.IsChasingPlayer == false)
             {
                 DisableObject();
                 Debug.Log("lpoppk");
@@ -120,7 +123,6 @@ public class MonsterBehavior : MonoBehaviour
         GotJumpScared = true;
         CameraControllerRef.InstanceJumpScareCamOn();//this too
         MonsterAnimationsRef.StartJumpScareMonsterAnimation();//I should subscribe this to gamemain.....
-        
         Delay(DurationOfJumpScare, () =>
         {
             CameraFadeRef.FadeToBlack();
@@ -148,7 +150,7 @@ public class MonsterBehavior : MonoBehaviour
         if (LevelManagerRef.LevelIndex == 4)
         {
             this.transform.Rotate(0, 90, 0);
-            Debug.Log("roate");
+            Debug.Log("hi 1");
         }
     }
 
@@ -157,7 +159,17 @@ public class MonsterBehavior : MonoBehaviour
         if (LevelManagerRef.LevelIndex == 4)
         {
             this.transform.Rotate(0, 0, 0);
-            Debug.Log("rotote normal");
+            Debug.Log("hi 2");
+        }
+    }
+    
+    public void FixIt()
+    {
+        if(LevelManagerRef.LevelIndex == 4)
+        {
+            EnableObject();
+            this.transform.Rotate(0, 0, 0);
+            DisableObject();
         }
     }
 

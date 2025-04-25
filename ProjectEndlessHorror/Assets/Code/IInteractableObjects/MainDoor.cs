@@ -20,16 +20,16 @@ public class MainDoor : MonoBehaviour, IInteractable
     public GameTimer GameTimerRef;
     public void Interact()
     {
-        AudioController.instance.StopPlayingAllVO();
-        AudioController.instance.StopPlayingFinalMintue();
-        AudioController.instance.StopAllAmbienceAudio();
 
         //if(SteamManager.Initialized)
         //{
             if (LevelManagerRef.LevelIndex == 4)//Ending scene
             {
                 Debug.Log("end ofgame");
-                LevelManagerRef.TurnOffMonster();
+                AudioController.instance.StopPlayingAllVO();
+                AudioController.instance.StopPlayingFinalMintue();
+                AudioController.instance.StopAllAmbienceAudio();
+            LevelManagerRef.TurnOffMonster();
                 GameTimerRef.PauseTheGameTimer();
                 SettingsControllerRef.PausePlayerInput();
                 CameraFadeRef.FadeToBlack();//Fade to black, have dialoge play, then kill the game.
@@ -77,6 +77,9 @@ public class MainDoor : MonoBehaviour, IInteractable
             else if (PlayerInventoryRef.DoesPlayerHaveKey() || LevelManagerRef.LevelIndex == 0)
             {
                 AudioController.instance.PlayUnlockKeyDoorSound();
+                AudioController.instance.StopPlayingAllVO();
+                AudioController.instance.StopPlayingFinalMintue();
+                AudioController.instance.StopAllAmbienceAudio();
                 SettingsControllerRef.PausePlayerInput();
                 CameraFadeRef.FadeToBlack();
                 Delay(1f, () =>
