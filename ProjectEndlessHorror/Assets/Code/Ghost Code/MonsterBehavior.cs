@@ -142,6 +142,7 @@ public class MonsterBehavior : MonoBehaviour
     {
         _spawnPointIndex = 0;
         EnableObject();
+        this.transform.rotation = Quaternion.identity;
     }
     //HELPER functions +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -158,21 +159,11 @@ public class MonsterBehavior : MonoBehaviour
     {
         if (LevelManagerRef.LevelIndex == 4)
         {
-            this.transform.Rotate(0, 0, 0);
-            Debug.Log("hi 2");
+            this.transform.rotation = Quaternion.identity;//THIS ROTATES ALL OBJECT BACK TO 0 0 0
+            Debug.Log("unrotate");
         }
     }
-    
-    public void FixIt()
-    {
-        if(LevelManagerRef.LevelIndex == 4)
-        {
-            EnableObject();
-            this.transform.Rotate(0, 0, 0);
-            DisableObject();
-        }
-    }
-
+  
     public void GotScaredBool() => GotJumpScared = true;
     
     public void RestartJumpScareBool() => GotJumpScared = false;

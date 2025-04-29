@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -50,6 +51,8 @@ public class ReadPlayerInput : MonoBehaviour
 
         if (_playersInput == _doorCodeNumber)
         {
+
+            InputText.GetComponent<TMP_InputField>().text = "";
             SettingsControllerRef.IsGamePaused = false;
             LevelManagerRef.RotateSideDoor();
             DisablePlayersInputText();
@@ -62,7 +65,7 @@ public class ReadPlayerInput : MonoBehaviour
         else
         {
             AudioController.instance.PlayLockDoorSound();
-            _playersInput = " ";
+            InputText.GetComponent<TMP_InputField>().text = "";
         }
     }
 
@@ -72,6 +75,7 @@ public class ReadPlayerInput : MonoBehaviour
 
         if(_playersInput == _levelThreeDoorNumber)
         {
+            LevelThreeDoorText.GetComponent<TMP_InputField>().text = "";
             SettingsControllerRef.IsGamePaused = false;
             LevelManagerRef.OpenLevelThreeDoor();
             Cursor.lockState = CursorLockMode.Locked;
@@ -82,7 +86,7 @@ public class ReadPlayerInput : MonoBehaviour
         }
         else
         {
-            _playersInput = " ";
+            LevelThreeDoorText.GetComponent<TMP_InputField>().text = "";
             AudioController.instance.PlayLockDoorSound();
         }
     }
@@ -92,9 +96,15 @@ public class ReadPlayerInput : MonoBehaviour
         _playersInput = code;
 
         if (_playersInput == _easterEggNumber)
+        {
+            EasterEggInputText.GetComponent<TMP_InputField>().text = "";
             EasterEggControllerRef.EasterEggState();
+        }
         else
-            _playersInput = " ";
+        {
+            EasterEggInputText.GetComponent<TMP_InputField>().text = "";
+            AudioController.instance.PlayLockDoorSound();
+        }    
     }
 
     public void EnableEasterEggUI()

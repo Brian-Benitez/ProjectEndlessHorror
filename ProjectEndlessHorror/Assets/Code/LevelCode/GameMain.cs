@@ -68,7 +68,6 @@ public class GameMain : MonoBehaviour
         PlayerLosesDelegate += CameraControllerRef.InstanceJumpScareCamOff;
         PlayerLosesDelegate += MonsterMovementRef.TurnOffMonstersNavMesh;
         PlayerLosesDelegate += MonsterBehaviorRef.SpawnMonsterInArea;
-        PlayerLosesDelegate += MonsterBehaviorRef.FixIt;
         PlayerLosesDelegate += PlayerInventoryRef.ClearInventoryList;
         PlayerLosesDelegate += CameraControllerRef.TurnOnPlayerCam;
         PlayerLosesDelegate += AudioController.instance.RestartRoundSound;
