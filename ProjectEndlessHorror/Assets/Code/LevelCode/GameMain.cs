@@ -62,6 +62,8 @@ public class GameMain : MonoBehaviour
 
         //Losing game stuff
         PlayerLosesDelegate += LevelManagerRef.RepositionPlayer;
+        PlayerLosesDelegate += AudioController.instance.StopPlayingFinalMintue;
+        PlayerLosesDelegate += AudioController.instance.StopPlayingMonsterScarySound;
         PlayerLosesDelegate += StartChaseSequnceRef.TurnOffChaseBool;
         PlayerLosesDelegate += MonsterAnimationsRef.StopJumpScareAnimation;
         PlayerLosesDelegate += CameraControllerRef.TurnOffTimedJumpScareCam;

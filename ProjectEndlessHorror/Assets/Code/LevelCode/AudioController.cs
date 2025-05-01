@@ -20,8 +20,10 @@ public class AudioController : MonoBehaviour
 
     [Header("Monster Audio")]
     public AudioSource MonsterProximityAudio;
-    public AudioSource MonsterScaryChaseAudio;//^using the same audio as the one above but the sound is heard everywhere.
+    public AudioSource MonsterScaryChaseAudio;
     public AudioSource MonsterEventAudio;
+    public AudioSource MonsterWalkEventOne;
+    public AudioSource MonsterWalkEventTwo;
     public AudioSource MonsterKillAudio;
 
     [Header("Ambience")]
@@ -39,6 +41,7 @@ public class AudioController : MonoBehaviour
     public AudioSource FinalMinuteAudio;
     public AudioSource RestartRoundAudio;
     public AudioSource EightThreeFiveAudio;
+    public AudioSource EndingMusicAudio;
 
     
     [Header("Scripts")]
@@ -57,11 +60,12 @@ public class AudioController : MonoBehaviour
     //Ambieince---------------------------------------------------------------------------------------------------------------------------------------------------->
     public void OfficeAmbienceSound() => OfficeAmbienceAudio.Play();
     public void SecurityOfficeSound() => SecurityAmbienceAudio.Play();
+    public void PlayEndingMusicSound() => EndingMusicAudio.Play();
 
     public void PlayEasterEggEndingSound() => EasterEggEndingAudio.Play();
     public void PlayNoEasterEggEndingSound() => NoEasterEggEndingAudio.Play();
 
-    public void MonsterEventSound() => MonsterEventAudio.Play();
+    public void MonsterEventSound() => MonsterWalkEventOne.Play();
     public void RestartRoundSound() => RestartRoundAudio.Play();
 
     public void JumpScareSoundPlay() => MonsterKillAudio.Play();
@@ -75,6 +79,7 @@ public class AudioController : MonoBehaviour
     private void PlayMonsterScarySoundChase()
     {
         MonsterScaryChaseAudio.Play();
+        FinalMinuteAudio.Play();
     }
 
     public void StopPlayingMonsterScarySound() => MonsterScaryChaseAudio.Stop();
@@ -131,13 +136,12 @@ public class AudioController : MonoBehaviour
         MonsterProximityAudio.volume = volumevalue;
         MonsterKillAudio.volume = volumevalue;
         RestartRoundAudio.volume = volumevalue;
-        MonsterEventAudio.volume = volumevalue;
+        MonsterWalkEventOne.volume = volumevalue;
+        MonsterWalkEventTwo.volume = volumevalue;
         EightThreeFiveAudio.volume = volumevalue;
-        //EasterEggAudio.volume = volumevalue;
         SecurityAmbienceAudio.volume = volumevalue;
         OfficeAmbienceAudio.volume = volumevalue; 
         PlayerSettingClickAudio.volume = volumevalue;
-        //PlayerFootStepAudio.volume = volumevalue;
         VoiceOvers.ForEach(x => x.volume = volumevalue);
     }
 

@@ -29,29 +29,36 @@ public class MainDoor : MonoBehaviour, IInteractable
                 AudioController.instance.StopPlayingAllVO();
                 AudioController.instance.StopPlayingFinalMintue();
                 AudioController.instance.StopAllAmbienceAudio();
-            LevelManagerRef.TurnOffMonster();
+                LevelManagerRef.TurnOffMonster();
                 GameTimerRef.PauseTheGameTimer();
                 SettingsControllerRef.PausePlayerInput();
                 CameraFadeRef.FadeToBlack();//Fade to black, have dialoge play, then kill the game.
                 GameMain.instance.GameIsFinishedSetTrue();
 
-            if (EasterEggControllerRef.IsEasterEggEnabled)
+            Delay(3f, () =>
             {
+                if (EasterEggControllerRef.IsEasterEggEnabled)
+                {
 
-                //Steamworks.SteamUserStats.GetAchievement("Achievement_Two", out bool achivementCompleted);
-                //if (!achivementCompleted)
-                //{
-                //SteamUserStats.SetAchievement("Achievement_Two");
-                //SteamUserStats.StoreStats();
-                //}
+                    //Steamworks.SteamUserStats.GetAchievement("Achievement_Two", out bool achivementCompleted);
+                    //if (!achivementCompleted)
+                    //{
+                    //SteamUserStats.SetAchievement("Achievement_Two");
+                    //SteamUserStats.StoreStats();
+                    //}
 
-                Debug.Log("play this audio");
-                AudioController.instance.PlayEasterEggEndingSound();
-            }
-            else
-                AudioController.instance.PlayNoEasterEggEndingSound();
+                    Debug.Log("play this audio");
+                    //AudioController.instance.PlayEndingMusicSound();
+                    AudioController.instance.PlayEasterEggEndingSound();
+                }
+                else
+                {
+                    //AudioController.instance.PlayEndingMusicSound();
+                    AudioController.instance.PlayNoEasterEggEndingSound();
+                }
+            });
 
-            Delay(EndingDialogueTimer, () =>// it was 15 sec now its this <---
+            Delay(EndingDialogueTimer, () =>
                 {
                     SettingsControllerRef.UnPausePlayersInput();
                     if (!EasterEggControllerRef.IsEasterEggEnabled)
