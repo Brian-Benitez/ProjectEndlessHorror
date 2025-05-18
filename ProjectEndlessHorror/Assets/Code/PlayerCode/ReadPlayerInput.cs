@@ -15,7 +15,7 @@ public class ReadPlayerInput : MonoBehaviour
     [Header("Strings")]
     private string _doorCodeNumber = "0740";
     private string _levelThreeDoorNumber = "835";
-    private string _easterEggNumber = "083121";
+    private string _easterEggNumber = "212839";
     private string _playersInput;
 
     [Header("Scripts")]

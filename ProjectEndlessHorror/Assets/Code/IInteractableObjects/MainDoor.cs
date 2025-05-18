@@ -1,5 +1,5 @@
 using DG.Tweening;
-//using Steamworks;
+using Steamworks;
 using interfaces;
 using System.Collections;
 using System.Collections.Generic;
@@ -39,13 +39,12 @@ public class MainDoor : MonoBehaviour, IInteractable
             {
                 if (EasterEggControllerRef.IsEasterEggEnabled)
                 {
-
-                    //Steamworks.SteamUserStats.GetAchievement("Achievement_Two", out bool achivementCompleted);
-                    //if (!achivementCompleted)
-                    //{
-                    //SteamUserStats.SetAchievement("Achievement_Two");
-                    //SteamUserStats.StoreStats();
-                    //}
+                    Steamworks.SteamUserStats.GetAchievement("Achievement_Two", out bool achivementCompleted);
+                    if (!achivementCompleted)
+                    {
+                    SteamUserStats.SetAchievement("Achievement_Two");
+                    SteamUserStats.StoreStats();
+                    }
 
                     Debug.Log("play this audio");
                     //AudioController.instance.PlayEndingMusicSound();
@@ -65,14 +64,14 @@ public class MainDoor : MonoBehaviour, IInteractable
                     {
                         LevelManagerRef.TurnOnMonster();
                         GameMain.instance.PlayingRestartGameLogicDelegate();
-                        /*
+                        
                         Steamworks.SteamUserStats.GetAchievement("Achievement_One", out bool achivementCompleted);
                         if(!achivementCompleted)
                         {
                             SteamUserStats.SetAchievement("Achievement_One");
                             SteamUserStats.StoreStats();
                         }
-                        */
+                        
                     }
                     else
                     {
@@ -97,7 +96,7 @@ public class MainDoor : MonoBehaviour, IInteractable
             }
             else
                 AudioController.instance.PlayLockDoorSound();
-        //}
+ 
     }
 
     private static void Delay(float time, System.Action _callBack)
